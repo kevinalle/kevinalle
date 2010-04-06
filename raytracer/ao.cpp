@@ -2,6 +2,7 @@
 #include <SDL/SDL.h>
 #include <math.h>
 #include <vector>
+
 using namespace std;
 
 #define foreach(it,l) for(typeof(l.begin()) it=l.begin();it!=l.end();it++)
@@ -11,13 +12,15 @@ using namespace std;
 #define H 400
 #define OSA 2
 
+typedef pair<bool,double> Intersection;
+
 typedef struct _color{
-	_color(uint _r,uint _g,uint _b):r(_r),g(_g),b(_b){}
-	_color(uint c):r(c>>16&0xff),g(c>>8&0xff),b(c&0xff){}
-	uint r;
-	uint g;
-	uint b;
-	uint hex(){return r<<16|g<<8|b;}
+	_color(int _r,int _g,int _b):r(_r),g(_g),b(_b){}
+	_color(int c):r(c>>16&0xff),g(c>>8&0xff),b(c&0xff){}
+	int r;
+	int g;
+	int b;
+	int hex(){return r<<16|g<<8|b;}
 } Color;
 
 typedef struct _vector{
@@ -40,6 +43,7 @@ typedef struct _vector{
 
 typedef struct _cam{
 	_cam():pos(Vector(0,0,0)),dir(Vector(0,0,1)),up(Vector(0,1,0)),fl(100.),fov(2.),aoSamp(3){}
+	_cam(Vector _pos, Vector _lookat):pos(_pos),dir((_lookat-_pos).normalized()),up(Vector(0,1,0)),fl(100.),fov(2.),aoSamp(3){}
 	_cam(Vector _pos,Vector _dir,Vector _up,double _fl,double _fov,int _aoSamp=5):pos(_pos),dir(_dir.normalized()),up(_up.normalized()),fl(_fl),fov(_fov),aoSamp(_aoSamp){}
 	Vector pos;
 	Vector dir;
@@ -56,8 +60,8 @@ typedef struct _sphere{
 	
 	Vector normal(Vector p){return (p-c).normalized();}
 	
-	pair<bool,double> intersects(Vector o, Vector d){
-		pair<bool,double> res;
+	Intersection intersects(Vector o, Vector d){
+		Intersection res;
 		res.first = false;
 
 		// coeficientes de la ecuacion cuadratica
@@ -92,7 +96,7 @@ typedef struct _sphere{
 	}
 } Sphere;
 
-typedef pair<bool,double> Intersection;
+//typedef tuple<bool,double,Sphere> Intersection2;
 
 void drawpix(SDL_Surface* surface, int x, int y, Color c){
 	Uint32* pixels = (Uint32*)surface->pixels;
@@ -100,30 +104,49 @@ void drawpix(SDL_Surface* surface, int x, int y, Color c){
 }
 
 Intersection ray(Vector from, Vector dir, vector<Sphere>& obj){
-	return Intersection(false,0);
+	Intersection res(false,0);
+	foreach(it,obj){
+		Intersection I=it->intersects(from,dir);
+		if(I.first && (I.second<res.second || !res.first)) res=I;
+	}
+	return res;
+}
+Intersection ray2(Vector from, Vector dir, vector<Sphere>& obj){
+	Intersection res(false,0);
+	foreach(it,obj){
+		Intersection I=it->intersects(from,dir);
+		if(I.first && (I.second<res.second || !res.first)) res=I;
+	}
+	return res;
 }
 
 int render(SDL_Surface* screen){
-	Cam cam;
+	Cam cam(Vector(0,0,0),Vector(0,0,10));
 	vector<Sphere> obj;
 	obj.push_back(Sphere(3,Vector(0,0,10)));
+	obj.push_back(Sphere(3,Vector(6,0,10)));
+	obj.push_back(Sphere(3,Vector(0,6,10)));
+	obj.push_back(Sphere(3,Vector(-6,0,10)));
+	obj.push_back(Sphere(3,Vector(0,-6,10)));
 	
 	double alpha=2*cam.fl*tan(cam.fov/2)/W;
 	Vector dx=(cam.dir^cam.up).normalized()*alpha;
 	Vector dy=cam.up*alpha;
 	forn(y,H){
 		forn(x,W){
-			Vector raydir=cam.dir*cam.fl+dx*(x-W/2.)+dy*(y-H/2.);
-			Intersection pI=obj[0].intersects(cam.pos,raydir);
-			int c=cam.aoSamp;
+			Vector raydir=(cam.dir*cam.fl+dx*(x-W/2.)+dy*(y-H/2.)).normalized();
+			Intersection pI=ray(cam.pos,raydir,obj);
+			double c=cam.aoSamp;
 			if(pI.first){
 				Vector I=raydir*pI.second;
 				Vector N=obj[0].normal(I);
 				forn(i,cam.aoSamp){
-					ray(I,N,obj);
+					c-=ray2(I,N,obj).first;
 				}
+				//c=0;
 			}
-			drawpix(screen, x,y, Color(c,c,c));
+			int col=c*255./3;
+			drawpix(screen, x,y, Color(col,col,col));
 		}
 		if(y%5==4) if(SDL_Flip(screen)==-1) return -1;
 		SDL_Event event; while(SDL_PollEvent(&event)) if(event.type == SDL_QUIT || event.type == SDL_KEYDOWN && event.key.keysym.sym==SDLK_ESCAPE) return -1;
