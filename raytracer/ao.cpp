@@ -8,9 +8,9 @@ using namespace std;
 #define foreach(it,l) for(typeof(l.begin()) it=l.begin();it!=l.end();it++)
 #define forn(i,n) for(int i=0;i<(int)(n);i++)
 
-#define W 500
-#define H 400
-#define OSA 2
+#define W 1440
+#define H 900
+#define OSA 4
 
 typedef struct _color{
 	_color(int _r,int _g,int _b):r(_r),g(_g),b(_b){}
@@ -108,15 +108,37 @@ Intersection ray(Vector from, Vector dir, vector<Sphere>& obj){
 }
 
 int render(SDL_Surface* screen){
-	//Cam cam(Vector(0,0,0),Vector(0,0,30));
 	Cam cam(Vector(0,0,0),Vector(0,0,30));
-	cam.aoSamp=7;
+	cam.aoSamp=70;
 	vector<Sphere> obj;
-	obj.push_back(Sphere(3,Vector(0,0,30)));
+	/*obj.push_back(Sphere(3,Vector(0,0,30)));
 	obj.push_back(Sphere(3,Vector(6,0,30)));
 	obj.push_back(Sphere(3,Vector(0,6,30)));
-	obj.push_back(Sphere(3,Vector(-6,0,30)));
-	obj.push_back(Sphere(300,Vector(0,-303,30)));
+	obj.push_back(Sphere(3,Vector(-6,0,30)));*/
+	/*forn(s,15){
+		float r=rand()%300/200.+2;
+		float x=(rand()%200-100)/5.;
+		float z=(rand()%200-100)/5.+40;
+		obj.push_back(Sphere(r,Vector(x,r-6,z)));
+		cout << "obj.push_back(Sphere("<<r<<",Vector("<<x<<","<<r-6<<","<<z<<")));" << endl;
+	}*/
+	obj.push_back(Sphere(3.2,Vector(15.6,-2.8,36.8)));
+	obj.push_back(Sphere(3.23,Vector(4.6,-2.77,49.4)));
+	obj.push_back(Sphere(2.605,Vector(11,-3.395,33.6)));
+	obj.push_back(Sphere(2.615,Vector(-1,-3.385,22.2)));
+	obj.push_back(Sphere(2.485,Vector(-11,-3.515,40.4)));
+	obj.push_back(Sphere(2.6,Vector(-1.4,-3.4,32.8)));
+	obj.push_back(Sphere(3.25,Vector(-17.6,-2.75,36.8)));
+	obj.push_back(Sphere(2.97,Vector(-3.8,-3.03,46.8)));
+	obj.push_back(Sphere(3.415,Vector(-2.4,-2.585,40.2)));
+	obj.push_back(Sphere(2.28,Vector(8.8,-3.72,59)));
+	obj.push_back(Sphere(2.535,Vector(-12.8,-3.465,45)));
+	obj.push_back(Sphere(2.72,Vector(-3.4,-3.28,29.6)));
+	obj.push_back(Sphere(2.455,Vector(11.2,-3.545,20.6)));
+	obj.push_back(Sphere(3.06,Vector(6.2,-2.94,39.8)));
+	obj.push_back(Sphere(3.115,Vector(5.6,-2.885,39.2)));
+
+	obj.push_back(Sphere(8000,Vector(0,-8006,30)));
 	
 	double alpha=2*cam.fl*tan(cam.fov/2)/W;
 	Vector dx=(cam.dir^cam.up).normalized()*alpha;
@@ -150,6 +172,7 @@ int render(SDL_Surface* screen){
 }
 
 int main(int argc, char* argv[]){
+	srand(time(NULL));
 	/* inicio SDL */
 	if(SDL_Init(SDL_INIT_EVERYTHING)==-1) return 1;
 
