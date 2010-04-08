@@ -8,10 +8,11 @@ using namespace std;
 #define foreach(it,l) for(typeof(l.begin()) it=l.begin();it!=l.end();it++)
 #define forn(i,n) for(int i=0;i<(int)(n);i++)
 
-#define W 500
-#define H 200
-#define OSA 1
-#define AOSAMP 4
+#define W 800
+#define H 500
+#define OSA 2
+#define AOSAMP 20
+#define DOFSAMP 3
 
 typedef struct _color{
 	_color(int _r,int _g,int _b):r(_r),g(_g),b(_b){}
@@ -107,7 +108,7 @@ Intersection ray(Vector from, Vector dir, vector<Sphere>& obj){
 }
 
 int render(SDL_Surface* screen){
-	Cam cam(Vector(0,20,10),Vector(0,-5,30));
+	Cam cam(Vector(0,6,6),Vector(0,-1,20));
 	vector<Sphere> obj;
 	/*forn(s,15){
 		float r=rand()%300/200.+2;
@@ -131,27 +132,33 @@ int render(SDL_Surface* screen){
 	
 	double alpha=2*cam.fl*tan(cam.fov/2)/W;
 	Vector dx=(cam.up^cam.dir).normalized()*alpha;
-	Vector dy=-cam.up*alpha;
+	Vector dy=(dx^cam.dir).normalized()*alpha;
+	double beta=alpha*3.5;
+	Vector dof_dx=dx.normalized()*beta;
+	Vector dof_dy=dy.normalized()*beta;
 	forn(y,H){
 		forn(x,W){
 			int col=0;
-			forn(xx,OSA) forn(yy,OSA){
-				Vector raydir=(cam.dir*cam.fl+dx*(x-W/2.+(float)xx/OSA)+dy*(y-H/2.+(float)yy/OSA)).normalized();
-				Intersection pI=ray(cam.pos,raydir,obj);
-				double c=0;
-				if(pI.hit){
-					Vector I=cam.pos+raydir*pI.dist;
-					Vector N=pI.what->normal(I);
-					forn(i,AOSAMP){
-						Vector dir;
-						do dir=Vector(rand()%1000-500,rand()%1000-500,rand()%1000-500).normalized(); while(acos(dir*N)>1.5);
-						c+=atan(ray(I,dir,obj).dist/2)/1.6;
-					}
-					col+=c*255./AOSAMP;
-					//col=0;
-				}else col+=255;
+			forn(xdof,DOFSAMP) forn(ydof,DOFSAMP){
+				forn(xx,OSA) forn(yy,OSA){
+					Vector dofpos=dof_dx*xdof+dof_dy*ydof;
+					Vector raydir=((cam.dir*cam.fl+dx*(x-W/2.+(float)xx/OSA)+dy*(y-H/2.+(float)yy/OSA))-dofpos).normalized();
+					Intersection pI=ray(cam.pos+dofpos,raydir,obj);
+					double c=0;
+					if(pI.hit){
+						Vector I=cam.pos+raydir*pI.dist;
+						Vector N=pI.what->normal(I);
+						forn(i,AOSAMP){
+							Vector dir;
+							do dir=Vector(rand()%1000-500,rand()%1000-500,rand()%1000-500).normalized(); while(acos(dir*N)>1.5);
+							c+=atan(ray(I,dir,obj).dist/5)/1.6;
+						}
+						col+=c*255./AOSAMP;
+						//col=0;
+					}else col+=255;
+				}
 			}
-			col/=OSA*OSA;
+			col/=OSA*OSA*DOFSAMP*DOFSAMP;
 			drawpix(screen, x,y, Color(col,col,col));
 		}
 		if(y%5==4) if(SDL_Flip(screen)==-1) return -1;
