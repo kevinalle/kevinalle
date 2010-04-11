@@ -10,10 +10,11 @@ using namespace std;
 #define forsn(i,s,n) for(int i=(int)(s);i<(int)(n);i++)
 #define PI 3.141592
 
-#define W 1440
-#define H 900
+#define W 400
+#define H 250
 #define OSA 2
 #define AOSAMP 10
+#define DOF 3.0
 #define DOFSAMP 3
 
 typedef struct _color{
@@ -133,7 +134,7 @@ int render(SDL_Surface* screen,int x0=0,int y0=0,int x1=W,int y1=H){
 	double alpha=2*cam.fl*tan(cam.fov/2)/W;
 	Vector dx=(cam.up^cam.dir).normalized()*alpha;
 	Vector dy=(dx^cam.dir).normalized()*alpha;
-	double beta=alpha*3;
+	double beta=alpha*DOF;
 	Vector dof_dx=dx.normalized()*beta;
 	Vector dof_dy=dy.normalized()*beta;
 	forsn(y,y0,y1){
