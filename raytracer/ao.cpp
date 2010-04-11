@@ -7,13 +7,14 @@ using namespace std;
 
 #define foreach(it,l) for(typeof(l.begin()) it=l.begin();it!=l.end();it++)
 #define forn(i,n) for(int i=0;i<(int)(n);i++)
+#define forsn(i,s,n) for(int i=(int)(s);i<(int)(n);i++)
 #define PI 3.141592
 
 #define W 500
 #define H 300
-#define OSA 2
-#define AOSAMP 20
-#define DOFSAMP 3
+#define OSA 1
+#define AOSAMP 10
+#define DOFSAMP 2
 
 typedef struct _color{
 	_color(int _r,int _g,int _b):r(_r),g(_g),b(_b){}
@@ -106,7 +107,7 @@ Intersection ray(Vector from, Vector dir, vector<Sphere>& obj){
 	return res;
 }
 
-int render(SDL_Surface* screen){
+int render(SDL_Surface* screen,int x0=0,int y0=0,int x1=W,int y1=H){
 	Cam cam(Vector(0,6,6),Vector(0,-1,21));
 	vector<Sphere> obj;
 	/*forn(s,15){
@@ -135,8 +136,8 @@ int render(SDL_Surface* screen){
 	double beta=alpha*3;
 	Vector dof_dx=dx.normalized()*beta;
 	Vector dof_dy=dy.normalized()*beta;
-	forn(y,H){
-		forn(x,W){
+	forsn(y,y0,y1){
+		forsn(x,x0,x1){
 			double col=0;
 			forn(xdof,DOFSAMP) forn(ydof,DOFSAMP){
 				forn(xx,OSA) forn(yy,OSA){
@@ -158,8 +159,6 @@ int render(SDL_Surface* screen){
 			int color=col;
 			drawpix(screen, x,y, Color(color,color,color));
 		}
-		if(y%5==4) if(SDL_Flip(screen)==-1) return -1;
-		SDL_Event event; while(SDL_PollEvent(&event)) if(event.type == SDL_QUIT || event.type == SDL_KEYDOWN && event.key.keysym.sym==SDLK_ESCAPE) return -1;
 	}
 	return 0;
 }
@@ -172,15 +171,22 @@ int main(int argc, char* argv[]){
 	SDL_Surface* screen = NULL;
 	screen = SDL_SetVideoMode(W, H, 32, SDL_SWSURFACE);
 	if(!screen) return 1;
-	if(render(screen)==-1) return 1;
-
-	SDL_Event event;
-	bool quit = false;
-	while(!quit){
-		while(SDL_PollEvent(&event)){
-			if(event.type == SDL_QUIT || event.type == SDL_KEYDOWN && event.key.keysym.sym==SDLK_ESCAPE) quit=true;
+	
+	int pid=fork();
+	int child=-1;
+	forn(p1,4) forn(p2,4){
+		if(pid==-1) cout << "Error" << endl;
+		else if(pid==0){
+			if(render(screen,W*p1/4,H*p2/4,W*(p1+1)/4,H*(p2+1)/4)==-1) return 1;
+			exit(0);
+		}else{
+			pid=fork();
 		}
 	}
-	SDL_Quit(); 
+	if(pid>0) while(true){
+		if(SDL_Flip(screen)==-1) return -1;
+		usleep(300*1000);
+		SDL_Event event; while(SDL_PollEvent(&event)) if(event.type == SDL_QUIT || event.type == SDL_KEYDOWN && event.key.keysym.sym==SDLK_ESCAPE){SDL_Quit();return -1;}
+	}
 	return 0;
 }
