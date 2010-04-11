@@ -7,9 +7,10 @@ using namespace std;
 
 #define foreach(it,l) for(typeof(l.begin()) it=l.begin();it!=l.end();it++)
 #define forn(i,n) for(int i=0;i<(int)(n);i++)
+#define PI 3.141592
 
-#define W 800
-#define H 500
+#define W 500
+#define H 300
 #define OSA 2
 #define AOSAMP 20
 #define DOFSAMP 3
@@ -17,9 +18,7 @@ using namespace std;
 typedef struct _color{
 	_color(int _r,int _g,int _b):r(_r),g(_g),b(_b){}
 	_color(int c):r(c>>16&0xff),g(c>>8&0xff),b(c&0xff){}
-	int r;
-	int g;
-	int b;
+	int r;int g;int b;
 	int hex(){return r<<16|g<<8|b;}
 } Color;
 
@@ -108,7 +107,7 @@ Intersection ray(Vector from, Vector dir, vector<Sphere>& obj){
 }
 
 int render(SDL_Surface* screen){
-	Cam cam(Vector(0,6,6),Vector(0,-1,20));
+	Cam cam(Vector(0,6,6),Vector(0,-1,21));
 	vector<Sphere> obj;
 	/*forn(s,15){
 		float r=rand()%300/200.+2;
@@ -133,33 +132,31 @@ int render(SDL_Surface* screen){
 	double alpha=2*cam.fl*tan(cam.fov/2)/W;
 	Vector dx=(cam.up^cam.dir).normalized()*alpha;
 	Vector dy=(dx^cam.dir).normalized()*alpha;
-	double beta=alpha*3.5;
+	double beta=alpha*3;
 	Vector dof_dx=dx.normalized()*beta;
 	Vector dof_dy=dy.normalized()*beta;
 	forn(y,H){
 		forn(x,W){
-			int col=0;
+			double col=0;
 			forn(xdof,DOFSAMP) forn(ydof,DOFSAMP){
 				forn(xx,OSA) forn(yy,OSA){
 					Vector dofpos=dof_dx*xdof+dof_dy*ydof;
 					Vector raydir=((cam.dir*cam.fl+dx*(x-W/2.+(float)xx/OSA)+dy*(y-H/2.+(float)yy/OSA))-dofpos).normalized();
 					Intersection pI=ray(cam.pos+dofpos,raydir,obj);
-					double c=0;
 					if(pI.hit){
-						Vector I=cam.pos+raydir*pI.dist;
+						Vector I=cam.pos+dofpos+raydir*pI.dist;
 						Vector N=pI.what->normal(I);
 						forn(i,AOSAMP){
 							Vector dir;
 							do dir=Vector(rand()%1000-500,rand()%1000-500,rand()%1000-500).normalized(); while(acos(dir*N)>1.5);
-							c+=atan(ray(I,dir,obj).dist/5)/1.6;
+							col+=atan(ray(I,dir,obj).dist/5)*255./((PI/2)*AOSAMP);
 						}
-						col+=c*255./AOSAMP;
-						//col=0;
-					}else col+=255;
+					}else col+=255.;
 				}
 			}
-			col/=OSA*OSA*DOFSAMP*DOFSAMP;
-			drawpix(screen, x,y, Color(col,col,col));
+			col/=(OSA*OSA*DOFSAMP*DOFSAMP);
+			int color=col;
+			drawpix(screen, x,y, Color(color,color,color));
 		}
 		if(y%5==4) if(SDL_Flip(screen)==-1) return -1;
 		SDL_Event event; while(SDL_PollEvent(&event)) if(event.type == SDL_QUIT || event.type == SDL_KEYDOWN && event.key.keysym.sym==SDLK_ESCAPE) return -1;
