@@ -10,11 +10,11 @@ using namespace std;
 #define forsn(i,s,n) for(int i=(int)(s);i<(int)(n);i++)
 #define PI 3.141592
 
-#define W 500
-#define H 300
-#define OSA 1
+#define W 1440
+#define H 900
+#define OSA 2
 #define AOSAMP 10
-#define DOFSAMP 2
+#define DOFSAMP 3
 
 typedef struct _color{
 	_color(int _r,int _g,int _b):r(_r),g(_g),b(_b){}
