@@ -6,9 +6,11 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
 from Tango import Tango
+from math import sin,cos
 
 
 class Draw:
+	title="Hello"
 	FPS=40
 	frame=0
 	bgcolor=(239,235,231)
@@ -17,7 +19,7 @@ class Draw:
 		glutInit(sys.argv)
 		glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB)
 		glutInitWindowSize(640, 480)
-		glutCreateWindow("Hello")
+		glutCreateWindow(self.title)
 		glEnable(GL_LINE_SMOOTH)
 		glEnable(GL_POINT_SMOOTH)
 		glEnable(GL_BLEND)
@@ -57,6 +59,13 @@ class Draw:
 		glBegin(GL_LINES)
 		glVertex2f(-.5, -.5)
 		glVertex2f(.5, .5)
+		glEnd()
+		
+		self.color(*Tango.SkyBlue3)
+		glBegin(GL_LINES)
+		for i in range(100):
+			glVertex2f(0, 0)
+			glVertex2f(sin(i/10.), cos(i/10.))
 		glEnd()
 		
 		#circ(0,0,25)
