@@ -17,9 +17,10 @@ class Draw:
 	
 	def __init__(self):
 		glutInit(sys.argv)
-		glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB)
-		glutInitWindowSize(640, 480)
 		glutCreateWindow(self.title)
+		glutReshapeWindow(640, 480)
+		#glutInitWindowSize(640, 480)
+		glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB)
 		glEnable(GL_LINE_SMOOTH)
 		glEnable(GL_POINT_SMOOTH)
 		glEnable(GL_BLEND)
