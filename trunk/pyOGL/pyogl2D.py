@@ -54,6 +54,9 @@ class Draw:
 		glLoadIdentity()
 	
 	def render(self,obj):
+		glPushMatrix()
+		glRotatef(obj.rotation,0,0,-1)
+		glTranslatef(obj.x,obj.y,0)
 		for o in obj.objects:
 			if o.__class__.__name__==Line.__name__:
 				glLineWidth(o.style["width"])
@@ -63,37 +66,18 @@ class Draw:
 				glVertex2f(o.x1,o.y1)
 				glEnd()
 			elif o.__class__.__name__==Sprite.__name__:
-				glTranslatef(o.x,o.y,0)
-				#glRotate
-				#glScale
 				self.render(o)
+		glPopMatrix()
 	
 	def display(self):
 		glClear(GL_COLOR_BUFFER_BIT)
-		
 		self.render(self.scene)
-		"""glLineWidth(1.5)
-		self.color(*Tango.ScarletRed2)
-		glBegin(GL_LINES)
-		glVertex2f(-.5, -.5)
-		glVertex2f(.5, .5)
-		glEnd()
-		
-		self.color(*Tango.SkyBlue3)
-		glBegin(GL_LINES)
-		for i in range(100):
-			glVertex2f(0, 0)
-			glVertex2f(sin(i/10.), cos(i/10.))
-		glEnd()
-		#circ(0,0,25)
-		"""
-		
 		glFlush()
 	
 	def update(self,val):
 		self.frame+=1
 		time=glutGet(GLUT_ELAPSED_TIME)
-		#glutPostRedisplay()
+		glutPostRedisplay()
 		time2=glutGet(GLUT_ELAPSED_TIME)
 		glutTimerFunc(int(1000./self.FPS-(time2-time)),self.update,0)
 	
@@ -115,5 +99,6 @@ if __name__ == '__main__':
 	sq.lineTo(.5,.5)
 	sq.lineTo(-.5,.5)
 	sq.lineTo(-.5,-.5)
+	sq.rotation=20
 	Draw(sc)
 	glutMainLoop()
