@@ -7,15 +7,16 @@ from OpenGL.GLU import *
 from OpenGL.GLUT import *
 from Tango import Tango
 from math import sin,cos
+from Sprite import *
 
 
 class Draw:
-	title="Hello"
-	FPS=40
-	frame=0
-	bgcolor=(239,235,231)
-	
-	def __init__(self):
+	def __init__(self,scene):
+		self.scene=scene
+		self.title="Hello"
+		self.FPS=40
+		self.frame=0
+		self.bgcolor=(239,235,231)
 		glutInit(sys.argv)
 		glutCreateWindow(self.title)
 		glutReshapeWindow(640, 480)
@@ -52,10 +53,26 @@ class Draw:
 		glMatrixMode(GL_MODELVIEW)
 		glLoadIdentity()
 	
+	def render(self,obj):
+		for o in obj.objects:
+			if o.__class__.__name__==Line.__name__:
+				glLineWidth(o.style["width"])
+				self.color(*o.style["color"])
+				glBegin(GL_LINES)
+				glVertex2f(o.x0,o.y0)
+				glVertex2f(o.x1,o.y1)
+				glEnd()
+			elif o.__class__.__name__==Sprite.__name__:
+				glTranslatef(o.x,o.y,0)
+				#glRotate
+				#glScale
+				self.render(o)
+	
 	def display(self):
 		glClear(GL_COLOR_BUFFER_BIT)
 		
-		glLineWidth(1.5)
+		self.render(self.scene)
+		"""glLineWidth(1.5)
 		self.color(*Tango.ScarletRed2)
 		glBegin(GL_LINES)
 		glVertex2f(-.5, -.5)
@@ -68,14 +85,15 @@ class Draw:
 			glVertex2f(0, 0)
 			glVertex2f(sin(i/10.), cos(i/10.))
 		glEnd()
-		
 		#circ(0,0,25)
+		"""
+		
 		glFlush()
 	
 	def update(self,val):
 		self.frame+=1
 		time=glutGet(GLUT_ELAPSED_TIME)
-		glutPostRedisplay()
+		#glutPostRedisplay()
 		time2=glutGet(GLUT_ELAPSED_TIME)
 		glutTimerFunc(int(1000./self.FPS-(time2-time)),self.update,0)
 	
@@ -89,5 +107,13 @@ class Draw:
 		glRotatef(1.,0,0,-1)
 
 if __name__ == '__main__':
-	Draw()
-	glutMainLoop ()
+	sc=Sprite()
+	sq=Sprite()
+	sc.add(sq)
+	sq.moveTo(-.5,-.5)
+	sq.lineTo(.5,-.5)
+	sq.lineTo(.5,.5)
+	sq.lineTo(-.5,.5)
+	sq.lineTo(-.5,-.5)
+	Draw(sc)
+	glutMainLoop()
