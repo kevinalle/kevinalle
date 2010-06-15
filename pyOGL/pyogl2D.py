@@ -2,13 +2,39 @@
 
 import sys
 from OpenGL.GL import *
-#from OpenGL.GLE import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
-from Tango import Tango
+import Tango
 from math import sin,cos
-from Sprite import *
 
+class Line:
+	def __init__(self,x0,y0,x1,y1,style):
+		self.x0,self.y0,self.x1,self.y1,self.style=x0,y0,x1,y1,style
+	
+class Sprite:	
+	def __init__(self):
+		self.x=0
+		self.y=0
+		self.rotation=0
+		self.scale=1
+		self.curx=0
+		self.cury=0
+		self.objects=[]
+		self.linestyle={"color":Tango.Aluminium6, "width":2.}
+	
+	def add(self,obj):
+		self.objects.append(obj)
+	
+	def moveTo(self,x,y):
+		self.curx,self.cury=x,y
+	
+	def lineTo(self,x,y):
+		self.objects.append(Line(self.curx,self.cury,x,y,self.linestyle.copy()))
+		self.curx,self.cury=x,y
+	
+	def lineStyle(self,color=None,width=-1):
+		if color: self.linestyle["color"]=color
+		if width>=0: self.linestyle["width"]=width
 
 class Draw:
 	def __init__(self,scene):
@@ -36,6 +62,7 @@ class Draw:
 		glutPassiveMotionFunc(self.mouse)
 		glutDisplayFunc(self.display)
 		glutTimerFunc(50,self.update,0)
+		glutMainLoop()
 	
 	def color(self,r,g,b):
 		glColor3f(r/255., g/255., b/255.)
@@ -55,6 +82,7 @@ class Draw:
 	
 	def render(self,obj):
 		glPushMatrix()
+		glScalef(obj.scale,obj.scale,1)
 		glRotatef(obj.rotation,0,0,-1)
 		glTranslatef(obj.x,obj.y,0)
 		for o in obj.objects:
@@ -101,4 +129,3 @@ if __name__ == '__main__':
 	sq.lineTo(-.5,-.5)
 	sq.rotation=20
 	Draw(sc)
-	glutMainLoop()
