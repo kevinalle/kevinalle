@@ -1,3 +1,5 @@
+from Tango import *
+
 class Line:
 	def __init__(self,x0,y0,x1,y1,style):
 		self.x0,self.y0,self.x1,self.y1,self.style=x0,y0,x1,y1,style
@@ -11,7 +13,7 @@ class Sprite:
 		self.curx=0
 		self.cury=0
 		self.objects=[]
-		self.linestyle={"color":(0,0,0), "width":1}
+		self.linestyle={"color":Tango.Aluminium6, "width":2.}
 	
 	def add(self,obj):
 		self.objects.append(obj)
