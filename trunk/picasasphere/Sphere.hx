@@ -55,17 +55,54 @@ class Sphere{
 		fotos.x=stage.stage.stageWidth/2;
 		fotos.y=stage.stage.stageHeight/2;
 		stage.addChild(fotos);
-		for(i in 0...n){
+		/*for(i in 0...n){
 			thumbs[i].px=Math.cos(2*Math.PI*i/n)*r;
-			thumbs[i].py=Math.random()*200-100;
+			thumbs[i].py=Math.random()*600-300;
 			thumbs[i].pz=Math.sin(2*Math.PI*i/n)*r;
+			thumbs[i].normalize(r);
+		}*/
+		var len=Math.ceil(Math.sqrt(n/2)*2);
+		for(i in 0...n){
+			var t0=2*Math.PI*(cast(i%len,Float)/len);
+			var t1=Math.acos(1-2*(cast(i/len,Float)/(n/len)));
+			thumbs[i].px=r*Math.cos(t0);
+			thumbs[i].py=r*Math.sin(t0)*Math.cos(t1);
+			thumbs[i].pz=r*Math.sin(t0)*Math.sin(t1);
 		}
+		/*for(it in 0...1000){
+			for(i in 0...n){
+				var thispos=new V3(thumbs[i].px,thumbs[i].py,thumbs[i].pz);
+				var force=new V3(0,0,0);
+				for(j in 0...n){
+					force=force.add(thispos.subtract(new V3(thumbs[j].px,thumbs[j].py,thumbs[j].pz)));
+				}
+				force.scaleBy(.1);
+				thumbs[i].px+=force.x;
+				thumbs[i].py+=force.y;
+				thumbs[i].pz+=force.z;
+				thumbs[i].normalize(r);
+			}	
+		}*/
 	}
 	
 	static function frame(evt:flash.events.Event){
 		framenum++;
+		/*for(i in 0...n){
+			var thispos=new V3(thumbs[i].px,thumbs[i].py,thumbs[i].pz);
+			var totalforce=new V3(0,0,0);
+			for(j in 0...n){
+				var sep=thispos.subtract(new V3(thumbs[j].px,thumbs[j].py,thumbs[j].pz));
+				totalforce=totalforce.add(sep.scaledBy(sep.norm()*sep.norm()));
+			}
+			totalforce.scaleBy(.00000001);
+			thumbs[i].px+=totalforce.x;
+			thumbs[i].py+=totalforce.y;
+			thumbs[i].pz+=totalforce.z;
+			thumbs[i].normalize(r);
+		}*/
 		phi-=fotos.mouseX/1000.;
 		theta-=fotos.mouseY/1000.;
+		//phi=theta=0;
 		for(i in 0...n){
 			var st=Math.sin(theta);
 			var ct=Math.cos(theta);
@@ -93,12 +130,9 @@ class Sphere{
 	}
 	
 	static function sortFotos(){
-		thumbs.sort(function(a,b:Thumb){return a.img.alpha>b.img.alpha?1:-1;});
+		thumbs.sort(function(a,b:Thumb){return a.img.alpha==b.img.alpha?0:a.img.alpha>b.img.alpha?1:-1;});
 		var i=n-1;
-		while(i>=0){
-			fotos.setChildIndex(thumbs[i].img, i);
-			i--;
-		}
+		while(--i>=0) fotos.setChildIndex(thumbs[i].img, i);
 	}
 }
 
@@ -121,5 +155,46 @@ class Thumb{
 		var ldr=this.img.getChildByName("loader");
 		ldr.x=-ldr.width/2;
 		ldr.y=-ldr.height/2;
+	}
+	
+	public function normalize(r:Float){
+		var norm=Math.sqrt(this.px*this.px+this.py*this.py+this.pz*this.pz);
+		this.px*=r/norm;
+		this.py*=r/norm;
+		this.pz*=r/norm;
+	}
+}
+
+class V3{
+	public var x:Float;
+	public var y:Float;
+	public var z:Float;
+	public function new(x,y,z:Float){
+		this.x=x;
+		this.y=y;
+		this.z=z;
+	}
+	public function normalize(?r:Float=1){
+		var norm=Math.sqrt(this.x*this.x+this.y*this.y+this.z*this.z);
+		this.x*=r/norm;
+		this.y*=r/norm;
+		this.z*=r/norm;
+	}
+	public function add(v:V3){
+		return new V3(this.x+v.x,this.y+v.y,this.z+v.z);
+	}
+	public function subtract(v:V3){
+		return new V3(this.x-v.x,this.y-v.y,this.z-v.z);
+	}
+	public function scaleBy(s:Float){
+		this.x*=s;
+		this.y*=s;
+		this.z*=s;
+	}
+	public function scaledBy(s:Float){
+		return new V3(this.x*s,this.y*s,this.z*s);
+	}
+	public function norm(){
+		return Math.sqrt(this.x*this.x+this.y*this.y+this.z*this.z);
 	}
 }
