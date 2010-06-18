@@ -10,11 +10,17 @@ class Sphere{
 	static var r=100;
 	static var phi:Float=0;
 	static var theta:Float=0;
+	static var vt:Float=0;
+	static var vp:Float=0.003;
 	static var mouseonstage=false;
+	static var waiting=true;
 	static var fixed=false;
+	static var width=300;
+	static var height=300;
+	static var params:Dynamic<String>;
 	
 	static function main(){
-		var params:Dynamic<String> = flash.Lib.current.loaderInfo.parameters;
+		params = flash.Lib.current.loaderInfo.parameters;
 		user=params.user!=null?params.user:"kevinalle";
 		album=params.album;
 		stage=flash.Lib.current;
@@ -32,12 +38,12 @@ class Sphere{
 		var tf = new flash.text.TextField();
 		tf.text = "Loading...";
 		loadin.addChild(tf);
-		loadin.x=stage.stage.stageWidth/2-loadin.width/2;
-		loadin.y=stage.stage.stageHeight/2-loadin.height/2;
+		loadin.x=width/2-loadin.width/2;//stage.stage.stageWidth/2-loadin.width/2;
+		loadin.y=height/2-loadin.height/2;//stage.stage.stageHeight/2-loadin.height/2;
 		stage.addChild(loadin);
 		xmlLoader.addEventListener(flash.events.Event.COMPLETE, axmlloaded);
 		stage.stage.addEventListener(flash.events.Event.MOUSE_LEAVE,function(e:Dynamic){mouseonstage=false;});
-		stage.stage.addEventListener(flash.events.MouseEvent.MOUSE_MOVE,function(e:Dynamic){mouseonstage=true;});
+		stage.stage.addEventListener(flash.events.MouseEvent.MOUSE_MOVE,function(e:Dynamic){mouseonstage=true;waiting=false;});
 	}
 	static function axmlloaded(evt:flash.events.Event){
 		//trace("Loaded :P");
@@ -50,7 +56,8 @@ class Sphere{
 		//trace(xml.child(ns(atom,"entry")));
 		//trace(entrys.length());
 		n=entrys.length();
-		r=Math.floor(Math.min(stage.stage.stageWidth/2,stage.stage.stageHeight/2)*.8);
+		if(params.max!=null){n=Math.round(Math.min(n,Std.parseInt(params.max)));}
+		r=Math.floor(Math.min(width/2,height/2)*.8);//Math.floor(Math.min(stage.stage.stageWidth/2,stage.stage.stageHeight/2)*.8);
 		for(i in 0...n){
 			//var tit:String=entrys[i].child(ns(atom,"title"))[0].toString();
 			var thumb:String=entrys[i].child(ns(media,"group"))[0].child(ns(media,"thumbnail"))[0].attribute("url").toString();
@@ -61,15 +68,16 @@ class Sphere{
 		}
 		shuffle(thumbs);
 		fotos.addEventListener(flash.events.Event.ENTER_FRAME,frame);
-		fotos.x=stage.stage.stageWidth/2;
-		fotos.y=stage.stage.stageHeight/2;
+		fotos.x=width/2;//stage.stage.stageWidth/2;
+		fotos.y=height/2;//stage.stage.stageHeight/2;
+		//trace(fotos.x);
 		stage.addChild(fotos);
 		//Spiral points on sphere: http://sitemason.vanderbilt.edu/page/hmbADS#spiral
 		var s = 3.6/Math.sqrt(n);
 		var long = 0.;
 		var dz = 2.0/n;
 		var z = 1 - dz/2;
-		for(k in 0...n-1){
+		for(k in 0...n){
 			var rr = Math.sqrt(1-z*z);
 			thumbs[k].px = Math.cos(long)*rr*r;
 			thumbs[k].py = Math.sin(long)*rr*r;
@@ -85,9 +93,17 @@ class Sphere{
 			phi=-(mouseonstage?1:0)*fotos.mouseX/50.;
 			theta=-(mouseonstage?1:0)*fotos.mouseY/50.;
 		}else{
-			phi-=(mouseonstage?1:0)*fotos.mouseX/5000.;
-			theta-=(mouseonstage?1:0)*fotos.mouseY/5000.;
+			if(mouseonstage){
+				vt=-fotos.mouseY/10000.;
+				vp=-fotos.mouseX/10000.;
+			}else if(!waiting){
+				vt*=.9;
+				vp*=.9;
+			}
+			phi+=vp;//(mouseonstage?1:0)*fotos.mouseX/5000.;
+			theta+=vt;//(mouseonstage?1:0)*fotos.mouseY/5000.;
 		}
+		
 		//phi=theta=0;
 		var st=Math.sin(theta);
 		var ct=Math.cos(theta);
