@@ -18,11 +18,13 @@ class Sphere{
 	static var width=300;
 	static var height=300;
 	static var params:Dynamic<String>;
+	static var thumbquality:Int;
 	
 	static function main(){
 		params = flash.Lib.current.loaderInfo.parameters;
 		user=params.user!=null?params.user:"kevinalle";
 		album=params.album;
+		thumbquality=params.thumbsize!=null?Std.parseInt(params.thumbsize):4;
 		stage=flash.Lib.current;
 		loadin=new flash.display.Sprite();
 		thumbs=new Array();
@@ -32,7 +34,9 @@ class Sphere{
 		flash.system.Security.allowDomain("http://picasaweb.google.com");
 		flash.system.Security.allowInsecureDomain("http://picasaweb.google.com");
 		flash.system.Security.loadPolicyFile("http://photos.googleapis.com/data/crossdomain.xml");
-		var url=album!=null?"http://photos.googleapis.com/data/feed/api/user/"+user+"/album/"+album+"?thumbsize=72c":"http://photos.googleapis.com/data/feed/api/user/"+user+"?thumbsize=72c";
+		var thumbsizes=[32, 48, 64, 72, 104, 144, 150, 160];
+		var thsz:Int=thumbquality>0&&thumbquality<=8?thumbquality:4;
+		var url="http://photos.googleapis.com/data/feed/api/user/"+user+(album!=null?"/album/"+album:"")+"?thumbsize="+thumbsizes[thsz-1]+"c";
 		var xmlLoader:flash.net.URLLoader = new flash.net.URLLoader(new flash.net.URLRequest(url));
 		//var xmlLoader:flash.net.URLLoader = new flash.net.URLLoader(new flash.net.URLRequest("picasa.xml"));
 		var tf = new flash.text.TextField();
@@ -79,16 +83,14 @@ class Sphere{
 		var z = 1 - dz/2;
 		for(k in 0...n){
 			var rr = Math.sqrt(1-z*z);
-			thumbs[k].px = Math.cos(long)*rr*r;
-			thumbs[k].py = Math.sin(long)*rr*r;
-			thumbs[k].pz = z*r;
+			thumbs[k].pos = new V3(Math.cos(long)*rr*r, Math.sin(long)*rr*r, z*r);
 			z = z - dz;
 			long = long + s/rr;
 		}
 	}
 	
 	static function frame(evt:flash.events.Event){
-		//framenum++;
+		framenum++;
 		if(fixed){
 			phi=-(mouseonstage?1:0)*fotos.mouseX/50.;
 			theta=-(mouseonstage?1:0)*fotos.mouseY/50.;
@@ -110,9 +112,9 @@ class Sphere{
 		var sp=Math.sin(phi);
 		var cp=Math.cos(phi);
 		for(i in 0...n){
-			var x=thumbs[i].px;
-			var y=ct*thumbs[i].py+st*thumbs[i].pz;
-			var z=-st*thumbs[i].py+ct*thumbs[i].pz;
+			var x=thumbs[i].pos.x;
+			var y=ct*thumbs[i].pos.y+st*thumbs[i].pos.z;
+			var z=-st*thumbs[i].pos.y+ct*thumbs[i].pos.z;
 			var x2=cp*x+sp*z;
 			var y2=y;
 			var z2=-sp*x+cp*z;
@@ -128,7 +130,7 @@ class Sphere{
 			thumbs[i].img.y=y2;
 			thumbs[i].img.alpha=z2/(3.*r)+.66;
 			thumbs[i].img.scaleX=thumbs[i].img.scaleY=(4.5/Math.sqrt(n))*(.8*z2/(2.*r)+.7);
-			sortFotos();
+			if((Math.abs(vp)>0.0001||Math.abs(vt)>0.0001) && framenum%10==0) sortFotos();
 		}
 	}
 	
@@ -168,9 +170,7 @@ class Sphere{
 class Thumb{
 	public var img:flash.display.Sprite;
 	public var link:String;
-	public var px:Float;
-	public var py:Float;
-	public var pz:Float;
+	public var pos:V3;
 	
 	public function new(url:String,?link:String){
 		var ldr:flash.display.Loader = new flash.display.Loader();
@@ -184,15 +184,36 @@ class Thumb{
 		this.img.addChild(ldr);
 		this.link=link;
 		if(this.link!=null) this.img.addEventListener(flash.events.MouseEvent.CLICK,openurl);
+		this.img.addEventListener(flash.events.MouseEvent.MOUSE_OVER,over);
 	}
 	
 	private function loaded(?evt:flash.events.Event){
 		var ldr=this.img.getChildByName("loader");
+		var w=ldr.width;var h=ldr.height;
+		if(w>h){ h=h*72/w;w=72; }
+		else{ w=w*72/h;h=72; }
+		ldr.width=w;ldr.height=h;
 		var sze=ldr.width>ldr.height?ldr.width:ldr.height;
 		img.graphics.beginFill(0xffffff);
 		img.graphics.drawRect(-sze/2-4,-sze/2-4,sze+8,sze+8);
+		img.mouseChildren=false;
 		ldr.x=-ldr.width/2;
 		ldr.y=-ldr.height/2;
+	}
+	
+	function over(evt:flash.events.MouseEvent){
+		var rect=new flash.display.Sprite();
+		rect.graphics.beginFill(0,0);
+		rect.graphics.drawRect(-1.2*img.width/2,-1.2*img.height/2,1.2*img.width,1.2*img.height);
+		rect.name="rect";
+		this.img.addChild(rect);
+		this.pos.scaleBy(1.1);
+		this.img.addEventListener(flash.events.MouseEvent.MOUSE_OUT,out);
+	}
+	function out(evt:flash.events.MouseEvent){
+		this.img.removeChild(this.img.getChildByName("rect"));
+		this.img.removeEventListener(flash.events.MouseEvent.MOUSE_OUT,out);
+		this.pos.scaleBy(1/1.1);
 	}
 	
 	function openurl(evt:flash.events.MouseEvent){
@@ -201,10 +222,7 @@ class Thumb{
 	}
 	
 	public function normalize(r:Float){
-		var norm=Math.sqrt(this.px*this.px+this.py*this.py+this.pz*this.pz);
-		this.px*=r/norm;
-		this.py*=r/norm;
-		this.pz*=r/norm;
+		this.pos.normalize(r);
 	}
 }
 
