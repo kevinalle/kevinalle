@@ -19,23 +19,27 @@ class Sphere{
 	static var height=300;
 	static var params:Dynamic<String>;
 	static var thumbquality:Int;
+	static var orient:V3;
+	static var goto:V3;
 	
 	static function main(){
 		params = flash.Lib.current.loaderInfo.parameters;
 		user=params.user!=null?params.user:"kevinalle";
 		album=params.album;
-		thumbquality=params.thumbsize!=null?Std.parseInt(params.thumbsize):4;
+		thumbquality=params.thumbquality!=null?Std.parseInt(params.thumbquality):5;
 		stage=flash.Lib.current;
 		loadin=new flash.display.Sprite();
 		thumbs=new Array();
 		framenum=0;
 		fotos=new flash.display.Sprite();
+		orient=new V3(0,0,1);
+		goto=new V3(1,0,0);
 		
 		flash.system.Security.allowDomain("http://picasaweb.google.com");
 		flash.system.Security.allowInsecureDomain("http://picasaweb.google.com");
 		flash.system.Security.loadPolicyFile("http://photos.googleapis.com/data/crossdomain.xml");
 		var thumbsizes=[32, 48, 64, 72, 104, 144, 150, 160];
-		var thsz:Int=thumbquality>0&&thumbquality<=8?thumbquality:4;
+		var thsz:Int=thumbquality>0&&thumbquality<=8?thumbquality:5;
 		var url="http://photos.googleapis.com/data/feed/api/user/"+user+(album!=null?"/album/"+album:"")+"?thumbsize="+thumbsizes[thsz-1]+"c";
 		var xmlLoader:flash.net.URLLoader = new flash.net.URLLoader(new flash.net.URLRequest(url));
 		//var xmlLoader:flash.net.URLLoader = new flash.net.URLLoader(new flash.net.URLRequest("picasa.xml"));
@@ -61,13 +65,14 @@ class Sphere{
 		//trace(entrys.length());
 		n=entrys.length();
 		if(params.max!=null){n=Math.round(Math.min(n,Std.parseInt(params.max)));}
-		r=Math.floor(Math.min(width/2,height/2)*.8);//Math.floor(Math.min(stage.stage.stageWidth/2,stage.stage.stageHeight/2)*.8);
+		r=Math.floor(Math.min(width/2,height/2)*.75);//Math.floor(Math.min(stage.stage.stageWidth/2,stage.stage.stageHeight/2)*.8);
 		for(i in 0...n){
 			//var tit:String=entrys[i].child(ns(atom,"title"))[0].toString();
 			var thumb:String=entrys[i].child(ns(media,"group"))[0].child(ns(media,"thumbnail"))[0].attribute("url").toString();
 			var url:String=entrys[i].child(ns(atom,"link"))[1].attribute("href").toString();
 			//trace(thumb);
 			thumbs.push(new Thumb(thumb,url));
+			if(fixed) thumbs[i].img.addEventListener(flash.events.MouseEvent.MOUSE_OVER,function(evt:flash.events.MouseEvent){ goto=thumbs[i].pos.normalized(); });
 			fotos.addChild(thumbs[i].img);
 		}
 		shuffle(thumbs);
@@ -92,8 +97,23 @@ class Sphere{
 	static function frame(evt:flash.events.Event){
 		framenum++;
 		if(fixed){
-			phi=-(mouseonstage?1:0)*fotos.mouseX/50.;
-			theta=-(mouseonstage?1:0)*fotos.mouseY/50.;
+			/*phi=-fotos.mouseX/80.;
+			theta=-fotos.mouseY/80.;*/
+			
+			//goto=axisrotate(new V3(fotos.mouseY,-fotos.mouseX,0), fotos.mouseX*fotos.mouseX/100.+fotos.mouseY*fotos.mouseY/100., goto).normalized();
+			//trace(goto.print());
+			var axis=orient.crossp(goto).normalized();
+			var th=Math.asin(axis.norm());
+			orient=axisrotate(axis,th,orient).normalized();
+			if(th>.001){
+				for(i in 0...n){
+					var xyz=axisrotate(axis,th,thumbs[i].pos);
+					thumbs[i].display(xyz,n,r);
+				}
+				if((Math.abs(vp)>0.0001||Math.abs(vt)>0.0001) && framenum%10==0) sortFotos();
+			}
+
+
 		}else{
 			if(mouseonstage){
 				vt=-fotos.mouseY/10000.;
@@ -104,32 +124,29 @@ class Sphere{
 			}
 			phi+=vp;//(mouseonstage?1:0)*fotos.mouseX/5000.;
 			theta+=vt;//(mouseonstage?1:0)*fotos.mouseY/5000.;
-		}
 		
-		//phi=theta=0;
-		var st=Math.sin(theta);
-		var ct=Math.cos(theta);
-		var sp=Math.sin(phi);
-		var cp=Math.cos(phi);
-		for(i in 0...n){
-			var x=thumbs[i].pos.x;
-			var y=ct*thumbs[i].pos.y+st*thumbs[i].pos.z;
-			var z=-st*thumbs[i].pos.y+ct*thumbs[i].pos.z;
-			var x2=cp*x+sp*z;
-			var y2=y;
-			var z2=-sp*x+cp*z;
+			//phi=theta=0;
+			var st=Math.sin(theta);
+			var ct=Math.cos(theta);
+			var sp=Math.sin(phi);
+			var cp=Math.cos(phi);
+			for(i in 0...n){
+				var x=thumbs[i].pos.x;
+				var y=ct*thumbs[i].pos.y+st*thumbs[i].pos.z;
+				var z=-st*thumbs[i].pos.y+ct*thumbs[i].pos.z;
+				var x2=cp*x+sp*z;
+				var y2=y;
+				var z2=-sp*x+cp*z;
 			
-			//var xyz2=axisrotate(new V3(1,0,0),-theta, thumbs[i].px,thumbs[i].py,thumbs[i].pz);
-			//var xyz=axisrotate(new V3(0,1,0),phi, xyz2.x,xyz2.y,xyz2.z);
-			//var xyz=axisrotate(new V3(-theta,phi,0),Math.sqrt(phi*phi+theta*theta), thumbs[i].px,thumbs[i].py,thumbs[i].pz);
-			/*thumbs[i].img.x=xyz.x;//thumbs[i].px;
-			thumbs[i].img.y=xyz.y;//thumbs[i].py;
-			thumbs[i].img.alpha=xyz.z/(3.*r)+.66;//thumbs[i].pz/(2.*r)+0.5;
-			thumbs[i].img.scaleX=thumbs[i].img.scaleY=(4.5/Math.sqrt(n))*(.8*xyz.z/(2.*r)+.7);*/
-			thumbs[i].img.x=x2;
-			thumbs[i].img.y=y2;
-			thumbs[i].img.alpha=z2/(3.*r)+.66;
-			thumbs[i].img.scaleX=thumbs[i].img.scaleY=(4.5/Math.sqrt(n))*(.8*z2/(2.*r)+.7);
+				//var xyz2=axisrotate(new V3(1,0,0),-theta, thumbs[i].px,thumbs[i].py,thumbs[i].pz);
+				//var xyz=axisrotate(new V3(0,1,0),phi, xyz2.x,xyz2.y,xyz2.z);
+				//var xyz=axisrotate(new V3(-theta,phi,0),Math.sqrt(phi*phi+theta*theta), thumbs[i].px,thumbs[i].py,thumbs[i].pz);
+				/*thumbs[i].img.x=xyz.x;//thumbs[i].px;
+				thumbs[i].img.y=xyz.y;//thumbs[i].py;
+				thumbs[i].img.alpha=xyz.z/(3.*r)+.66;//thumbs[i].pz/(2.*r)+0.5;
+				thumbs[i].img.scaleX=thumbs[i].img.scaleY=(4.5/Math.sqrt(n))*(.8*xyz.z/(2.*r)+.7);*/
+				thumbs[i].display(new V3(x2,y2,z2),n,r);
+			}
 			if((Math.abs(vp)>0.0001||Math.abs(vt)>0.0001) && framenum%10==0) sortFotos();
 		}
 	}
@@ -155,8 +172,11 @@ class Sphere{
 		}
 	}
 	
-	static function axisrotate(axis:V3,th:Float,x:Float,y:Float,z:Float){
+	static function axisrotate(axis:V3,th:Float,xyz:V3){
 		axis.normalize();
+		var x=xyz.x;
+		var y=xyz.y;
+		var z=xyz.z;
 		var c = Math.cos(th);var s = Math.sin(th);
 		var ux=axis.x;var uy=axis.y;var uz=axis.z;
 		return new V3(
@@ -194,11 +214,19 @@ class Thumb{
 		else{ w=w*72/h;h=72; }
 		ldr.width=w;ldr.height=h;
 		var sze=ldr.width>ldr.height?ldr.width:ldr.height;
+		img.buttonMode=true;
 		img.graphics.beginFill(0xffffff);
 		img.graphics.drawRect(-sze/2-4,-sze/2-4,sze+8,sze+8);
 		img.mouseChildren=false;
 		ldr.x=-ldr.width/2;
 		ldr.y=-ldr.height/2;
+	}
+	
+	public function display(pos:V3,n:Int,r:Float){
+		this.img.x=pos.x;
+		this.img.y=pos.y;
+		this.img.alpha=pos.z/(3.*r)+.66;
+		this.img.scaleX=this.img.scaleY=(4.5/Math.sqrt(n))*(.8*pos.z/(2.*r)+.7);
 	}
 	
 	function over(evt:flash.events.MouseEvent){
@@ -241,6 +269,10 @@ class V3{
 		this.y*=r/norm;
 		this.z*=r/norm;
 	}
+	public function normalized(?r:Float=1){
+		var norm=Math.sqrt(this.x*this.x+this.y*this.y+this.z*this.z);
+		return new V3(this.x*r/norm, this.y*r/norm, this.z*r/norm);
+	}
 	public function add(v:V3){
 		return new V3(this.x+v.x,this.y+v.y,this.z+v.z);
 	}
@@ -257,5 +289,11 @@ class V3{
 	}
 	public function norm(){
 		return Math.sqrt(this.x*this.x+this.y*this.y+this.z*this.z);
+	}
+	public function crossp(b:V3){
+		return new V3(this.y*b.z-this.z*b.y, this.z*b.x-this.x*b.z, this.x*b.y-this.y*b.x);
+	}
+	public function print(){
+		return this.x+" "+this.y+" "+this.z;
 	}
 }
