@@ -55,7 +55,11 @@ package  {
 			this.x = pos.x;
 			this.y = pos.y;
 			this.alpha = pos.z / (3. * r) + .66;
-			this.scaleX = this.scaleY = (4.5 / Math.sqrt(n)) * (.8 * pos.z / (2. * r) + .7) * (4. / 3);
+			this.scaleX = this.scaleY = this.scalingFunction(n,r,pos.z);
+		}
+		
+		protected function scalingFunction(n : int,r : Number,z : Number) : Number {
+			return (4.5 / Math.sqrt(n)) * (.8 * z / (2. * r) + .7) * (4. / 3);
 		}
 		
 		protected function over(evt : flash.events.MouseEvent) : void {

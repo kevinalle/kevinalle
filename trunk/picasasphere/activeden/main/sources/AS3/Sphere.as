@@ -2,24 +2,24 @@ package  {
 	import flash.net.URLRequest;
 	import flash.system.Security;
 	import flash.events.MouseEvent;
-	import flash.display.MovieClip;
 	import flash.Lib;
-	import flash.text.TextField;
 	import flash.display.Sprite;
 	import flash.utils.QName;
 	import flash.utils.Namespace;
-	import flash.events.Event;
 	import flash.net.URLLoader;
+	import flash.events.Event;
 	public class Sphere {
-		static protected var stage : flash.display.MovieClip;
+		static protected var initialRotationSpeed : Number = 0.003;
+		static protected var rotationSpeed : Number = 0.15;
+		static protected var stage : flash.display.Sprite;
 		static protected var service : String;
 		static protected var user : String;
 		static protected var album : String;
-		static protected var loadin : flash.display.Sprite;
+		static protected var loadin : Loader;
 		static protected var thumbs : Array;
 		static protected var framenum : int;
 		static protected var n : int;
-		static protected var fotos : flash.display.Sprite;
+		static protected var photos : flash.display.Sprite;
 		static protected var r : int = 100;
 		static protected var phi : Number = 0.003;
 		static protected var theta : Number = 0;
@@ -39,12 +39,10 @@ package  {
 			Sphere.album = (params.album == null && Sphere.user == "kevinalle"?"StarredPhotos":params.album);
 			Sphere.thumbquality = (params.thumbquality != null?Std._parseInt(params.thumbquality):5);
 			Sphere.stage = flash.Lib.current;
-			Sphere.loadin = new flash.display.Sprite();
+			Sphere.loadin = new Loader();
 			Sphere.thumbs = new Array();
 			Sphere.framenum = 0;
-			Sphere.fotos = new flash.display.Sprite();
-			Sphere.orient = new V3(0,0,1);
-			Sphere.goto = new V3(0,0,1);
+			Sphere.photos = new flash.display.Sprite();
 			var xmlLoader : flash.net.URLLoader = null;
 			if(Sphere.service == "picasa") {
 				flash.system.Security.allowDomain("http://picasaweb.google.com");
@@ -58,13 +56,10 @@ package  {
 			else if(Sphere.service == "custom") {
 				xmlLoader = new flash.net.URLLoader(new flash.net.URLRequest(params.xml));
 			}
-			var tf : flash.text.TextField = new flash.text.TextField();
-			tf.text = "Loading...";
-			loadin.addChild(tf);
-			loadin.x = Sphere.width / 2 - loadin.width / 2;
-			loadin.y = Sphere.height / 2 - loadin.height / 2;
+			loadin.x = Sphere.width / 2;
+			loadin.y = Sphere.height / 2;
 			stage.addChild(loadin);
-			xmlLoader.addEventListener(flash.events.Event.COMPLETE,Sphere.axmlloaded);
+			xmlLoader.addEventListener(flash.events.Event.COMPLETE,Sphere.xmlloaded);
 			stage.stage.addEventListener(flash.events.Event.MOUSE_LEAVE,function(e : *) : void {
 				Sphere.mouseonstage = false;
 			});
@@ -74,7 +69,7 @@ package  {
 			});
 		}
 		
-		static protected function axmlloaded(evt : flash.events.Event) : void {
+		static protected function xmlloaded(evt : flash.events.Event) : void {
 			stage.removeChild(loadin);
 			var xml : XML = new XML(evt.target.data);
 			var entrys : XMLList = null;
@@ -107,14 +102,14 @@ package  {
 						url = entrys[i].attribute("href").toString();
 					}
 					thumbs.push(new Thumb(thumb,url));
-					fotos.addChild(thumbs[i]);
+					photos.addChild(thumbs[i]);
 				}
 			}
 			shuffle(thumbs);
-			fotos.addEventListener(flash.events.Event.ENTER_FRAME,Sphere.frame);
-			fotos.x = Sphere.width / 2;
-			fotos.y = Sphere.height / 2;
-			stage.addChild(fotos);
+			photos.addEventListener(flash.events.Event.ENTER_FRAME,Sphere.frame);
+			photos.x = Sphere.width / 2;
+			photos.y = Sphere.height / 2;
+			stage.addChild(photos);
 			var s : Number = 3.6 / Math.sqrt(n);
 			var long : Number = 0.;
 			var dz : Number = 2. / n;
@@ -130,7 +125,6 @@ package  {
 					long += s / rr;
 				}
 			}
-			sortFotos();
 			{
 				var _g13 : int = 0, _g3 : int = n;
 				while(_g13 < _g3) {
@@ -138,14 +132,14 @@ package  {
 					thumbs[i2].display(thumbs[i2].pos,n,r);
 				}
 			}
-			sortFotos();
+			sortphotos();
 		}
 		
 		static protected function frame(evt : flash.events.Event) : void {
 			framenum++;
 			if(mouseonstage) {
-				Sphere.theta = -fotos.mouseY / 7000.;
-				Sphere.phi = -fotos.mouseX / 7000.;
+				Sphere.theta = -photos.mouseY * rotationSpeed / 1000.;
+				Sphere.phi = -photos.mouseX * rotationSpeed / 1000.;
 			}
 			else if(!waiting) {
 				Sphere.theta *= .9;
@@ -170,19 +164,19 @@ package  {
 					thumbs[i].z = z2;
 				}
 			}
-			if((Sphere.phi != 0 || Sphere.theta != 0) && Sphere.framenum % 10 == 0) sortFotos();
+			if((Sphere.phi != 0 || Sphere.theta != 0) && Sphere.framenum % 10 == 0) sortphotos();
 		}
 		
 		static protected function ns(_namespace : flash.utils.Namespace,name : String) : flash.utils.QName {
 			return new flash.utils.QName(_namespace,new flash.utils.QName(name));
 		}
 		
-		static protected function sortFotos() : void {
+		static protected function sortphotos() : void {
 			thumbs.sort(function(a : Thumb,b : Thumb) : int {
 				return (a.z == b.z?0:(a.z > b.z?1:-1));
 			});
 			var i : int = n;
-			while(--i >= 0) fotos.setChildIndex(thumbs[i],i);
+			while(--i >= 0) photos.setChildIndex(thumbs[i],i);
 		}
 		
 		static protected function shuffle(arr : Array) : void {

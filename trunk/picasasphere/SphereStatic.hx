@@ -1,13 +1,83 @@
+/********************************************************
+This is the sourcecode of PhotoSphere by Kevin Allekotte
+To compile it install HaXe and run:
+haxe -swf9 photosphere.swf -main Sphere -D network-sandbox -swf-header 400:400:30:99aacc
+
+The following classes are defined:
+
+Sphere:
+	This is the main class. It loads the specified xml
+	with the description of the thumbnails (either from
+	picasa or a custom xml) and displays the sphere.
+	The most important functions are:
+	main:
+		Initializes everything. It reads the flashvars
+		parameters and creates the URLLoader to load the
+		xml.
+	xmlloaded:
+		This function is called as soon as the xml file
+		finishes loading. It reads the thumbnails and link
+		urls from the file and creates a Thumb instance for
+		each one. It populates the photos sprite with all
+		the thumbnails and gives the starting position for
+		each one.
+	frame:
+		This is called at every frame (about 30 times per
+		second). It recalculates the position of the
+		thumbnails according to mouse movement and renders
+		the scene.
+	sortphotos:
+		This is called periodically (when necesary) by frame.
+		It corrects the z-ordering of the Thumbs according to
+		their z value.
+
+Thumb:
+	This class is an extension of flash.display.Sprite and
+	represents a thumbnail on the sphere. It has a 3D posi-
+	tion and contains the image of the thumbnail with border
+	and shadow.
+	The main functions are:
+	new:
+		The constructor, creates an instance. It takes an url
+		of the thumbnail image file and optionally an url wich
+		opens on click. it loads the image and sets its proper-
+		ties.
+	loaded:
+		This function is called when the thumbnail finishes loading.
+		It resizes the image and adds the border.
+	display:
+		This is the function that sets its position on the screen
+		and scaling and alpha of the sprite according to its current
+		3D position and the size of the sphere and number of thumbnails.
+	scalingFunction:
+		This function decides the scale of the thumbnail given its 3D
+		position.
+
+V3:
+	This class represents Vectors in 3D space and some operations on them.
+	it implements normalize, add, subtract, cross product, dot product, 
+	scalar scaling, etc.
+
+Loader:
+	This class represents a simple loading animation. It consists of N dots
+	wich change color every m milliseconds. You can set the time interval,
+	the colors, the quantity, the separation and the size.
+********************************************************/
+
 class SphereStatic{
-	static var stage:flash.display.MovieClip;
+	// Initial Rotational Speed: the speed the sphere rotates before the mouse enters for the first time;
+	static var initialRotationSpeed=0.003;
+	static var rotationSpeed=0.15;
+	
+	static var stage:flash.display.Sprite;
 	static var service:String;
 	static var user:String;
 	static var album:String;
-	static var loadin:flash.display.Sprite;
+	static var loadin:Loader;
 	static var thumbs:Array<Thumb>;
 	static var framenum:Int;
 	static var n:Int;
-	static var fotos:flash.display.Sprite;
+	static var photos:flash.display.Sprite;
 	static var r=100;
 	static var phi:Float=0.003;
 	static var theta:Float=0;
@@ -22,76 +92,77 @@ class SphereStatic{
 	static var dbg:flash.display.Sprite;
 	
 	static function main(){
-		params = flash.Lib.current.loaderInfo.parameters;
+		params = flash.Lib.current.loaderInfo.parameters; //read the flashvars parameters
 		service="picasa";
-		user=params.user="kevinalle";
+		user="kevinalle";
 		album="StarredPhotos";
-		thumbquality=params.thumbquality!=null?Std.parseInt(params.thumbquality):5;
-		stage=flash.Lib.current;
-		loadin=new flash.display.Sprite();
-		thumbs=new Array();
-		framenum=0;
-		fotos=new flash.display.Sprite();
-		orient=new V3(0,0,1);
-		goto=new V3(0,0,1);
+		thumbquality=params.thumbquality!=null?Std.parseInt(params.thumbquality):5; //thumbnail quality
+		stage=flash.Lib.current; //the stage (the main Sprite)
+		loadin=new Loader();
+		thumbs=new Array(); //This array will hold all the thumbnails
+		framenum=0; //a frame counter
+		photos=new flash.display.Sprite(); //This sprite will contain all thumbnails
 		
 		var xmlLoader:flash.net.URLLoader=null;
 		if(service=="picasa"){
+			//We have to set all the security stuff to be able to load things from picasa web service
+			//it is necesary to make cross domain requests
 			flash.system.Security.allowDomain("http://picasaweb.google.com");
 			flash.system.Security.allowInsecureDomain("http://picasaweb.google.com");
 			flash.system.Security.loadPolicyFile("http://photos.googleapis.com/data/crossdomain.xml");
-			var thumbsizes=[32, 48, 64, 72, 104, 144, 150, 160];
-			var thsz:Int=thumbquality>0&&thumbquality<=8?thumbquality:5;
+			var thumbsizes=[32, 48, 64, 72, 104, 144, 150, 160]; //these are thethumbnail sizes picasa supports
+			var thsz:Int=thumbquality>0&&thumbquality<=8?thumbquality:5; //we chose one of the sizes according to thumbquality
+			//This is the url of the xml we will request
 			var url="http://photos.googleapis.com/data/feed/api/user/"+user+(album!=null?"/album/"+album:"")+"?thumbsize="+thumbsizes[thsz-1]+"c";
-			xmlLoader = new flash.net.URLLoader(new flash.net.URLRequest(url));
+			xmlLoader = new flash.net.URLLoader(new flash.net.URLRequest(url)); //Make the request
 		}else if(service=="custom"){
 			xmlLoader = new flash.net.URLLoader(new flash.net.URLRequest(params.xml));
 		}
-		var tf = new flash.text.TextField();
-		tf.text = "Loading...";
-		loadin.addChild(tf);
-		loadin.x=width/2-loadin.width/2;//stage.stage.stageWidth/2-loadin.width/2;
-		loadin.y=height/2-loadin.height/2;//stage.stage.stageHeight/2-loadin.height/2;
-		stage.addChild(loadin);
-		xmlLoader.addEventListener(flash.events.Event.COMPLETE, axmlloaded);
-		stage.stage.addEventListener(flash.events.Event.MOUSE_LEAVE,function(e:Dynamic){mouseonstage=false;});
-		stage.stage.addEventListener(flash.events.MouseEvent.MOUSE_MOVE,function(e:Dynamic){mouseonstage=true;waiting=false;});
+		loadin.x=width/2;loadin.y=height/2; 
+		stage.addChild(loadin);// display the loader animation
+		xmlLoader.addEventListener(flash.events.Event.COMPLETE, xmlloaded); //when the xml loads, call xmlloaded
+		stage.stage.addEventListener(flash.events.Event.MOUSE_LEAVE,function(e:Dynamic){mouseonstage=false;}); //update mouseonstage whenever mouse leaves the stage
+		stage.stage.addEventListener(flash.events.MouseEvent.MOUSE_MOVE,function(e:Dynamic){mouseonstage=true;waiting=false;}); //update mousonstage when mouse is active and cancel the waiting animation
 	}
-	static function axmlloaded(evt:flash.events.Event){
+	static function xmlloaded(evt:flash.events.Event){
 		//trace("Loaded :P");
 		stage.removeChild(loadin);
-		var xml:flash.xml.XML=new flash.xml.XML(evt.target.data);
+		var xml:flash.xml.XML=new flash.xml.XML(evt.target.data); //Parse the xml
 		var entrys:flash.xml.XMLList=null;
+		//define some namespaces the picasa service uses
 		var atom:flash.utils.Namespace =  new flash.utils.Namespace(xml.namespace());
 		var gphoto:flash.utils.Namespace =  new flash.utils.Namespace("http://schemas.google.com/photos/2007");
 		var media:flash.utils.Namespace =  new flash.utils.Namespace("http://search.yahoo.com/mrss/");
+		//get the items of the photos
 		if(service=="picasa"){
 			entrys=xml.child( ns(atom,"entry") );
 		}else if(service=="custom"){
 			entrys=xml.child("photo");
 		}
-		n=entrys.length();
-		if(params.max!=null){n=Math.round(Math.min(n,Std.parseInt(params.max)));}
-		r=Math.floor(Math.min(width/2,height/2)*.7);//Math.floor(Math.min(stage.stage.stageWidth/2,stage.stage.stageHeight/2)*.8);
+		n=entrys.length(); // n is the amount of thumbnails
+		if(params.max!=null){n=Math.round(Math.min(n,Std.parseInt(params.max)));} //limit the amount of thumbnails if requested by parameter max
+		r=Math.floor(Math.min(width/2,height/2)*.75);//Set the radius of the sphere
 		
 		for(i in 0...n){
 			var thumb:String="";var url:String="";
 			if(service=="picasa"){
-				thumb=entrys[i].child(ns(media,"group"))[0].child(ns(media,"thumbnail"))[0].attribute("url").toString();
-				url=entrys[i].child(ns(atom,"link"))[1].attribute("href").toString();
+				thumb=entrys[i].child(ns(media,"group"))[0].child(ns(media,"thumbnail"))[0].attribute("url").toString(); //read the url of the thumbnail
+				url=entrys[i].child(ns(atom,"link"))[1].attribute("href").toString(); //get the url of the link
 			}else if(service=="custom"){
-				thumb=entrys[i].attribute("src").toString();
-				url=entrys[i].attribute("href").toString();
+				thumb=entrys[i].attribute("src").toString(); //get the thumbnail url
+				url=entrys[i].attribute("href").toString(); //get the url of the link
 			}
-			thumbs.push(new Thumb(thumb,url));
-			fotos.addChild(thumbs[i]);
+			thumbs.push(new Thumb(thumb,url)); //create a thumbnail and add it to our array of thumbnails
+			photos.addChild(thumbs[i]); //add the Sprite to the scene
 		}
-		shuffle(thumbs);
-		fotos.addEventListener(flash.events.Event.ENTER_FRAME,frame);
-		fotos.x=width/2;//stage.stage.stageWidth/2;
-		fotos.y=height/2;//stage.stage.stageHeight/2;
-		stage.addChild(fotos);
+		shuffle(thumbs); // Shuffle the thumbnails so they appear in random order
+		photos.addEventListener(flash.events.Event.ENTER_FRAME,frame); //Call frame in every frame to update the scene
+		//center the sphere
+		photos.x=width/2;
+		photos.y=height/2;
+		stage.addChild(photos); //display the sphere in pur scene
 		
+		//This part distributes the thumbnails eavenly around the sphere, refer to the link for more details
 		//Spiral points on sphere: http://sitemason.vanderbilt.edu/page/hmbADS#spiral
 		var s = 3.6/Math.sqrt(n);
 		var long = 0.;
@@ -104,57 +175,62 @@ class SphereStatic{
 			z-=dz;
 			long+=s/rr;
 		}
-		sortFotos();
 		
-		
-		for(i in 0...n){
-			thumbs[i].display(thumbs[i].pos,n,r);
-		}
-		sortFotos();
-		/*dbg=new flash.display.Sprite();
-		dbg.x=width/2;
-		dbg.y=height/2;
-		stage.addChild(dbg);*/
+		//update each thumbnails Sprite and z-order them
+		for(i in 0...n) thumbs[i].display(thumbs[i].pos,n,r);
+		sortphotos();
 	}
 	
 	static function frame(evt:flash.events.Event){
+		//This is called every frame. it must redraw the scene
 		framenum++;
 		if(mouseonstage){
-			theta=-fotos.mouseY/7000.;
-			phi=-fotos.mouseX/7000.;
+			//we will rotate the sphere according to the mouse position
+			theta=-photos.mouseY*rotationSpeed/1000.;
+			phi=-photos.mouseX*rotationSpeed/1000.;
 		}else if(!waiting){
+			//if mouse is away apply some friction to stop rotation smoothly
 			theta*=.9;
 			phi*=.9;
 		}
+		//calculate sines and cosines of rotating angles
 		var st=Math.sin(theta);
 		var ct=Math.cos(theta);
 		var sp=Math.sin(phi);
 		var cp=Math.cos(phi);
 		for(i in 0...n){
+			//for each thumbnail update its position rotating it around (0,0,0) by phi and theta.
+			//This is the same as multiplying the position by a rotation matrix
 			var x=thumbs[i].pos.x;
 			var y=ct*thumbs[i].pos.y+st*thumbs[i].pos.z;
 			var z=-st*thumbs[i].pos.y+ct*thumbs[i].pos.z;
 			var x2=cp*x+sp*z;
 			var y2=y;
 			var z2=-sp*x+cp*z;
-			thumbs[i].pos=new V3(x2,y2,z2);
-			thumbs[i].display(new V3(x2,y2,z2),n,r);
-			thumbs[i].z=z2;
+			thumbs[i].pos=new V3(x2,y2,z2); //updat the position
+			thumbs[i].display(new V3(x2,y2,z2),n,r); //ask thumbnail to redisplay itself
+			thumbs[i].z=z2; //update its z value, for z-ordering
 		}
-		if((phi!=0||theta!=0) && framenum%10==0) sortFotos();
+		//if necessary, z-sort the thumbnails
+		//Doing this every 10 frames is more CPU friendly
+		if((phi!=0||theta!=0) && framenum%10==0) sortphotos();
 	}
 	
 	static function ns(namespace:flash.utils.Namespace, name:String){
+		//create a Qname with a namespace and a element name.
 		return new flash.utils.QName(namespace,new flash.utils.QName(name));
 	}
 	
-	static function sortFotos(){
+	static function sortphotos(){
+		//sort the thumbnails array by its z value
 		thumbs.sort(function(a,b:Thumb){return a.z==b.z?0:a.z>b.z?1:-1;});
+		//update the thumbnails z-Index
 		var i=n;
-		while(--i>=0) fotos.setChildIndex(thumbs[i], i);
+		while(--i>=0) photos.setChildIndex(thumbs[i], i);
 	}
 	
 	static function shuffle<T>(arr:Array<T>){
+		//a function to shuffle an array
 		var n = arr.length;
 		while (n > 1){
 			var k = Std.random(n);
@@ -166,18 +242,13 @@ class SphereStatic{
 	}
 	
 /*	static function axisrotate(as:V3,th:Float,xyz:V3){
+		//this function rotates a vector around an axis
 		var axis:V3=as.normalized();
 		var p=new Quaternion(0, xyz.x, xyz.y, xyz.z);
 		var c=Math.cos(th/2.);var s = Math.sin(th/2.);
 		var rot=new Quaternion(c, axis.x*s, axis.y*s, axis.z*s);
 		var res=rot.mult(p).mult(rot.conj());
 		return new V3(res.i,res.j,res.k);
-		/*var ux=axis.x;var uy=axis.y;var uz=axis.z;
-		return new V3(
-			(ux*ux+c*(1-ux*ux))*x + (ux*uy*(1-c)-uz*s)*y + (ux*uz*(1-c)+uy*s)*z,
-			(ux*uy*(1-c)+uz*s)*x + (uy*uy+c*(1-uy*uy))*y + (uy*uz*(1-c)-ux*s)*z,
-			(ux*uz*(1-c)-uy*s)*x + (uy*uz*(1-c)+ux*s)*y + (uz*uz+c*(1-uz*uz))*z
-		);* /
 	}*/
 }
 
@@ -223,7 +294,11 @@ class Thumb extends flash.display.Sprite{
 		this.x=pos.x;
 		this.y=pos.y;
 		this.alpha=pos.z/(3.*r)+.66;
-		this.scaleX=this.scaleY=(4.5/Math.sqrt(n))*(.8*pos.z/(2.*r)+.7);
+		this.scaleX=this.scaleY=scalingFunction(n,r,pos.z);
+	}
+	
+	private function scalingFunction(n:Int,r:Float,z:Float){
+		return (4.5/Math.sqrt(n))*(.8*z/(2.*r)+.7)*(3./3);
 	}
 	
 	function over(evt:flash.events.MouseEvent){
@@ -252,6 +327,7 @@ class Thumb extends flash.display.Sprite{
 }
 
 class V3{
+	//This class represents a Vector in 3D space and some operations on it.
 	public var x:Float;
 	public var y:Float;
 	public var z:Float;
@@ -261,44 +337,89 @@ class V3{
 		this.z=z;
 	}
 	public function normalize(?r:Float=1){
+		//Scale the vector so its length is equal to R
 		var norm=Math.sqrt(this.x*this.x+this.y*this.y+this.z*this.z);
 		this.x*=r/norm;
 		this.y*=r/norm;
 		this.z*=r/norm;
 	}
 	public function normalized(?r:Float=1){
+		//Return a new vector which has the same direction but length r
 		var norm=Math.sqrt(this.x*this.x+this.y*this.y+this.z*this.z);
 		return new V3(this.x*r/norm, this.y*r/norm, this.z*r/norm);
 	}
 	public function add(v:V3){
+		//add this vector with another and return the result
 		return new V3(this.x+v.x,this.y+v.y,this.z+v.z);
 	}
 	public function subtract(v:V3){
+		//subtract another vector and return the result
 		return new V3(this.x-v.x,this.y-v.y,this.z-v.z);
 	}
 	public function scaleBy(s:Float){
+		//scalar product or scaling
 		this.x*=s;
 		this.y*=s;
 		this.z*=s;
 	}
 	public function scaledBy(s:Float){
+		//returnes a scaled copy of the vector
 		return new V3(this.x*s,this.y*s,this.z*s);
 	}
 	public function norm(){
+		//the length of the vector
 		return Math.sqrt(this.x*this.x+this.y*this.y+this.z*this.z);
 	}
 	public function crossp(b:V3){
+		//cross product
 		return new V3(this.y*b.z-this.z*b.y, this.z*b.x-this.x*b.z, this.x*b.y-this.y*b.x);
 	}
 	public function dotp(b:V3){
+		//dot product
 		return this.x*b.x+this.y*b.y+this.z*b.z;
 	}
 	public function print(){
+		//for debbuging, display the vector
 		return Math.round(this.x*100)/100.+" "+Math.round(this.y*100)/100.+" "+Math.round(this.z*100)/100.;
+	}
+}
+
+class Loader extends flash.display.Sprite{
+	//This is the loading animation
+	private var active:Int;
+	private var color1:Int;
+	private var color2:Int;
+	private var numdots:Int;
+	private var milliseconds:Int;
+	private var separation:Int;
+	private var timer:flash.utils.Timer;
+	public function new(?color1:Int=-1,?color2:Int=-1){
+		super();
+		this.active=0;
+		this.color1=color1<0?0x884400:color1; //The color of the active dot
+		this.color2=color2<0?0x888888:color2; //The color of the inactive dots
+		this.numdots=3; //The number of dots in the animation
+		this.separation=16; //The separation in pixels of the dots
+		this.milliseconds=800; //The number of milliseconds between each tick
+		this.timer=new flash.utils.Timer(milliseconds,0); //Timer thats ticks every * milliseconds, forever
+		this.timer.addEventListener(flash.events.TimerEvent.TIMER,render);
+		timer.start();
+		render(null);
+	}
+	private function render(evt:flash.events.TimerEvent){
+		this.active=(this.active+1)%this.numdots;
+		this.graphics.clear();
+		
+		for(i in 0...this.numdots){
+			this.graphics.beginFill(this.active==i?this.color1:this.color2); //Choose the color
+			this.graphics.drawCircle((i-this.numdots/2.)*this.separation,0,3); //Draw the dot
+			this.graphics.endFill();
+		}
 	}
 }
 /*
 class Quaternion{
+	//This class defines a Quaternion and some operations
 	public var u:Float;
 	public var i:Float;
 	public var j:Float;

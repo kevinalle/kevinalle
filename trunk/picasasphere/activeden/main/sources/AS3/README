@@ -1,0 +1,69 @@
+/********************************************************
+This is the sourcecode of PhotoSphere by Kevin Allekotte
+
+This version is the generated AS3 source code from HaXe
+Please refer to the HaXe source code for more detailed comments
+
+You can compile these files with Flex SDK running:
+mxmlc -output photosphere.swf __main__.as
+
+The following classes are defined:
+
+Sphere:
+	This is the main class. It loads the specified xml
+	with the description of the thumbnails (either from
+	picasa or a custom xml) and displays the sphere.
+	The most important functions are:
+	main:
+		Initializes everything. It reads the flashvars
+		parameters and creates the URLLoader to load the
+		xml.
+	xmlloaded:
+		This function is called as soon as the xml file
+		finishes loading. It reads the thumbnails and link
+		urls from the file and creates a Thumb instance for
+		each one. It populates the photos sprite with all
+		the thumbnails and gives the starting position for
+		each one.
+	frame:
+		This is called at every frame (about 30 times per
+		second). It recalculates the position of the
+		thumbnails according to mouse movement and renders
+		the scene.
+	sortphotos:
+		This is called periodically (when necesary) by frame.
+		It corrects the z-ordering of the Thumbs according to
+		their z value.
+
+Thumb:
+	This class is an extension of flash.display.Sprite and
+	represents a thumbnail on the sphere. It has a 3D posi-
+	tion and contains the image of the thumbnail with border
+	and shadow.
+	The main functions are:
+	new:
+		The constructor, creates an instance. It takes an url
+		of the thumbnail image file and optionally an url wich
+		opens on click. it loads the image and sets its proper-
+		ties.
+	loaded:
+		This function is called when the thumbnail finishes loading.
+		It resizes the image and adds the border.
+	display:
+		This is the function that sets its position on the screen
+		and scaling and alpha of the sprite according to its current
+		3D position and the size of the sphere and number of thumbnails.
+	scalingFunction:
+		This function decides the scale of the thumbnail given its 3D
+		position.
+
+V3:
+	This class represents Vectors in 3D space and some operations on them.
+	it implements normalize, add, subtract, cross product, dot product, 
+	scalar scaling, etc.
+
+Loader:
+	This class represents a simple loading animation. It consists of N dots
+	wich change color every m milliseconds. You can set the time interval,
+	the colors, the quantity, the separation and the size.
+********************************************************/
