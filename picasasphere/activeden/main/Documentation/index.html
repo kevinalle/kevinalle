@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<head lang="en">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<title>PhotoSphere Documentation</title>
+	<!-- Framework CSS -->
+	<link rel="stylesheet" href="assets/blueprint-css/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="assets/blueprint-css/print.css" type="text/css" media="print">
+	<!--[if lt IE 8]><link rel="stylesheet" href="assets/blueprint-css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+	<link rel="stylesheet" href="assets/blueprint-css/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+	<style type="text/css" media="screen">
+		p, table, hr, .box { margin-bottom:25px; }
+		.box p { margin-bottom:10px; }
+	</style>
+</head>
+
+
+<body>
+	<div class="container">
+	
+		<h3 class="center alt">&ldquo;PhotoSphere&rdquo; Documentation by &ldquo;Kevin Allekotte&rdquo;</h3>
+		
+		<hr>
+		
+		<h1 class="center">&ldquo;PhotoSphere&rdquo;</h1>
+		
+		<div class="borderTop">
+			<div class="span-6 colborder info prepend-1">
+				<p class="prepend-top">
+					<strong>
+					Created: 6/20/2010<br>
+					By: Kevin Allekotte<br>
+					Email: <a href="http://themeforest.net/user/kevinalle">kevinalle AT gmail DOT com</a>
+					</strong>
+				</p>
+			</div><!-- end div .span-6 -->		
+	
+			<div class="span-12 last">
+				<p class="prepend-top append-0">Thank you for purchasing my theme. If you have any questions that are beyond the scope of this help file, please feel free to email via my user page contact form <a href="http://themeforest.net/user/kevinalle">here</a>. Thanks so much!</p>
+			</div>
+		</div><!-- end div .borderTop -->
+		
+		<hr>
+		
+		<h2 id="toc" class="alt">Table of Contents</h2>
+		<ol class="alpha">
+			<li><a href="#htmlStructure">Using PhotoSphere</a></li>
+			<li><a href="#htmlStructure">Picasa service</a></li>
+			<li><a href="#htmlStructure">Custom xml</a></li>
+		</ol>
+		
+		<hr>
+		
+		<h3 id="htmlStructure"><strong>Using PhotoSphere</strong> - <a href="#toc">top</a></h3>
+		<p>To include PhotoSphere in your webpage you just have to embed the swf in the body of your document.</p>
+		<p>Upload <b>photosphere.swf</b> to your server and make sure its in the same directory as the html file that will embed it.<br>
+		Edit you HTML and add something like the following wherever you want to include PhotoSphere:</p>
+		<pre>
+		<div><!--Code highlighting produced by Actipro CodeHighlighter (freeware) http://www.CodeHighlighter.com/-->
+<span style="color: #0000FF;">&lt;</span><span style="color: #800000;">object </span><span style="color: #FF0000;">classid</span><span style="color: #0000FF;">=&quot;clsid:d27cdb6e-ae6d-11cf-96b8-444553540000&quot;</span><span style="color: #FF0000;"> width</span><span style="color: #0000FF;">=&quot;400&quot;</span><span style="color: #FF0000;"> height</span><span style="color: #0000FF;">=&quot;400&quot;</span><span style="color: #FF0000;"> id</span><span style="color: #0000FF;">=&quot;picasa&quot;</span><span style="color: #FF0000;"> align</span><span style="color: #0000FF;">=&quot;middle&quot;</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;"> 
+	</span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">param </span><span style="color: #FF0000;">name</span><span style="color: #0000FF;">=&quot;movie&quot;</span><span style="color: #FF0000;"> value</span><span style="color: #0000FF;">=&quot;picasasphere.swf?service=picasa&amp;user=&lt;YOUR_PICASA_USERNAME&gt;&amp;album=&lt;YOUR_ALBUM&gt;&amp;max=30&amp;thumbquality=5&quot;</span><span style="color: #0000FF;">/&gt;</span><span style="color: #000000;">
+	</span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">param </span><span style="color: #FF0000;">name</span><span style="color: #0000FF;">=&quot;allowScriptAccess&quot;</span><span style="color: #FF0000;"> value</span><span style="color: #0000FF;">=&quot;always&quot;</span><span style="color: #FF0000;"> </span><span style="color: #0000FF;">/&gt;</span><span style="color: #000000;"> 
+	</span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">param </span><span style="color: #FF0000;">name</span><span style="color: #0000FF;">=&quot;quality&quot;</span><span style="color: #FF0000;"> value</span><span style="color: #0000FF;">=&quot;high&quot;</span><span style="color: #FF0000;"> </span><span style="color: #0000FF;">/&gt;</span><span style="color: #000000;"> 
+	</span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">param </span><span style="color: #FF0000;">name</span><span style="color: #0000FF;">=&quot;scale&quot;</span><span style="color: #FF0000;"> value</span><span style="color: #0000FF;">=&quot;noscale&quot;</span><span style="color: #FF0000;"> </span><span style="color: #0000FF;">/&gt;</span><span style="color: #000000;"> 
+	</span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">param </span><span style="color: #FF0000;">name</span><span style="color: #0000FF;">=&quot;salign&quot;</span><span style="color: #FF0000;"> value</span><span style="color: #0000FF;">=&quot;lt&quot;</span><span style="color: #FF0000;"> </span><span style="color: #0000FF;">/&gt;</span><span style="color: #000000;"> 
+	</span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">param </span><span style="color: #FF0000;">name</span><span style="color: #0000FF;">=&quot;bgcolor&quot;</span><span style="color: #FF0000;"> value</span><span style="color: #0000FF;">=&quot;#ffffff&quot;</span><span style="color: #0000FF;">/&gt;</span><span style="color: #000000;"> 
+	</span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">param </span><span style="color: #FF0000;">name</span><span style="color: #0000FF;">=&quot;wmode&quot;</span><span style="color: #FF0000;"> value</span><span style="color: #0000FF;">=&quot;transparent&quot;</span><span style="color: #0000FF;">/&gt;</span><span style="color: #000000;"> 
+	</span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">embed </span><span style="color: #FF0000;">src</span><span style="color: #0000FF;">=&quot;picasasphere.swf?service=picasa&amp;user=&lt;YOUR_PICASA_USERNAME&gt;&amp;album=&lt;YOUR_ALBUM&gt;&amp;max=30&amp;thumbquality=5&quot;</span><span style="color: #FF0000;"> bgcolor</span><span style="color: #0000FF;">=&quot;#ffffff&quot;</span><span style="color: #FF0000;"> width</span><span style="color: #0000FF;">=&quot;400&quot;</span><span style="color: #FF0000;"> height</span><span style="color: #0000FF;">=&quot;400&quot;</span><span style="color: #FF0000;"> name</span><span style="color: #0000FF;">=&quot;picasa&quot;</span><span style="color: #FF0000;"> quality</span><span style="color: #0000FF;">=&quot;high&quot;</span><span style="color: #FF0000;"> align</span><span style="color: #0000FF;">=&quot;middle&quot;</span><span style="color: #FF0000;"> allowScriptAccess</span><span style="color: #0000FF;">=&quot;always&quot;</span><span style="color: #FF0000;"> type</span><span style="color: #0000FF;">=&quot;application/x-shockwave-flash&quot;</span><span style="color: #FF0000;"> pluginspage</span><span style="color: #0000FF;">=&quot;http://www.macromedia.com/go/getflashplayer&quot;</span><span style="color: #FF0000;"> wmode</span><span style="color: #0000FF;">=&quot;transparent&quot;</span><span style="color: #0000FF;">/&gt;</span><span style="color: #000000;"> 
+</span><span style="color: #0000FF;">&lt;/</span><span style="color: #800000;">object</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;"> </span></div>
+		</pre>
+		<p>Save your file.<br>
+		That's it!</p>
+		<p>Continue to the next sections to learn how to set the photo sources.</p>
+		
+		<hr>
+		
+		<h3 id="htmlStructure"><strong>Picasa service</strong> - <a href="#toc">top</a></h3>
+		<p>The easiest way to use PhotoSphere is to upload your photos to Picasa and have them dynamically served</p>
+		<p>You can use PhotoSphere to display any <b>public</b> picasaweb user or album.<br>
+		if you specify an album, the photo thumbnails of that album will be displayed. If not, thumbnails of that users public albums will be displayed.<br>
+		Every thumbnail will link to the corresponding page in picasaweb</p>
+		
+		<p>To use PhotoSphere with a picasa album or user, include the corresponding parameters when embedding the swf.<br>
+		Note the parts of the code where you see this:</p>
+		<pre><span style="color: #0000FF;">picasasphere.swf?service=picasa&amp;user=&lt;YOUR_PICASA_USERNAME&gt;&amp;album=&lt;YOUR_ALBUM&gt;&amp;max=30&amp;thumbquality=5</span></pre>
+		<p>Replace <b>&lt;YOUR_PICASA_USERNAME&gt;</b> and <b>&lt;YOUR_ALBUM&gt;</b> with your data.<br>You can exclude the <b>album</b> parameter.</p>
+		
+		<p><b>Important Notes:</b> You must specify the parameters <b>TWICE</b>. In the param "movie" <b>and</b> in the embed src.<br>Please make sure the selected album is <b>public</b>.</p>
+		
+		<p><b>Other parameters:</b><br>
+		You can also specify the following parameters:<br>
+		<b>max</b>: The maximum number of thumbnails to display. (The first <b>n</b> photos will be shown)<br>
+		<b>thumbquality</b>: The quality of the thumbnails. Use a valua between 1 and 8 (5 is default). The qualities correspond to the sizes: 32px, 48px, 64px, 72px, 104px, 144px, 150px and 160px respectively.
+		</p>
+		
+		<hr>
+		<h3 id="htmlStructure"><strong>Custom xml</strong> - <a href="#toc">top</a></h3>
+		<p>If you don't want to upload your photos to picasa you can specify the photos to be displayed in an xml file.</p>
+		<p>The structure of the xml file should be the following:</p>
+		<pre><div><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">photos</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">
+    </span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">photo </span><span style="color: #FF0000;">src</span><span style="color: #0000FF;">=&quot;photo1.jpg&quot;</span><span style="color: #FF0000;"> url</span><span style="color: #0000FF;">=&quot;http://...&quot;</span><span style="color: #FF0000;"> </span><span style="color: #0000FF;">/&gt;</span><span style="color: #000000;">
+    </span><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">photo </span><span style="color: #FF0000;">src</span><span style="color: #0000FF;">=&quot;photo2.jpg&quot;</span><span style="color: #FF0000;"> url</span><span style="color: #0000FF;">=&quot;http://...&quot;</span><span style="color: #FF0000;"> </span><span style="color: #0000FF;">/&gt;</span><span style="color: #000000;">
+    .
+    .
+    .
+</span><span style="color: #0000FF;">&lt;/</span><span style="color: #800000;">photos</span><span style="color: #0000FF;">&gt;</span></div></pre>
+		<p>where <b>src</b> is the url of the thumbnail and <b>href</b> is the location that opens on click.</p>
+		
+		<p>To use PhotoSphere with your custom url embed it as <b>photosphere.swf?service=custom&xml=photos.xml</b>, where <b>photos.xml</b> is the name of your xml file, and is in the same directory</p>
+		
+		<p><b>NOTE:</b> Due to Security reasons, the swf wont work on your local filesystem. you <b>have</b> to upload it to a server in order to make ir work</p>
+		
+		<hr>
+		
+		<p>Once again, thank you so much for purchasing this theme. As I said at the beginning, I'd be glad to help you if you have any questions relating to this theme. No guarantees, but I'll do my best to assist. If you have a more general question relating to the themes on ActiveDen, you might consider visiting the forums and asking your question in the "Item Discussion" section.</p> 
+		
+		<p class="append-bottom alt large"><strong>Kevin Allekotte</strong></p>
+		<p><a href="#toc">Go To Table of Contents</a></p>
+		
+		<hr class="space">
+	</div><!-- end div .container -->
+</body>
+</html>

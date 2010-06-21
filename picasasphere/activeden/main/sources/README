@@ -1,0 +1,16 @@
+PhotoSphere sources README
+
+You shouldnt need to recompile the swf, but if you want here is how:
+
+The sources are written in HaXe (http://haxe.org).
+Make sure you have HaXe installed correctly in your computer.
+You can compile it by simply running
+haxe compile.hxml
+(or by double-clicking compile.hxml in windows)
+
+Also, the sources are in ActionScript3 format in the folder AS3.
+you should be able to compile it with the Flex SDK by running
+mxmlc -output photosphere.swf __main__.as
+(note: the sources were generated with HaXe's AS3 code generator, http://haxe.org/doc/flash/as3gen)
+
+Good Luck!
