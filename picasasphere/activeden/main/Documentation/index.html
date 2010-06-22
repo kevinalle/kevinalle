@@ -43,14 +43,15 @@
 		
 		<h2 id="toc" class="alt">Table of Contents</h2>
 		<ol class="alpha">
-			<li><a href="#htmlStructure">Using PhotoSphere</a></li>
-			<li><a href="#htmlStructure">Picasa service</a></li>
-			<li><a href="#htmlStructure">Custom xml</a></li>
+			<li><a href="#using">Using PhotoSphere</a></li>
+			<li><a href="#picasa">Picasa service</a></li>
+			<li><a href="#custom">Custom xml</a></li>
+			<li><a href="#source">Source Code</a></li>
 		</ol>
 		
 		<hr>
 		
-		<h3 id="htmlStructure"><strong>Using PhotoSphere</strong> - <a href="#toc">top</a></h3>
+		<h3 id="using"><strong>Using PhotoSphere</strong> - <a href="#toc">top</a></h3>
 		<p>To include PhotoSphere in your webpage you just have to embed the swf in the body of your document.</p>
 		<p>Upload <b>photosphere.swf</b> to your server and make sure its in the same directory as the html file that will embed it.<br>
 		Edit you HTML and add something like the following wherever you want to include PhotoSphere:</p>
@@ -73,7 +74,7 @@
 		
 		<hr>
 		
-		<h3 id="htmlStructure"><strong>Picasa service</strong> - <a href="#toc">top</a></h3>
+		<h3 id="picasa"><strong>Picasa service</strong> - <a href="#toc">top</a></h3>
 		<p>The easiest way to use PhotoSphere is to upload your photos to Picasa and have them dynamically served</p>
 		<p>You can use PhotoSphere to display any <b>public</b> picasaweb user or album.<br>
 		if you specify an album, the photo thumbnails of that album will be displayed. If not, thumbnails of that users public albums will be displayed.<br>
@@ -93,7 +94,7 @@
 		</p>
 		
 		<hr>
-		<h3 id="htmlStructure"><strong>Custom xml</strong> - <a href="#toc">top</a></h3>
+		<h3 id="custom"><strong>Custom xml</strong> - <a href="#toc">top</a></h3>
 		<p>If you don't want to upload your photos to picasa you can specify the photos to be displayed in an xml file.</p>
 		<p>The structure of the xml file should be the following:</p>
 		<pre><div><span style="color: #0000FF;">&lt;</span><span style="color: #800000;">photos</span><span style="color: #0000FF;">&gt;</span><span style="color: #000000;">
@@ -110,6 +111,27 @@
 		<p><b>NOTE:</b> Due to Security reasons, the swf wont work on your local filesystem. you <b>have</b> to upload it to a server in order to make ir work</p>
 		
 		<hr>
+		
+		<h3 id="source"><strong>Source Code</strong> - <a href="#toc">top</a></h3>
+		<p>You shouldn't need to recompile the swf, but if you want here is how:</p>
+
+		<p>The sources are written in HaXe (http://haxe.org).<br>
+		Make sure you have HaXe installed correctly in your computer.<br>
+		You can compile it by simply running<br>
+		<b>haxe compile.hxml</b><br>
+		(or by double-clicking compile.hxml in windows)</p>
+
+		<p>Also, the sources are in ActionScript3 format in the folder AS3.<br>
+		You should be able to compile it with the Flex SDK by running<br>
+		<b>mxmlc -output photosphere.swf __main__.as</b><br>
+		(note: the sources were generated with HaXe's AS3 code generator, http://haxe.org/doc/flash/as3gen)</p>
+
+		<p>A Flex source file is also included in AS3/photosphere.mxml.<br>
+		You can compile it with Flex SDK or oen it with FlexBuilder.</p>
+
+		<p>Good Luck!</p>
+		<hr>
+		
 		
 		<p>Once again, thank you so much for purchasing this theme. As I said at the beginning, I'd be glad to help you if you have any questions relating to this theme. No guarantees, but I'll do my best to assist. If you have a more general question relating to the themes on ActiveDen, you might consider visiting the forums and asking your question in the "Item Discussion" section.</p> 
 		

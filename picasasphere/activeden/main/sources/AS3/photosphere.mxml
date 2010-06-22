@@ -4,7 +4,7 @@
 		import mx.core.UIComponent;
 		public function st():void {
 			var c:UIComponent = new UIComponent();
-			c.addChild(new __main__());
+			c.addChild(new Sphere("picasa","kevinalle","StarredPhotos",5,null,25)).x=-200;
 			cont.addChild(c);
 		}
 	]]></mx:Script>

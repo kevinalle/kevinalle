@@ -32,7 +32,7 @@ Sphere:
 		their z value.
 
 Thumb:
-	This class is an extension of flash.display.Sprite and
+	This class is an extension of Sprite and
 	represents a thumbnail on the sphere. It has a 3D posi-
 	tion and contains the image of the thumbnail with border
 	and shadow.
@@ -64,44 +64,67 @@ Loader:
 	the colors, the quantity, the separation and the size.
 ********************************************************/
 
-class Sphere{
-	// Initial Rotational Speed: the speed the sphere rotates before the mouse enters for the first time;
-	static var initialRotationSpeed=0.003;
-	static var rotationSpeed=0.15;
-	
-	static var stage:flash.display.Sprite;
-	static var service:String;
+import flash.display.Sprite;
+
+class PhotoSphere{
+	static var params:Dynamic<String>;
+	/*static var service:String;
 	static var user:String;
 	static var album:String;
-	static var loadin:Loader;
-	static var thumbs:Array<Thumb>;
-	static var framenum:Int;
-	static var n:Int;
-	static var photos:flash.display.Sprite;
-	static var r=100;
-	static var phi:Float=0.003;
-	static var theta:Float=0;
-	static var mouseonstage=false;
-	static var waiting=true;
-	static var width=400;
-	static var height=400;
-	static var params:Dynamic<String>;
-	static var thumbquality:Int;
-	static var orient:V3;
-	static var goto:V3;
-	static var dbg:flash.display.Sprite;
-	
+	static var thumbquality:String;
+	static var xml:String;
+	static var max:String;*/
 	static function main(){
 		params = flash.Lib.current.loaderInfo.parameters; //read the flashvars parameters
-		service=params.service!=null?params.service:"picasa"; //if no service is specified I asume Picasa
-		user=params.user!=null?params.user:"kevinalle"; //default user (if none is specified)
-		album=params.album==null&&user=="kevinalle"?"StarredPhotos":params.album; //default album
-		thumbquality=params.thumbquality!=null?Std.parseInt(params.thumbquality):5; //thumbnail quality
-		stage=flash.Lib.current; //the stage (the main Sprite)
+		flash.Lib.current.addChild(new Sphere(params.service, params.user, params.album, Std.parseInt(params.thumbnailquality), params.xml, Std.parseInt(params.max)));
+	}
+}
+
+class Sphere extends Sprite{
+	// Initial Rotational Speed: the speed the sphere rotates before the mouse enters for the first time;
+	private var initialRotationSpeed:Float;
+	private var rotationSpeed:Float;
+	private var service:String;
+	private var user:String;
+	private var album:String;
+	private var loadin:Loader;
+	private var thumbs:Array<Thumb>;
+	private var framenum:Int;
+	private var n:Int;
+	private var photos:Sprite;
+	private var r:Float;
+	private var phi:Float;
+	private var theta:Float;
+	private var mouseonstage:Bool;
+	private var waiting:Bool;
+	private var _width:Int;
+	private var _height:Int;
+	private var thumbquality:Int;
+	private var max:Int;
+	private var orient:V3;
+	private var goto:V3;
+	private var dbg:Sprite;
+	
+	public function new(?_service:String="picasa", ?_user:String="kevinalle", ?_album:String="StarredPhotos", ?_thumbquality:Int=5, ?_xml:String=null, ?_max:Int=0){
+		super();
+		service=_service!=null?_service:"picasa";
+		user=_user!=null?_user:"kevinalle";
+		album=_album!=null?_album:"StarredPhotos";
+		thumbquality=_thumbquality;
+		max=_max;
+		initialRotationSpeed=0.003;
+		rotationSpeed=0.15;
+		r=100;
+		phi=0.003;
+		theta=0;
+		mouseonstage=false;
+		waiting=true;
+		_width=400;
+		_height=400;
 		loadin=new Loader();
 		thumbs=new Array(); //This array will hold all the thumbnails
 		framenum=0; //a frame counter
-		photos=new flash.display.Sprite(); //This sprite will contain all thumbnails
+		photos=new Sprite(); //This sprite will contain all thumbnails
 		
 		var xmlLoader:flash.net.URLLoader=null;
 		if(service=="picasa"){
@@ -116,17 +139,22 @@ class Sphere{
 			var url="http://photos.googleapis.com/data/feed/api/user/"+user+(album!=null?"/album/"+album:"")+"?thumbsize="+thumbsizes[thsz-1]+"c";
 			xmlLoader = new flash.net.URLLoader(new flash.net.URLRequest(url)); //Make the request
 		}else if(service=="custom"){
-			xmlLoader = new flash.net.URLLoader(new flash.net.URLRequest(params.xml));
+			xmlLoader = new flash.net.URLLoader(new flash.net.URLRequest(_xml));
 		}
-		loadin.x=width/2;loadin.y=height/2; 
-		stage.addChild(loadin);// display the loader animation
+		loadin.x=_width/2;loadin.y=_height/2;
+		this.graphics.beginFill(0,0);
+		this.graphics.drawRect(0,0,_width,_height);
+		this.graphics.endFill();
+		this.addChild(loadin);// display the loader animation
 		xmlLoader.addEventListener(flash.events.Event.COMPLETE, xmlloaded); //when the xml loads, call xmlloaded
-		stage.stage.addEventListener(flash.events.Event.MOUSE_LEAVE,function(e:Dynamic){mouseonstage=false;}); //update mouseonstage whenever mouse leaves the stage
-		stage.stage.addEventListener(flash.events.MouseEvent.MOUSE_MOVE,function(e:Dynamic){mouseonstage=true;waiting=false;}); //update mousonstage when mouse is active and cancel the waiting animation
+		this.addEventListener(flash.events.MouseEvent.ROLL_OUT, mouseout); //update mouseonstage whenever mouse leaves the sprite
+		this.addEventListener(flash.events.MouseEvent.ROLL_OVER,mousemove); //update mousonstage when mouse is active and cancel the waiting animation
 	}
-	static function xmlloaded(evt:flash.events.Event){
+	private function mouseout(e:flash.events.MouseEvent){ mouseonstage=false; }
+	private function mousemove(e:flash.events.MouseEvent){ mouseonstage=true;waiting=false; }
+	private function xmlloaded(evt:flash.events.Event){
 		//trace("Loaded :P");
-		stage.removeChild(loadin);
+		this.removeChild(loadin);
 		var xml:flash.xml.XML=new flash.xml.XML(evt.target.data); //Parse the xml
 		var entrys:flash.xml.XMLList=null;
 		//define some namespaces the picasa service uses
@@ -140,8 +168,8 @@ class Sphere{
 			entrys=xml.child("photo");
 		}
 		n=entrys.length(); // n is the amount of thumbnails
-		if(params.max!=null){n=Math.round(Math.min(n,Std.parseInt(params.max)));} //limit the amount of thumbnails if requested by parameter max
-		r=Math.floor(Math.min(width/2,height/2)*.7);//Set the radius of the sphere
+		if(max>0){n=Math.round(Math.min(n,max));} //limit the amount of thumbnails if requested by parameter max
+		r=Math.floor(Math.min(_width/2,_height/2)*.7);//Set the radius of the sphere
 		
 		for(i in 0...n){
 			var thumb:String="";var url:String="";
@@ -158,9 +186,9 @@ class Sphere{
 		shuffle(thumbs); // Shuffle the thumbnails so they appear in random order
 		photos.addEventListener(flash.events.Event.ENTER_FRAME,frame); //Call frame in every frame to update the scene
 		//center the sphere
-		photos.x=width/2;
-		photos.y=height/2;
-		stage.addChild(photos); //display the sphere in pur scene
+		photos.x=_width/2;
+		photos.y=_height/2;
+		this.addChild(photos); //display the sphere in pur scene
 		
 		//This part distributes the thumbnails eavenly around the sphere, refer to the link for more details
 		//Spiral points on sphere: http://sitemason.vanderbilt.edu/page/hmbADS#spiral
@@ -181,7 +209,7 @@ class Sphere{
 		sortphotos();
 	}
 	
-	static function frame(evt:flash.events.Event){
+	private function frame(evt:flash.events.Event){
 		//This is called every frame. it must redraw the scene
 		framenum++;
 		if(mouseonstage){
@@ -216,12 +244,12 @@ class Sphere{
 		if((phi!=0||theta!=0) && framenum%10==0) sortphotos();
 	}
 	
-	static function ns(namespace:flash.utils.Namespace, name:String){
+	private function ns(namespace:flash.utils.Namespace, name:String){
 		//create a Qname with a namespace and a element name.
 		return new flash.utils.QName(namespace,new flash.utils.QName(name));
 	}
 	
-	static function sortphotos(){
+	private function sortphotos(){
 		//sort the thumbnails array by its z value
 		thumbs.sort(function(a,b:Thumb){return a.z==b.z?0:a.z>b.z?1:-1;});
 		//update the thumbnails z-Index
@@ -229,7 +257,7 @@ class Sphere{
 		while(--i>=0) photos.setChildIndex(thumbs[i], i);
 	}
 	
-	static function shuffle<T>(arr:Array<T>){
+	private function shuffle<T>(arr:Array<T>){
 		//a function to shuffle an array
 		var n = arr.length;
 		while (n > 1){
@@ -241,7 +269,7 @@ class Sphere{
 		}
 	}
 	
-/*	static function axisrotate(as:V3,th:Float,xyz:V3){
+/*	private function axisrotate(as:V3,th:Float,xyz:V3){
 		//this function rotates a vector around an axis
 		var axis:V3=as.normalized();
 		var p=new Quaternion(0, xyz.x, xyz.y, xyz.z);
@@ -252,8 +280,8 @@ class Sphere{
 	}*/
 }
 
-class Thumb extends flash.display.Sprite{
-	//public var img:flash.display.Sprite;
+class Thumb extends Sprite{
+	//public var img:Sprite;
 	public var link:String;
 	public var pos:V3;
 	public var z:Float;
@@ -264,7 +292,7 @@ class Thumb extends flash.display.Sprite{
 		ldr.name="loader";
 		ldr.load(new flash.net.URLRequest(url));
 		ldr.contentLoaderInfo.addEventListener(flash.events.Event.COMPLETE,this.loaded);
-		//this.img=new flash.display.Sprite();
+		//this.img=new Sprite();
 		this.rotation=(Math.random()-.5)*20;
 		var drpShdw=new flash.filters.DropShadowFilter(2,45,0,1,8,8,.6,1);
 		this.filters=[drpShdw];
@@ -302,7 +330,7 @@ class Thumb extends flash.display.Sprite{
 	}
 	
 	function over(evt:flash.events.MouseEvent){
-		var rect=new flash.display.Sprite();
+		var rect=new Sprite();
 		rect.graphics.beginFill(0,0);
 		rect.graphics.drawRect(-1.2*this.width/2,-1.2*this.height/2,1.2*this.width,1.2*this.height);
 		rect.name="rect";
@@ -384,7 +412,7 @@ class V3{
 	}
 }
 
-class Loader extends flash.display.Sprite{
+class Loader extends Sprite{
 	//This is the loading animation
 	private var active:Int;
 	private var color1:Int;
