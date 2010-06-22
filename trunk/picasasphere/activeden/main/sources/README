@@ -13,4 +13,7 @@ You should be able to compile it with the Flex SDK by running
 mxmlc -output photosphere.swf __main__.as
 (note: the sources were generated with HaXe's AS3 code generator, http://haxe.org/doc/flash/as3gen)
 
+A Flex source file is also included in AS3/photosphere.mxml.
+You can compile it with Flex SDK or oen it with FlexBuilder.
+
 Good Luck!

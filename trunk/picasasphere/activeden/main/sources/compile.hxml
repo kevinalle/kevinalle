@@ -1,4 +1,4 @@
 -swf9 photosphere.swf
--main Sphere
+-main PhotoSphere
 -D network-sandbox
 -swf-header 400:400:30:99aacc

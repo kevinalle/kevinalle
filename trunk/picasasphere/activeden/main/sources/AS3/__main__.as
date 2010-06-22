@@ -4,7 +4,7 @@ package  {
 	public class __main__ extends flash.display.MovieClip {
 		public function __main__() {
 			new flash.Boot(this);
-			Sphere.main();
+			PhotoSphere.main();
 		}
 	}
 }
