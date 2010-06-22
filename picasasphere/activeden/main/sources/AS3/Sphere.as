@@ -4,11 +4,11 @@ package  {
 	import flash.events.MouseEvent;
 	import flash.Lib;
 	import flash.display.Sprite;
-	import flash.utils.QName;
-	import flash.utils.Namespace;
+	//import flash.utils.QName;
+	//import flash.utils.Namespace;
 	import flash.net.URLLoader;
 	import flash.events.Event;
-	public class Sphere {
+	public class Sphere{
 		static protected var initialRotationSpeed : Number = 0.003;
 		static protected var rotationSpeed : Number = 0.15;
 		static protected var stage : flash.display.Sprite;
@@ -33,11 +33,11 @@ package  {
 		static protected var goto : V3;
 		static protected var dbg : flash.display.Sprite;
 		static public function main() : void {
-			Sphere.params = flash.Lib.current.loaderInfo.parameters;
-			Sphere.service = (params.service != null?params.service:"picasa");
-			Sphere.user = (params.user != null?params.user:"kevinalle");
-			Sphere.album = (params.album == null && Sphere.user == "kevinalle"?"StarredPhotos":params.album);
-			Sphere.thumbquality = (params.thumbquality != null?Std._parseInt(params.thumbquality):5);
+			Sphere.params = null;
+			Sphere.service = "picasa";
+			Sphere.user = "kevinalle";
+			Sphere.album = "StarredPhotos";
+			Sphere.thumbquality = 5;
 			Sphere.stage = flash.Lib.current;
 			Sphere.loadin = new Loader();
 			Sphere.thumbs = new Array();
@@ -53,17 +53,14 @@ package  {
 				var url : String = "http://photos.googleapis.com/data/feed/api/user/" + user + ((Sphere.album != null?"/album/" + album:"")) + "?thumbsize=" + thumbsizes[thsz - 1] + "c";
 				xmlLoader = new flash.net.URLLoader(new flash.net.URLRequest(url));
 			}
-			else if(Sphere.service == "custom") {
-				xmlLoader = new flash.net.URLLoader(new flash.net.URLRequest(params.xml));
-			}
 			loadin.x = Sphere.width / 2;
 			loadin.y = Sphere.height / 2;
 			stage.addChild(loadin);
 			xmlLoader.addEventListener(flash.events.Event.COMPLETE,Sphere.xmlloaded);
-			stage.stage.addEventListener(flash.events.Event.MOUSE_LEAVE,function(e : *) : void {
+			stage.addEventListener(flash.events.Event.MOUSE_LEAVE,function(e : *) : void {
 				Sphere.mouseonstage = false;
 			});
-			stage.stage.addEventListener(flash.events.MouseEvent.MOUSE_MOVE,function(e : *) : void {
+			stage.addEventListener(flash.events.MouseEvent.MOUSE_MOVE,function(e : *) : void {
 				Sphere.mouseonstage = true;
 				Sphere.waiting = false;
 			});
@@ -73,9 +70,9 @@ package  {
 			stage.removeChild(loadin);
 			var xml : XML = new XML(evt.target.data);
 			var entrys : XMLList = null;
-			var atom : flash.utils.Namespace = new flash.utils.Namespace(xml._namespace());
-			var gphoto : flash.utils.Namespace = new flash.utils.Namespace("http://schemas.google.com/photos/2007");
-			var media : flash.utils.Namespace = new flash.utils.Namespace("http://search.yahoo.com/mrss/");
+			var atom : Namespace = new Namespace(xml.namespace());
+			var gphoto : Namespace = new Namespace("http://schemas.google.com/photos/2007");
+			var media : Namespace = new Namespace("http://search.yahoo.com/mrss/");
 			if(Sphere.service == "picasa") {
 				entrys = xml.child(ns(atom,"entry"));
 			}
@@ -83,9 +80,9 @@ package  {
 				entrys = xml.child("photo");
 			}
 			Sphere.n = entrys.length();
-			if(params.max != null) {
-				Sphere.n = Math.round(Math.min(n,Std._parseInt(params.max)));
-			}
+			//if(params.max != null) {
+				//Sphere.n = Math.round(Math.min(n,Std._parseInt(params.max)));
+			//}
 			Sphere.r = Math.floor(Math.min(Sphere.width / 2,Sphere.height / 2) * .7);
 			{
 				var _g1 : int = 0, _g : int = n;
@@ -167,8 +164,8 @@ package  {
 			if((Sphere.phi != 0 || Sphere.theta != 0) && Sphere.framenum % 10 == 0) sortphotos();
 		}
 		
-		static protected function ns(_namespace : flash.utils.Namespace,name : String) : flash.utils.QName {
-			return new flash.utils.QName(_namespace,new flash.utils.QName(name));
+		static protected function ns(_namespace : Namespace,name : String) : QName {
+			return new QName(_namespace,new QName(name));
 		}
 		
 		static protected function sortphotos() : void {
