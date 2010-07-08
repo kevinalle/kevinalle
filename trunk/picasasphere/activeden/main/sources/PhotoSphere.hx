@@ -109,7 +109,7 @@ class Sphere extends Sprite{
 		super();
 		service=_service!=null?_service:"picasa";
 		user=_user!=null?_user:"kevinalle";
-		album=_album!=null?_album:"StarredPhotos";
+		album=_album==null&&user=="kevinalle"?"StarredPhotos":_album;
 		thumbquality=_thumbquality;
 		max=_max;
 		initialRotationSpeed=0.003;
