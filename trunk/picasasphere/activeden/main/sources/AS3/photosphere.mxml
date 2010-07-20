@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+	<mx:Script><![CDATA[
+		import mx.core.UIComponent;
+		public function st():void {
+			var c:UIComponent = new UIComponent();
+			c.addChild(new Sphere("picasa","kevinalle","StarredPhotos",5,null,25)).x=-200;
+			cont.addChild(c);
+		}
+	]]></mx:Script>
+	<mx:HBox id="cont" creationComplete="st()"></mx:HBox>
+</mx:Application>
