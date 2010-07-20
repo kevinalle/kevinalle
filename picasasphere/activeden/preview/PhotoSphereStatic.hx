@@ -76,7 +76,7 @@ class PhotoSphereStatic{
 	static var max:String;*/
 	static function main(){
 		params = flash.Lib.current.loaderInfo.parameters; //read the flashvars parameters
-		flash.Lib.current.addChild(new Sphere("picasa", "kevinalle", "StarredPhotos", 5, null, 0));
+		flash.Lib.current.addChild(new Sphere("custom", null, null, 5, "photos.xml", 0));
 	}
 }
 
@@ -285,6 +285,7 @@ class Thumb extends Sprite{
 	public var link:String;
 	public var pos:V3;
 	public var z:Float;
+	private var r:Float;
 	
 	public function new(url:String,?link:String){
 		super();
@@ -305,8 +306,8 @@ class Thumb extends Sprite{
 	private function loaded(?evt:flash.events.Event){
 		var ldr=this.getChildByName("loader");
 		var w=ldr.width;var h=ldr.height;
-		if(w>h){ h=h*72/w;w=72; }
-		else{ w=w*72/h;h=72; }
+		if(w>h){ h=h*56/w;w=56; }
+		else{ w=w*56/h;h=56; }
 		ldr.width=w;ldr.height=h;
 		var sze=ldr.width>ldr.height?ldr.width:ldr.height;
 		this.buttonMode=true;
@@ -335,13 +336,26 @@ class Thumb extends Sprite{
 		rect.graphics.drawRect(-1.2*this.width/2,-1.2*this.height/2,1.2*this.width,1.2*this.height);
 		rect.name="rect";
 		this.addChild(rect);
-		this.pos.scaleBy(1.1);
+		//this.pos.scaleBy(1.1);
+		this.r=this.pos.norm();
+		this.removeEventListener(flash.events.Event.ENTER_FRAME,shrink);
+		this.addEventListener(flash.events.Event.ENTER_FRAME,grow);
 		this.addEventListener(flash.events.MouseEvent.MOUSE_OUT,out);
 	}
 	function out(evt:flash.events.MouseEvent){
 		this.removeChild(this.getChildByName("rect"));
 		this.removeEventListener(flash.events.MouseEvent.MOUSE_OUT,out);
-		this.pos.scaleBy(1/1.1);
+		this.removeEventListener(flash.events.Event.ENTER_FRAME,grow);
+		this.addEventListener(flash.events.Event.ENTER_FRAME,shrink);
+		//this.pos.scaleBy(1/1.1);
+		//this.pos.normalize(this.r);
+	}
+	function grow(e:flash.events.Event){
+		if(this.pos.norm()<this.r*1.2) this.pos.scaleBy(1.04);
+	}
+	function shrink(e:flash.events.Event){
+		if(this.pos.norm()>this.r) this.pos.scaleBy(.96);
+		else this.removeEventListener(flash.events.Event.ENTER_FRAME,shrink);
 	}
 	
 	function openurl(evt:flash.events.MouseEvent){
