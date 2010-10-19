@@ -1,0 +1,27 @@
+\newcommand{\func}[2]{\texttt{#1}(#2) :}
+\newcommand{\tab}{\hspace*{2em}}
+\newcommand{\FOR}{\textbf{for }}
+\newcommand{\TO}{\textbf{ to }}
+\newcommand{\IF}{\textbf{if }}
+\newcommand{\WHILE}{\textbf{while }}
+\newcommand{\THEN}{\textbf{then }}
+\newcommand{\ELSE}{\textbf{else }}
+\newcommand{\RET}{\textbf{return }}
+\newcommand{\MOD}{\textbf{ \% }}
+\newcommand{\OR}{\textbf{ or }}
+\newcommand{\NOT}{\textbf{ not }}
+\newcommand{\tOde}[1]{\tab \small{\mathcal{O}($#1$)}}
+\newcommand{\Ode}[1]{\ensuremath{\small{\mathcal{O}\left(#1\right)}}}
+\newcommand{\VSP}{\vspace*{3em}}
+\newcommand{\Pa}{\vspace{5mm}}
+\newcommand{\iif}{\Leftrightarrow}
+\newcommand{\gra}[1]{\noindent\includegraphics[scale=.70]{#1}\\}
+\newcommand{\gras}[2]{\noindent\includegraphics[scale=#2]{#1}\\}
+\newcommand{\gram}[1]{\noindent\includegraphics[scale=.50]{#1}}
+\newcommand{\dirmail}[1]{\normalsize{\texttt{#1}}}
+\newcommand{\superref}[1]{\textsuperscript{\ref{#1}}}
+
+\newenvironment{pseudo}{\noindent\begin{tabular}{ll}}{\end{tabular}\VSP}
+\newenvironment{while}{\WHILE \\ \setlength{\leftmargin}{0em} }{}
+\newenvironment{usection}[1]{\newpage\begin{section}*{#1}	\addcontentsline{toc}{section}{#1}}{\end{section}}
+\newenvironment{usubsection}[1]{\begin{subsection}*{#1}	\addcontentsline{toc}{subsection}{#1}}{\end{subsection}}

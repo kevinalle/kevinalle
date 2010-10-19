@@ -1,0 +1,19 @@
+\BOOKMARK [1][-]{section.1}{Discretizaci\363n del Sistema}{}
+\BOOKMARK [2][-]{subsection.1.1}{Adimensionalizaci\363n del Sistema}{section.1}
+\BOOKMARK [2][-]{subsection.1.2}{Discretizaci\363n}{section.1}
+\BOOKMARK [3][-]{subsubsection.1.2.1}{Condiciones Iniciales y de Borde}{subsection.1.2}
+\BOOKMARK [3][-]{subsubsection.1.2.2}{=0}{subsection.1.2}
+\BOOKMARK [3][-]{subsubsection.1.2.3}{=1}{subsection.1.2}
+\BOOKMARK [1][-]{section.2}{Resoluci\363n Num\351rica Serial}{}
+\BOOKMARK [2][-]{subsection.2.1}{=0}{section.2}
+\BOOKMARK [3][-]{subsubsection.2.1.1}{C\363digo}{subsection.2.1}
+\BOOKMARK [3][-]{subsubsection.2.1.2}{Resultado}{subsection.2.1}
+\BOOKMARK [2][-]{subsection.2.2}{=1}{section.2}
+\BOOKMARK [3][-]{subsubsection.2.2.1}{C\363digo}{subsection.2.2}
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Resultado}{subsection.2.2}
+\BOOKMARK [1][-]{section.3}{Condiciones Iniciales y de Borde}{}
+\BOOKMARK [1][-]{section.4}{Implementaci\363n en paralelo: MPI}{}
+\BOOKMARK [2][-]{subsection.4.1}{C\363digo}{section.4}
+\BOOKMARK [2][-]{subsection.4.2}{Resultado}{section.4}
+\BOOKMARK [1][-]{section.5}{Compilaci\363n y ejecuci\363n}{}
+\BOOKMARK [1][-]{section.6}{To-Do}{}
