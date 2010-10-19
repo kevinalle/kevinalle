@@ -31,7 +31,8 @@
 	\usepackage{url}
 	\definecolor{lnk}{rgb}{0,0,0.4}
 	\usepackage[colorlinks=true,linkcolor=lnk,citecolor=blue,urlcolor=blue]{hyperref}
-	\usepackage{wrapfig}
+%	\usepackage{wrapfig}
+	\usepackage{ulem}
 
 % Importo los comandos personalizados
 	\input{comandos_pers.tex}
@@ -137,7 +138,7 @@ forn(iter,20){
 			Cuando tienen resultados, éstos son enviados al root para que imprima la salida.
 			
 			\subsection{Código}
-				\lstinputlisting{../difusion_mpi.cpp}
+				\lstinputlisting{../difusion_mpi_fantasma.cpp}
 			
 			\subsection{Resultado}
 				Nuevamente, los resultados son los mismos que el programa en serie
@@ -162,7 +163,8 @@ forn(iter,20){
 				\item Medir los tiempos de ejecución y la performance del programa paralelo.
 				\item Modificar los programas para que acepten los valores seleccionados por el usuario en la línea de comandos
 				\item No está implementado el caso $\alpha=0.5$
-				\item El programa paralelo usa un nodo fantasma. Hay que modificarlo para que pueda usar 2,5, y 10 nodos fantasma.
+				\item \sout{El programa paralelo usa un nodo fantasma. Hay que modificarlo para que pueda usar 2,5, y 10 nodos fantasma.}
+				\item \sout{Arreglar el caso borde para el \textsc{3.b}}
 			\end{itemize}
 \end{document}
 
