@@ -1,0 +1,68 @@
+#include<iostream>
+//#include<cstdlib>
+#include<cmath>
+using namespace std;
+
+#define forn(i,n) for(int i=0;i<n;i++)
+#define forsn(i,s,n) for(int i=(int)(s);i<n;i++)
+
+double F(double x){
+	//return x<.5?10.:-5.;
+	return 0;
+}
+double LeftBorder(double t){
+	return 5*cos(100*t);
+}
+double RightBorder(double t){
+	return -5.;
+}
+
+int main(int argc,char**argv){
+	double dt=.000025;
+	double dx=.01;
+	double K=1.; // Coeficiente de difusion termica adimensionalizado
+	double L=1.; // Longitud
+	double r=dt*K/(dx*dx);
+	
+	int output_t_samples=50;
+	int output_x_samples=100;
+	
+	double tf=.1;
+	
+	clog<<"r: "<<r<<endl;
+	
+	int times=tf/dt+1;
+	int samples=L/dx+2;
+	double*u=new double[samples];
+	double*u2=new double[samples];
+	forn(i,samples) u[i]=F((double)i/samples);
+	u[0]=LeftBorder(0.);
+	u[samples-1]=F(1.);
+	double diff=1.;
+	double ant;
+
+	forn(t,times+1){
+		diff=1.;
+		forn(i,samples) u2[i]=u[i];
+		u2[0]=LeftBorder(tf*t/times);
+		//u2[samples-1]=RightBorder(tf*t/times);
+		while(diff>0.001){
+			diff=0.;
+			forsn(i,1,samples-1){
+				ant=u2[i];
+				u2[i]=(r/(1+2*r))*(u2[i+1]+u2[i-1])+u[i]/(1+2*r);
+				if(abs(u2[i]-ant)>diff) diff=abs(u2[i]-ant);
+			}
+			u2[samples-1]=u2[samples-2];
+		}
+		double*temp=u; u=u2; u2=temp;
+		
+		
+		if(t%(times/output_t_samples)==0){
+			clog << "t=" << t*dt << ":\t";
+			for(int i=0;i<samples;i+=samples/output_x_samples) cout << u[i] << " ";
+			cout << endl;
+		}
+	}
+	return 0;
+}
