@@ -1,0 +1,8 @@
+(1)  To compile, just go to the BLACS directory you want to build,
+     and type "make".  You must first edit and correct the file
+     BLACS/Bmake.inc.  Sample Bmake.inc's can be found in the
+     BLACS/BMAKES directory.
+
+(2)  Type "make clean" to get rid of old .o files.
+
+(3)  All of this may be done from the top-level makefile.

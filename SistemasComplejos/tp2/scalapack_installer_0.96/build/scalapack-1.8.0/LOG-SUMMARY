@@ -1,0 +1,719 @@
+logs from the modifications from scalapack-1.7.0 to scalapack-1.8.0
+
+********************************************************************************
+From Rev:1 to Rev:16
+    A EXAMPLE
+    A EXAMPLE/CSCAEXMAT.dat
+    A EXAMPLE/CSCAEXRHS.dat
+    A EXAMPLE/DSCAEXMAT.dat
+    A EXAMPLE/DSCAEXRHS.dat
+    A EXAMPLE/Makefile
+    A EXAMPLE/SCAEX.dat
+    A EXAMPLE/SSCAEXMAT.dat
+    A EXAMPLE/SSCAEXRHS.dat
+    A EXAMPLE/ZSCAEXMAT.dat
+    A EXAMPLE/ZSCAEXRHS.dat
+    A EXAMPLE/pcscaex.f
+    A EXAMPLE/pdscaex.f
+    A EXAMPLE/pdscaexinfo.f
+    A EXAMPLE/psscaex.f
+    A EXAMPLE/pzscaex.f
+    M Makefile
+    M README
+    M PBLAS/SRC/PBtools.h
+    M PBLAS/SRC/pblas.h
+    M PBLAS/SRC/pcscal_.c
+    M PBLAS/SRC/pdscal_.c
+    M PBLAS/SRC/psscal_.c
+    M PBLAS/SRC/pzscal_.c
+    D SLmake.inc
+    A SLmake.inc.example (from SLmake.inc:16)
+    M SRC/Makefile
+    M SRC/dlasorte.f
+    M SRC/pslared1d.f
+    M SRC/pdlared1d.f
+    M SRC/pslared2d.f
+    M SRC/pdlared2d.f
+    M SRC/pcgesv.f
+    M SRC/psgesv.f
+    M SRC/pdgesv.f
+    M SRC/pzgesv.f
+    M SRC/pslahqr.f
+    M SRC/pslahrd.f
+    M SRC/pslasmsub.f
+    M SRC/psstein.f
+    M SRC/pclahqr.f
+    M SRC/pdlahqr.f
+    M SRC/pdlahrd.f
+    M SRC/pdlasmsub.f
+    M SRC/pdstein.f
+    M SRC/pzlahqr.f
+    M SRC/pzlahrd.f
+    M SRC/pzlasmsub.f
+    M SRC/pzrot.c
+    M SRC/pzstein.f
+    M SRC/pztrevc.f
+    M SRC/slasorte.f
+    M SRC/pclahrd.f
+    M SRC/pclasmsub.f
+    M SRC/pcrot.c
+    M SRC/pcstein.f
+    M SRC/pctrevc.f
+    M SRC/pzgesvd.f
+    M SRC/pcgesvd.f
+    M SRC/psgesvd.f
+    M SRC/pdgesvd.f
+    M SRC/psdbtrf.f
+    M SRC/pcheevd.f
+    M SRC/pzheevd.f
+    M SRC/pcheevx.f
+    M SRC/pzheevx.f
+    M SRC/pchegvx.f
+    M SRC/pzhegvx.f
+    M SRC/pdsygvx.f
+    M SRC/pssyevx.f
+    M SRC/pssygvx.f
+    M SRC/pdsyevx.f
+    M SRC/pcgetri.f
+    M SRC/pdgetri.f
+    M SRC/psgetri.f
+    M SRC/pzgetri.f
+    M TESTING/EIG/pcevcdriver.f
+    M TESTING/EIG/pcgehdrv.f
+    M TESTING/EIG/pcgsepreq.f
+    M TESTING/EIG/pcseptst.f
+    M TESTING/EIG/pdgehdrv.f
+    M TESTING/EIG/pdgsepreq.f
+    M TESTING/EIG/psgehdrv.f
+    M TESTING/EIG/psgsepreq.f
+    M TESTING/EIG/pzevcdriver.f
+    M TESTING/EIG/pzgehdrv.f
+    M TESTING/EIG/pzgsepreq.f
+    M TESTING/EIG/pzseptst.f
+    M TESTING/LIN/pcinvdriver.f
+    M TESTING/LIN/pdinvdriver.f
+    M TESTING/LIN/psinvdriver.f
+    M TESTING/LIN/pzinvdriver.f
+    M TOOLS/LAPACK/Makefile
+    D TOOLS/LAPACK/cbdsqr.f
+    D TOOLS/LAPACK/cgbtf2.f
+    D TOOLS/LAPACK/cgbtrf.f
+    D TOOLS/LAPACK/cgetf2.f
+    D TOOLS/LAPACK/cgetrf.f
+    D TOOLS/LAPACK/cgetrs.f
+    D TOOLS/LAPACK/chetd2.f
+    D TOOLS/LAPACK/chetrd.f
+    D TOOLS/LAPACK/clacgv.f
+    D TOOLS/LAPACK/clacpy.f
+    D TOOLS/LAPACK/cladiv.f
+    D TOOLS/LAPACK/claev2.f
+    M TOOLS/LAPACK/clagge.f
+    M TOOLS/LAPACK/claghe.f
+    M TOOLS/LAPACK/clagsy.f
+    D TOOLS/LAPACK/clanhs.f
+    D TOOLS/LAPACK/clarf.f
+    D TOOLS/LAPACK/clarfb.f
+    D TOOLS/LAPACK/clarfg.f
+    D TOOLS/LAPACK/clarft.f
+    M TOOLS/LAPACK/clarnd.f
+    M TOOLS/LAPACK/clarot.f
+    D TOOLS/LAPACK/clartg.f
+    D TOOLS/LAPACK/clascl.f
+    D TOOLS/LAPACK/claset.f
+    D TOOLS/LAPACK/clasr.f
+    D TOOLS/LAPACK/classq.f
+    D TOOLS/LAPACK/claswp.f
+    M TOOLS/LAPACK/clatm1.f
+    M TOOLS/LAPACK/clatms.f
+    D TOOLS/LAPACK/clatrd.f
+    D TOOLS/LAPACK/cpbtf2.f
+    D TOOLS/LAPACK/cpbtrf.f
+    D TOOLS/LAPACK/cpotf2.f
+    D TOOLS/LAPACK/cpotrf.f
+    D TOOLS/LAPACK/cpttrf.f
+    D TOOLS/LAPACK/crot.f
+    D TOOLS/LAPACK/cstedc.f
+    D TOOLS/LAPACK/cstein.f
+    D TOOLS/LAPACK/csymv.f
+    D TOOLS/LAPACK/ctbtrs.f
+    D TOOLS/LAPACK/ctrtrs.f
+    D TOOLS/LAPACK/cunm2l.f
+    D TOOLS/LAPACK/cunm2r.f
+    D TOOLS/LAPACK/cunmql.f
+    D TOOLS/LAPACK/cunmqr.f
+    D TOOLS/LAPACK/cunmtr.f
+    D TOOLS/LAPACK/dbdsqr.f
+    D TOOLS/LAPACK/dgbtf2.f
+    D TOOLS/LAPACK/dgbtrf.f
+    D TOOLS/LAPACK/dgetf2.f
+    D TOOLS/LAPACK/dgetrf.f
+    D TOOLS/LAPACK/dgetrs.f
+    D TOOLS/LAPACK/dlabad.f
+    D TOOLS/LAPACK/dlacpy.f
+    D TOOLS/LAPACK/dladiv.f
+    D TOOLS/LAPACK/dlae2.f
+    D TOOLS/LAPACK/dlaed0.f
+    D TOOLS/LAPACK/dlaed1.f
+    D TOOLS/LAPACK/dlaed2.f
+    D TOOLS/LAPACK/dlaed3.f
+    D TOOLS/LAPACK/dlaed4.f
+    D TOOLS/LAPACK/dlaed5.f
+    D TOOLS/LAPACK/dlaed6.f
+    D TOOLS/LAPACK/dlaed7.f
+    D TOOLS/LAPACK/dlaed8.f
+    D TOOLS/LAPACK/dlaed9.f
+    D TOOLS/LAPACK/dlaeda.f
+    D TOOLS/LAPACK/dlaev2.f
+    M TOOLS/LAPACK/dlagge.f
+    M TOOLS/LAPACK/dlagsy.f
+    D TOOLS/LAPACK/dlagtf.f
+    D TOOLS/LAPACK/dlagts.f
+    D TOOLS/LAPACK/dlahqr.f
+    D TOOLS/LAPACK/dlamch.f
+    D TOOLS/LAPACK/dlamrg.f
+    D TOOLS/LAPACK/dlange.f
+    D TOOLS/LAPACK/dlanhs.f
+    D TOOLS/LAPACK/dlanst.f
+    D TOOLS/LAPACK/dlanv2.f
+    D TOOLS/LAPACK/dlapy2.f
+    D TOOLS/LAPACK/dlapy3.f
+    M TOOLS/LAPACK/dlaran.f
+    D TOOLS/LAPACK/dlarf.f
+    D TOOLS/LAPACK/dlarfb.f
+    D TOOLS/LAPACK/dlarfg.f
+    D TOOLS/LAPACK/dlarft.f
+    M TOOLS/LAPACK/dlarnd.f
+    D TOOLS/LAPACK/dlarnv.f
+    M TOOLS/LAPACK/dlarot.f
+    D TOOLS/LAPACK/dlartg.f
+    D TOOLS/LAPACK/dlaruv.f
+    D TOOLS/LAPACK/dlas2.f
+    D TOOLS/LAPACK/dlascl.f
+    D TOOLS/LAPACK/dlaset.f
+    D TOOLS/LAPACK/dlasq1.f
+    D TOOLS/LAPACK/dlasq2.f
+    D TOOLS/LAPACK/dlasq3.f
+    D TOOLS/LAPACK/dlasq4.f
+    D TOOLS/LAPACK/dlasq5.f
+    D TOOLS/LAPACK/dlasq6.f
+    D TOOLS/LAPACK/dlasr.f
+    D TOOLS/LAPACK/dlasrt.f
+    D TOOLS/LAPACK/dlassq.f
+    D TOOLS/LAPACK/dlasv2.f
+    D TOOLS/LAPACK/dlaswp.f
+    M TOOLS/LAPACK/dlatm1.f
+    M TOOLS/LAPACK/dlatms.f
+    D TOOLS/LAPACK/dlatrd.f
+    D TOOLS/LAPACK/dorm2l.f
+    D TOOLS/LAPACK/dorm2r.f
+    D TOOLS/LAPACK/dormql.f
+    D TOOLS/LAPACK/dormqr.f
+    D TOOLS/LAPACK/dormtr.f
+    D TOOLS/LAPACK/dpbtf2.f
+    D TOOLS/LAPACK/dpbtrf.f
+    D TOOLS/LAPACK/dpotf2.f
+    D TOOLS/LAPACK/dpotrf.f
+    D TOOLS/LAPACK/dpttrf.f
+    D TOOLS/LAPACK/dstedc.f
+    D TOOLS/LAPACK/dstein.f
+    D TOOLS/LAPACK/dsteqr.f
+    D TOOLS/LAPACK/dsterf.f
+    D TOOLS/LAPACK/dsytd2.f
+    D TOOLS/LAPACK/dsytrd.f
+    D TOOLS/LAPACK/dtbtrs.f
+    D TOOLS/LAPACK/dtrtrs.f
+    D TOOLS/LAPACK/dzsum1.f
+    D TOOLS/LAPACK/ilaenv.f
+    D TOOLS/LAPACK/lsame.f
+    D TOOLS/LAPACK/lsamen.f
+    D TOOLS/LAPACK/sbdsqr.f
+    D TOOLS/LAPACK/scsum1.f
+    D TOOLS/LAPACK/sgbtf2.f
+    D TOOLS/LAPACK/sgbtrf.f
+    D TOOLS/LAPACK/sgetf2.f
+    D TOOLS/LAPACK/sgetrf.f
+    D TOOLS/LAPACK/sgetrs.f
+    D TOOLS/LAPACK/slabad.f
+    D TOOLS/LAPACK/slacpy.f
+    D TOOLS/LAPACK/sladiv.f
+    D TOOLS/LAPACK/slae2.f
+    D TOOLS/LAPACK/slaed0.f
+    D TOOLS/LAPACK/slaed1.f
+    D TOOLS/LAPACK/slaed2.f
+    D TOOLS/LAPACK/slaed3.f
+    D TOOLS/LAPACK/slaed4.f
+    D TOOLS/LAPACK/slaed5.f
+    D TOOLS/LAPACK/slaed6.f
+    D TOOLS/LAPACK/slaed7.f
+    D TOOLS/LAPACK/slaed8.f
+    D TOOLS/LAPACK/slaed9.f
+    D TOOLS/LAPACK/slaeda.f
+    D TOOLS/LAPACK/slaev2.f
+    M TOOLS/LAPACK/slagge.f
+    M TOOLS/LAPACK/slagsy.f
+    D TOOLS/LAPACK/slagtf.f
+    D TOOLS/LAPACK/slagts.f
+    D TOOLS/LAPACK/slahqr.f
+    D TOOLS/LAPACK/slamch.f
+    D TOOLS/LAPACK/slamrg.f
+    D TOOLS/LAPACK/slange.f
+    D TOOLS/LAPACK/slanhs.f
+    D TOOLS/LAPACK/slanst.f
+    D TOOLS/LAPACK/slanv2.f
+    D TOOLS/LAPACK/slapy2.f
+    D TOOLS/LAPACK/slapy3.f
+    M TOOLS/LAPACK/slaran.f
+    D TOOLS/LAPACK/slarf.f
+    D TOOLS/LAPACK/slarfb.f
+    D TOOLS/LAPACK/slarfg.f
+    D TOOLS/LAPACK/slarft.f
+    M TOOLS/LAPACK/slarnd.f
+    D TOOLS/LAPACK/slarnv.f
+    M TOOLS/LAPACK/slarot.f
+    D TOOLS/LAPACK/slartg.f
+    D TOOLS/LAPACK/slaruv.f
+    D TOOLS/LAPACK/slas2.f
+    D TOOLS/LAPACK/slascl.f
+    D TOOLS/LAPACK/slaset.f
+    D TOOLS/LAPACK/slasq1.f
+    D TOOLS/LAPACK/slasq2.f
+    D TOOLS/LAPACK/slasq3.f
+    D TOOLS/LAPACK/slasq4.f
+    D TOOLS/LAPACK/slasq5.f
+    D TOOLS/LAPACK/slasq6.f
+    D TOOLS/LAPACK/slasr.f
+    D TOOLS/LAPACK/slasrt.f
+    D TOOLS/LAPACK/slassq.f
+    D TOOLS/LAPACK/slasv2.f
+    D TOOLS/LAPACK/slaswp.f
+    M TOOLS/LAPACK/slatm1.f
+    M TOOLS/LAPACK/slatms.f
+    D TOOLS/LAPACK/slatrd.f
+    D TOOLS/LAPACK/sorm2l.f
+    D TOOLS/LAPACK/sorm2r.f
+    D TOOLS/LAPACK/sormql.f
+    D TOOLS/LAPACK/sormqr.f
+    D TOOLS/LAPACK/sormtr.f
+    D TOOLS/LAPACK/spbtf2.f
+    D TOOLS/LAPACK/spbtrf.f
+    D TOOLS/LAPACK/spotf2.f
+    D TOOLS/LAPACK/spotrf.f
+    D TOOLS/LAPACK/spttrf.f
+    D TOOLS/LAPACK/sstedc.f
+    D TOOLS/LAPACK/sstein.f
+    D TOOLS/LAPACK/ssteqr.f
+    D TOOLS/LAPACK/ssterf.f
+    D TOOLS/LAPACK/ssytd2.f
+    D TOOLS/LAPACK/ssytrd.f
+    D TOOLS/LAPACK/stbtrs.f
+    D TOOLS/LAPACK/strtrs.f
+    D TOOLS/LAPACK/xerbla.f
+    D TOOLS/LAPACK/zbdsqr.f
+    D TOOLS/LAPACK/zgbtf2.f
+    D TOOLS/LAPACK/zgbtrf.f
+    D TOOLS/LAPACK/zgetf2.f
+    D TOOLS/LAPACK/zgetrf.f
+    D TOOLS/LAPACK/zgetrs.f
+    D TOOLS/LAPACK/zhetd2.f
+    D TOOLS/LAPACK/zhetrd.f
+    D TOOLS/LAPACK/zlacgv.f
+    D TOOLS/LAPACK/zlacpy.f
+    D TOOLS/LAPACK/zladiv.f
+    D TOOLS/LAPACK/zlaev2.f
+    M TOOLS/LAPACK/zlagge.f
+    M TOOLS/LAPACK/zlaghe.f
+    M TOOLS/LAPACK/zlagsy.f
+    D TOOLS/LAPACK/zlanhs.f
+    D TOOLS/LAPACK/zlarf.f
+    D TOOLS/LAPACK/zlarfb.f
+    D TOOLS/LAPACK/zlarfg.f
+    D TOOLS/LAPACK/zlarft.f
+    M TOOLS/LAPACK/zlarnd.f
+    M TOOLS/LAPACK/zlarot.f
+    D TOOLS/LAPACK/zlartg.f
+    D TOOLS/LAPACK/zlascl.f
+    D TOOLS/LAPACK/zlaset.f
+    D TOOLS/LAPACK/zlasr.f
+    D TOOLS/LAPACK/zlassq.f
+    D TOOLS/LAPACK/zlaswp.f
+    M TOOLS/LAPACK/zlatm1.f
+    M TOOLS/LAPACK/zlatms.f
+    D TOOLS/LAPACK/zlatrd.f
+    D TOOLS/LAPACK/zpbtf2.f
+    D TOOLS/LAPACK/zpbtrf.f
+    D TOOLS/LAPACK/zpotf2.f
+    D TOOLS/LAPACK/zpotrf.f
+    D TOOLS/LAPACK/zpttrf.f
+    D TOOLS/LAPACK/zrot.f
+    D TOOLS/LAPACK/zstedc.f
+    D TOOLS/LAPACK/zstein.f
+    D TOOLS/LAPACK/zsymv.f
+    D TOOLS/LAPACK/ztbtrs.f
+    D TOOLS/LAPACK/ztrtrs.f
+    D TOOLS/LAPACK/zunm2l.f
+    D TOOLS/LAPACK/zunm2r.f
+    D TOOLS/LAPACK/zunmql.f
+    D TOOLS/LAPACK/zunmqr.f
+    D TOOLS/LAPACK/zunmtr.f
+    M TOOLS/Makefile
+    A TOOLS/pclaread.f
+    A TOOLS/pclawrite.f
+    A TOOLS/pdlaread.f
+    A TOOLS/pdlawrite.f
+    A TOOLS/pslaread.f
+    A TOOLS/pslawrite.f
+    A TOOLS/pzlaread.f
+    A TOOLS/pzlawrite.f
+ 
+********************************************************************************
+
+********************************************************************************
+r17
+- Add p[sdcz]read and p[sdcz]write routines in TOOLS.
+The pdlaread and pdlawrite routine were contained in the scalapack example. I generates the 3 other precisions.
+
+- Add the example in the four precisions in the EXAMPLE directory.
+
+- Modify the Makefile to add a "make example" and a "make cleanexample"
+
+- Change the SLmake.inc to SLmake.inc.example
+
+- Update the README file
+
+********************************************************************************
+r16
+Remove LAPACK from ScaLAPACK.
+=============================
+Some LAPACK routines from TESTING/MATGEN still remains inside.
+I updated them to the latest LAPACK release.(ie 3.1.1)
+Add the LAPACKLIB variable in the SLmake.inc
+Modify the Makefile in TOOLS/LAPACK.
+
+********************************************************************************
+r15
+ Add crot and zrot in SRC/pblas.h
+ 
+********************************************************************************
+r14
+Patches provided by Ake Sandgren and Robert Granat
+---------------------------------------------------
+The set of patches for scalapack 1.7.4 does two things.
+1 - reduce the usage of uninitialized variables
+2 - fix a couple of incorrect calls to blacs (bad LDA)
+
+The gehdrv patch is just the complete patch related to
+https://icl.cs.utk.edu/lapack-forum/viewtopic.php?p=1153#1153
+
+pxsepinfo doesnt initialize THRESH when INFO != 0.
+
+I'm not sure if the pxlahrd patch is the best. Maybe something should be
+done in pxlarfg instead since alpha isn't set in all cases there, like
+myrow != ixrow for row distribution and likewise for column
+distribution.
+
+pxlasmsub destroys irow1/icol1 in the "find some norm of the local H"
+part.
+
+pxrot used incorrect LDA values for buff in several places, not sure if
+the intention was to have buff Mx1 or 1xM but it shouldn't really matter
+should it?
+
+PBLAS/pxscal must not test ALPHA unless it is really going to be used
+since scalapack routines sometimes call pxscal with ALPHA uninitialized
+when myrow != Xrow/mycol != Xcol.
+
+pxstein must initialize ONENRM since it isn't always initialized in the
+"IF( NBLK.EQ.IBLOCK( NEXT-1 ) .AND. NBLK.NE.OLNBLK ) THEN" case before
+being used in the "IF( TMPFAC.GT.ODM18 ) THEN" case. Maybe setting to
+ZERO is wrong but its not worse then the original code.
+
+pxtrevc and pxevcdriver are just incorrect LDA param to blacs routines.
+
+All these was found with pathscale compiler with -trapuv -O0 -g which
+initialized everything to NaN and turns FPE traps on.
+
+--------------------------------------------------------------------------
+
+The lahqr patch and a fix to lasorte needed by lahqr which
+used to get IERR != 0 back from lasorte.
+
+The T2 = T1*V2 and T3 = T1*V3 moves are needed due to uninitialized
+data.
+The 2 changed IF-statements where brought about to make getting and
+sending SMALLA consistent.
+The ISTOP change at the bottom is a copy of the corresponding statement
+at the top of the loop.
+
+The init of VCOPY and SMALLA are neccesary.
+
+lasorte couldn't handle a situation where the top S(1,1) eigenvalue was
+real.
+
+This set of patches have been tested as can be seen on
+https://icl.cs.utk.edu/lapack-forum/viewtopic.php?p=1196#1196
+so i'm fairly certain that they work correctly.
+
+********************************************************************************
+r13
+Last Modification: julie - Tue, 16 Jan 2007
+
+Add 2 missing routines in TOOLS/LAPACK : cbdsqr.f and zbdsqr.f needed by the complex version of the SVD driver
+
+********************************************************************************
+
+r12 
+Last Modification: langou - Wed, 10 May 2006
+
+
+Following up on r11. In r11, we have increased the size of the integer
+workspace in the rectangular case.  We now report the new integer block size
+calculation in the tester. So that the LIWORK given by the tester to the
+PxGETRI is big enough ...
+
+********************************************************************************
+
+r11
+Last Modification: langou - Wed, 10 May 2006
+
+-------------------------------------------------------------
+Correct the integer workspace (IWORK) calculation in PxGETRI.
+-------------------------------------------------------------
+
+Bug report send by Desheng Wang from Caltech on scalapack@cs.utk.edu, Mon, 1
+May 2006.
+
+Fix:
+Replace the line 221-222:
+
+               LIWMIN = NQ + MAX( ICEIL( ICEIL( MP, DESCA( MB_ ) ),
+     $                            LCM / NPROW ), DESCA( NB_ ) ) 
+
+By:
+               LIWMIN = NUMROC( DESCA( M_ ) + DESCA( MB_ ) * NPROW
+     $                  + MOD ( IA - 1, DESCA( MB_ ) ), DESCA ( NB_ ),
+     $                  MYCOL, DESCA( CSRC_ ), NPCOL ) +
+     $                  MAX ( DESCA( MB_ ) * ICEIL ( ICEIL(
+     $                  NUMROC( DESCA( M_ ) + DESCA( MB_ ) * NPROW,
+     $                  DESCA( MB_ ), MYROW, DESCA( RSRC_ ), NPROW ),
+     $                  DESCA( MB_ ) ), LCM / NPROW ), DESCA( NB_ ) )
+
+Yep, slightly more complex...
+
+The error in the first computation is that it misinterpret the statement in
+PxLAPIV: The formula for the integer worskpace calculation in PxLAPIV is
+
+   LDW = LOCc( M_P + MOD(IP-1, MB_P) ) +
+         MB_P * CEIL( CEIL(LOCr(M_P)/MB_P) / (LCM/NPROW) )
+
+where M_P is the local size of the IPIV. But the IPIV is slighlty bigger than A, 
+the global size of IPIV is:
+           MP = DESCA( M_ ) + DESCA( MB_ ) * NPROW
+(and not DESCA(M_)).
+
+The other quantities are given by
+
+   M_P     is the global length of the pivot vector
+           MP = DESCA( M_ ) + DESCA( MB_ ) * NPROW
+   I_P     is IA
+           I_P = IA
+   MB_P    is the block size use for the block cyclic distribution of the 
+           pivot vector
+           MB_P = DESCA (MB_ )
+   LOCc ( . ) 
+           NUMROC ( . , DESCA ( NB_ ), MYCOL, DESCA ( CSRC_ ), NPCOL )
+   LOCr ( . )
+           NUMROC ( . , DESCA ( MB_ ), MYROW, DESCA ( RSRC_ ), NPROW )
+   CEIL ( X / Y )
+           ICEIL( X, Y )
+   LCM 
+           LCM = ILCM( NPROW, NPCOL )
+
+and this gives the new formula to compute the integer workspace.
+
+********************************************************************************
+
+Rev: 10
+Last modification: langou - Wed, 22 Mar 2006
+
+Bug report from Yasuhiro Nakahara (Canon inc.) on 03/13/2006:
+
+  Description: pzlahqr routine was aborted due to a segmentation fault.
+  I found an invalid memory access at the line 525 in pzlahqr.f.
+  In the DO-loop, with II=1, S1(1, 0) was accessed.
+
+Patch from Greg Henry (Intel) and Mark Fahey (ORNL)
+
+Greg said:
+> There is an easy fix for this- the idea of exceptional shifts is
+> to just try something outside the norm based on the size of the diagonal
+> elements.  The offending part can be removed from the code without a
+> loss of generality.  I think I may be able to come with an alternate
+> solution.
+
+
+move from
+---------------------------------------------------------------
+*
+*           Exceptional shift.
+*
+            DO 20 II = 2*JBLK, 1, -1
+               S1( II, II ) = CONST*( CABS1( S1( II, II ) )+
+     $                        CABS1( S1( II, II-1 ) ) )
+               S1( II, II-1 ) = ZERO
+               S1( II-1, II ) = ZERO
+   20       CONTINUE
+---------------------------------------------------------------
+   (with problem when II=1 ...)
+to
+---------------------------------------------------------------
+*
+*           Exceptional shift.
+*
+            DO 20 II = 2*JBLK, 2, -1
+               S1( II, II ) = CONST*( CABS1( S1( II, II ) )+
+     $                        CABS1( S1( II, II-1 ) ) )
+               S1( II, II-1 ) = ZERO
+               S1( II-1, II ) = ZERO
+   20       CONTINUE
+            S1( 1, 1 ) = CONST*CABS1( S1( 1, 1 ) )
+---------------------------------------------------------------
+
+Note that this part of the code is not exercized by the testing.
+(So the bug was hard to find.)
+
+
+
+********************************************************************************
+
+Rev: 9  
+Last modification: julie - Thu, 23 Feb 2006 
+
+Correct typo in the [S,D,C,Z]gesvd files for the delaclaration of WP[S,D,C,Z]ORMBRQLN 
+
+********************************************************************************
+
+Rev: 8 
+Last modification: julie - Wed, 22 Feb 2006
+
+Modify typo in comment + description of workspace.
+When RANGE='V', work need to be of dimension 3 
+
+
+********************************************************************************
+
+Rev: 7 
+Last modification: julie - Mon, 20 Feb 2006
+
+Correction of a Typo mistake in the work comment.
+
+********************************************************************************
+
+Rev: 6 
+Last modification: julie - Wed, 01 Feb 2006
+
+Modify the makefile to add the two new driver: pcgesvd.f and pzgesvd.f  
+
+********************************************************************************
+
+Rev: 5
+Last modification: Rev 5 - langou - 2006-01-31 05:13:22
+Log message:
+M SRC/psgesvd.f
+M SRC/pcgesvd.f
+M SRC/pzgesvd.f
+M SRC/pdgesvd.f
+
+modify the workspace size of xBDSQR to follow the revision 184 of LAPACK the
+workspace size of xBDSQR has moved from
+* WDBDSQR = MAX(1, 4*SIZE )
+to
+* WDBDSQR = MAX(1, 2*SIZE + (2*SIZE - 4)*MAX(WANTU, WANTVT))
+and is now back to
+* WDBDSQR = MAX(1, 4*SIZE )
+so SVD of ScaLAPACK is following (at least let us take the max of both until
+LAPACK is fixed on its workspace size)
+
+********************************************************************************
+
+Rev: 4
+Last modification: Rev 4 - langou - 2006-01-31 04:52:48
+Log message:
+M SRC/pslahrd.f
+M SRC/pdlahqr.f
+(forgot to change the date in the header in the last revision, corrected)
+
+M SRC/psgesvd.f
+M SRC/pdgesvd.f
+[Julien/Osni]
+correct a bug in the workspace utilisation of p_gesvd. In the case jobU='V' and
+jobVT='V', the routine has good pointers, otherwise the pointers in the
+workspace where shifted as if matrices U and VT existed which implied out of
+bound reference for the value stored at the end of the workspace.  There was
+also a few problems at the end of the code with some sizes in the case of
+rectangular matrices.
+
+A SRC/pcgesvd.f
+A SRC/pzgesvd.f
+add the complex version of the SVD driver contributed code by Peng Du (Graduate
+Research Assistant at UTK, Fall 2005) supervised by Julien
+
+********************************************************************************
+
+Rev: 3 
+Last modification: Rev 3 - langou - 2006-01-30 17:35:23
+Log message:
+SRC/p[s,d,c,z]gesv.f
+
+[Documentation correction]
+correction in the description of the parameter NRHS (it's the number of columns
+of B not A)
+
+SRC/p[s,d]lared1d.f
+SRC/p[s,d]lared2d.f
+
+[Documentation correction]
+[Julien]
+
+The comments in the routines p[s,d]lared2d (where the initial vectors are
+stored by row) were wrong (basically replace BYCOL by BYROW)
+
+Some homogeneization among the 4 routines as well
+
+SRC/p[s/d]lahrd.f
+
+Although the Schur form returned by p[s/d]lahqr was correct (as tested by the
+testing routine), the returned eigenvalues were not computed correctely. This
+bug was reported by Interactive Supercompting (Thanks!). The bug was already
+found by Greg Henry in March 2002 but the patch has never been released. Here
+we go.
+
+********************************************************************************
+
+Rev: 2
+
+********************************************************************************
+
+Rev: 1
+
+SCALAPACK/PBLAS/SRC/PBtools.h 		3/12/2002
+ 	Comment out CSYMM reference (line 57)
+
+SCALAPACK/PBLAS/SRC/pblas.h 		3/15/2002
+ 	Added missing crot define
+
+SCALAPACK/SRC/psdbtrf.f 		3/12/2002
+ 	Typo (DLACPY->SLACPY) in EXTERNAL declaration (line 374)
+
+SCALAPACK/SRC/pcheevd.f 		3/25/2002
+SCALAPACK/SRC/pzheevd.f 		
+ 	Correction to LRWORK (lines 117, 248) and INFO=0 return
+
+SCALAPACK/TESTING/EIG/pcseptst.f 	3/15/2002
+SCALAPACK/TESTING/EIG/pzseptst.f 
+ 	Correction to LHEEVDSIZE calculation (line 1064)
+
+
+for more information, please visit: http://www.netlib.org/scalapack/errata.html#sourcecode
+
+
+********************************************************************************

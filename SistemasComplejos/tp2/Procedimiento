@@ -1,0 +1,13 @@
+Bajar ScaLAPACK installer de http://www.netlib.org/scalapack/
+
+Instalar paquetes:
+	libblas3gf
+	libblas-dev
+	liblapack3gf
+	liblapack-dev
+	openmpi-bin
+	libopenmpi1.3
+	libopenmpi-dev
+
+En la carpeta de ScaLAPACK installer:
+	./setup.py --mpiincdir=/usr/lib/openmpi/include/ --downblas --lapacklib=/usr/lib/liblapack.so.3gf --blaslib=/usr/lib/libblas.so.3gf

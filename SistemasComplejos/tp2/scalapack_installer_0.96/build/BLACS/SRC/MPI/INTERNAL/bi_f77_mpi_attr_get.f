@@ -1,0 +1,14 @@
+      SUBROUTINE BI_F77_MPI_ATTR_GET(COMM, KEYVAL, ATTR, FLAG, IERR)
+      INCLUDE 'mpif.h'
+      INTEGER COMM, KEYVAL, ATTR, IERR, FLAG
+      LOGICAL FLAG2
+*
+      CALL MPI_ATTR_GET(COMM, KEYVAL, ATTR, FLAG2, IERR)
+      IF (FLAG2) THEN
+         FLAG = 1
+      ELSE
+         FLAG = 0
+      END IF
+*
+      RETURN
+      END

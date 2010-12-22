@@ -1,0 +1,30 @@
+All users of the BLACS should read "A User's Guide to the BLACS v1.1".
+Users may also be interested in the quick reference guides for the C and
+Fortran77 interfaces to the BLACS.
+
+Before you can compile anything, you must first edit and correct the file
+BLACS/Bmake.inc.  Sample Bmake.inc's can be found in the BLACS/BMAKES
+directories.  See the paper "Installing and Testing the BLACS" for details.
+
+Users of the MPIBLACS should also read the two small notes on the BLACS
+and their interaction with MPI:  "Outstanding Issues in the MPIBLACS",
+and "Some Plebian Extensions to MPI".
+
+All of these papers are available in the blacs/ directory on netlib.
+If you possess mosaic, these papers may be downloaded by accessing
+URL = http://www.netlib.org/blacs/Blacs.html.  This is the BLACS
+homepage, and provides documentation and troubleshooting.
+
+Downloading by anonymous ftp can be accomplished by
+"ftp ftp.netlib.org" directory "blacs/".
+
+To download the files via netlib's e-mail option, type 
+"mail netlib@www.netlib.org", and in the body of the message type
+"send FILE from blacs".
+
+More details on downloading are available in the paper
+"Installing and Testing the BLACS", whose filename on netlib is
+"blacs_install.ps".
+
+If you have questions or comments that are not addressed by these papers
+or the BLACS homepage, send e-mail to blacs@cs.utk.edu.

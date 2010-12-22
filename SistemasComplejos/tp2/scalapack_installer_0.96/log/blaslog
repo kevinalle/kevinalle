@@ -1,0 +1,50 @@
+drotmg.f:138.15:
+
+      GO TO IGO(120,150,180,210)                                        
+               1
+Warning: Deleted feature: Assigned GOTO statement at (1)
+drotmg.f:144.72:
+
+      ASSIGN 120 TO IGO                                                 
+                                                                        1
+Warning: Deleted feature: ASSIGN statement at (1)
+drotmg.f:156.72:
+
+      ASSIGN 150 TO IGO                                                 
+                                                                        1
+Warning: Deleted feature: ASSIGN statement at (1)
+drotmg.f:169.72:
+
+      ASSIGN 180 TO IGO                                                 
+                                                                        1
+Warning: Deleted feature: ASSIGN statement at (1)
+drotmg.f:180.72:
+
+      ASSIGN 210 TO IGO                                                 
+                                                                        1
+Warning: Deleted feature: ASSIGN statement at (1)
+srotmg.f:140.15:
+
+      GO TO IGO(120,150,180,210)                                        
+               1
+Warning: Deleted feature: Assigned GOTO statement at (1)
+srotmg.f:146.72:
+
+      ASSIGN 120 TO IGO                                                 
+                                                                        1
+Warning: Deleted feature: ASSIGN statement at (1)
+srotmg.f:158.72:
+
+      ASSIGN 150 TO IGO                                                 
+                                                                        1
+Warning: Deleted feature: ASSIGN statement at (1)
+srotmg.f:171.72:
+
+      ASSIGN 180 TO IGO                                                 
+                                                                        1
+Warning: Deleted feature: ASSIGN statement at (1)
+srotmg.f:182.72:
+
+      ASSIGN 210 TO IGO                                                 
+                                                                        1
+Warning: Deleted feature: ASSIGN statement at (1)
