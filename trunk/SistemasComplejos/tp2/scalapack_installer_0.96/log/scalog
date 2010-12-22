@@ -1,0 +1,1056 @@
+( cd /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/TOOLS; make single double complex complex16 )
+make[1]: Entering directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/TOOLS'
+( cd LAPACK; make single FRC= )
+make[2]: Entering directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/TOOLS/LAPACK'
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a  icopy.o   \
+	slatms.o slagge.o slagsy.o slarot.o slatm1.o slaran.o slarnd.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+make[2]: Leaving directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/TOOLS/LAPACK'
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a iceil.o      ilacpy.o     ilcm.o       indxg2p.o    indxg2l.o indxl2g.o    infog1l.o    infog2l.o    npreroc.o    numroc.o chk1mat.o    pchkxmat.o   sltimer.o    desc_convert.o descinit.o   descset.o    reshape.o    SL_gridreshape.o SL_init.o picol2row.o  pirow2col.o  pilaprnt.o   pitreecomb.o  pifillpad.o pichekpad.o  pielset.o    pielset2.o   pielget.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a dsnrm2.o     dsasum.o     slatcpy.o    ssdot.o       smatadd.o psmatadd.o   pscol2row.o  psrow2col.o  pslaprnt.o    pstreecomb.o psfillpad.o  pschekpad.o  pselset.o    pselset2.o    pselget.o pslaread.o   pslawrite.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+( cd LAPACK; make double FRC= )
+make[2]: Entering directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/TOOLS/LAPACK'
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a  icopy.o   \
+	dlatms.o dlagge.o dlagsy.o dlarot.o dlatm1.o dlaran.o dlarnd.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+make[2]: Leaving directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/TOOLS/LAPACK'
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a dddot.o      dlatcpy.o    dmatadd.o    pdmatadd.o    pdcol2row.o pdrow2col.o  pdlaprnt.o   pdtreecomb.o pdfillpad.o   pdchekpad.o pdelset.o    pdelset2.o   pdelget.o pdlaread.o   pdlawrite.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+( cd LAPACK; make complex FRC= )
+make[2]: Entering directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/TOOLS/LAPACK'
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a  icopy.o   \
+	clarnv.o clatm1.o clatms.o clagge.o claghe.o clagsy.o clarot.o clarnd.o slatm1.o slaran.o slarnd.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+make[2]: Leaving directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/TOOLS/LAPACK'
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a dscnrm2.o    dscasum.o    ccdotu.o     ccdotc.o      clatcpy.o cmatadd.o    pcmatadd.o   pccol2row.o  pcrow2col.o   pclaprnt.o pctreecomb.o pcfillpad.o  pcchekpad.o  pcelset.o     pcelset2.o pcelget.o pclaread.o   pclawrite.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+( cd LAPACK; make complex16 FRC= )
+make[2]: Entering directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/TOOLS/LAPACK'
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a  icopy.o   \
+	zlarnv.o zlatm1.o zlatms.o zlagge.o zlaghe.o zlagsy.o zlarot.o zlarnd.o dlatm1.o dlaran.o dlarnd.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+make[2]: Leaving directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/TOOLS/LAPACK'
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a zzdotu.o     zzdotc.o     zlatcpy.o    zmatadd.o     pzmatadd.o pzcol2row.o  pzrow2col.o  pzlaprnt.o   pztreecomb.o  pzfillpad.o pzchekpad.o  pzelset.o    pzelset2.o   pzelget.o pzlaread.o   pzlawrite.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+make[1]: Leaving directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/TOOLS'
+( cd /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC; make single double complex complex16 )
+make[1]: Entering directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC'
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a picopy_.o pilaenv.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+( cd PBBLAS;  make single )
+make[2]: Entering directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC/PBBLAS'
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a pbstran.o pbsmatadd.o pbstrsrt.o pbstrget.o pbstrnv.o pbsvecadd.o pbstrst1.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+make[2]: Leaving directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC/PBBLAS'
+( cd PTZBLAS; make single )
+make[2]: Entering directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC/PTZBLAS'
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a pxerbla.o immadd.o       immdda.o       immtadd.o      immddat.o svasum.o       sset.o         scshft.o       srshft.o svvdot.o       smmadd.o       smmcadd.o      smmtadd.o smmtcadd.o     smmdda.o       smmddac.o      smmddat.o smmddact.o     stzpad.o       stzpadcpy.o    stzscal.o sagemv.o       sasymv.o       satrmv.o \
+	sasqrtb.o      sascal.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+make[2]: Leaving directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC/PTZBLAS'
+( cd PTOOLS;  make single )
+make[2]: Entering directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC/PTOOLS'
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_CVMcontig.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cabort.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cainfog2l.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cbinfo.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cchkmat.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cchkvec.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cconjg.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cgetbuf.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cinfog2l.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Citypeset.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cgcd.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Clcm.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cmalloc.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cnumroc.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cg2lrem.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cindxg2p.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cnnxtroc.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cnpreroc.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_CpswapNN.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_CpswapND.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cpdot11.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_CpdotNN.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_CpdotND.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_CpaxpbyNN.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_CpaxpbyND.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_CpaxpbyDN.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cpaxpby.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_CpgemmBC.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_CpgemmAC.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_CpgemmAB.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cplaprnt.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cplapad.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cplapd2.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cplascal.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cplasca2.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cplacnjg.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cpsym.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_CpsymmAB.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_CpsymmBC.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cpsyr.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_CpsyrkA.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_CpsyrkAC.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cpsyr2.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cpsyr2kA.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cpsyr2kAC.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cptrm.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cpgeadd.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cptradd.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cptran.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_CptrmmAB.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_CptrmmB.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cptrsm.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_CptrsmAB.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_CptrsmAB0.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_CptrsmAB1.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_CptrsmB.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cptrsv.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Ctop.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Ctzahemv.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Ctzasymv.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Ctzatrmv.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Ctzhemm.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Ctzhemv.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Ctzher.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Ctzherk.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Ctzher2.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Ctzher2k.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Ctzsymm.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Ctzsymv.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Ctzsyr.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Ctzsyrk.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Ctzsyr2.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Ctzsyr2k.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Ctztrmm.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Ctztrmv.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cwarn.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_freebuf_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_topget_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_topset_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cdescset.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cdescribe.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_CargFtoC.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cfirstnb.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Clastnb.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cspan.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cstypeset.c
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a PB_CGatherV.o    PB_CInV.o        PB_CInV2.o       PB_CInOutV.o PB_CInOutV2.o    PB_COutV.o       PB_CScatterV.o   PB_CVMinit.o PB_CVMloc.o      PB_CVMnpq.o      PB_CVMpack.o     PB_CVMswp.o PB_CVMupdate.o   PB_CVMcontig.o   PB_Cabort.o      PB_Cainfog2l.o PB_Cbinfo.o      PB_Cchkmat.o     PB_Cchkvec.o     PB_Cconjg.o PB_Cgetbuf.o     PB_Cinfog2l.o    PB_Citypeset.o   PB_Cgcd.o PB_Clcm.o        PB_Cmalloc.o     PB_Cnumroc.o     PB_Cg2lrem.o PB_Cindxg2p.o    PB_Cnnxtroc.o    PB_Cnpreroc.o    PB_CpswapNN.o PB_CpswapND.o    PB_Cpdot11.o     PB_CpdotNN.o     PB_CpdotND.o PB_CpaxpbyNN.o   PB_CpaxpbyND.o   PB_CpaxpbyDN.o   PB_Cpaxpby.o PB_CpgemmBC.o    PB_CpgemmAC.o    PB_CpgemmAB.o    PB_Cplaprnt.o PB_Cplapad.o     PB_Cplapd2.o     PB_Cplascal.o    PB_Cplasca2.o PB_Cplacnjg.o    PB_Cpsym.o       PB_CpsymmAB.o    PB_CpsymmBC.o PB_Cpsyr.o       PB_CpsyrkA.o     PB_CpsyrkAC.o    PB_Cpsyr2.o PB_Cpsyr2kA.o    PB_Cpsyr2kAC.o   PB_Cptrm.o       PB_Cpgeadd.o PB_Cptradd.o     PB_Cptran.o      PB_CptrmmAB.o    PB_CptrmmB.o PB_Cptrsm.o      PB_CptrsmAB.o    PB_CptrsmAB0.o   PB_CptrsmAB1.o PB_CptrsmB.o     PB_Cptrsv.o      PB_Ctop.o        PB_Ctzahemv.o PB_Ctzasymv.o    PB_Ctzatrmv.o    PB_Ctzhemm.o     PB_Ctzhemv.o PB_Ctzher.o      PB_Ctzherk.o     PB_Ctzher2.o     PB_Ctzher2k.o PB_Ctzsymm.o     PB_Ctzsymv.o     PB_Ctzsyr.o      PB_Ctzsyrk.o PB_Ctzsyr2.o     PB_Ctzsyr2k.o    PB_Ctztrmm.o     PB_Ctztrmv.o PB_Cwarn.o       PB_freebuf_.o    PB_topget_.o     PB_topset_.o PB_Cdescset.o    PB_Cdescribe.o   PB_CargFtoC.o    PB_Cfirstnb.o PB_Clastnb.o     PB_Cspan.o PB_Cstypeset.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+make[2]: Leaving directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC/PTOOLS'
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a psswap_.o psscal_.o  pscopy_.o  psaxpy_.o psdot_.o  psnrm2_.o psasum_.o psamax_.o psgemv_.o  psger_.o   pssymv_.o  pssyr_.o   pssyr2_.o  pstrmv_.o pstrsv_.o  psagemv_.o psasymv_.o psatrmv_.o psgeadd_.o psgemm_.o pssymm_.o  pssyr2k_.o pssyrk_.o  pstradd_.o pstran_.o  pstrmm_.o pstrsm_.o pilaenv.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdswap_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdscal_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdcopy_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdaxpy_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pddot_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdnrm2_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdasum_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdamax_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdgemv_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdger_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdsymv_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdsyr_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdsyr2_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdtrmv_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdtrsv_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdagemv_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdasymv_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdatrmv_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdgeadd_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdgemm_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdsymm_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdsyr2k_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdsyrk_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdtradd_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdtran_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdtrmm_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdtrsm_.c
+( cd PBBLAS;  make double )
+make[2]: Entering directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC/PBBLAS'
+/usr/bin/mpif77 -c  -O3 pbdtran.f
+/usr/bin/mpif77 -c  -O3 pbdmatadd.f
+/usr/bin/mpif77 -c  -O3 pbdtrsrt.f
+/usr/bin/mpif77 -c  -O3 pbdtrget.f
+/usr/bin/mpif77 -c  -O3 pbdtrnv.f
+/usr/bin/mpif77 -c  -O3 pbdvecadd.f
+/usr/bin/mpif77 -c  -O3 pbdtrst1.f
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a pbdtran.o pbdmatadd.o pbdtrsrt.o pbdtrget.o pbdtrnv.o pbdvecadd.o pbdtrst1.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+make[2]: Leaving directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC/PBBLAS'
+( cd PTZBLAS; make double )
+make[2]: Entering directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC/PTZBLAS'
+/usr/bin/mpif77 -c  -O3 dvasum.f
+/usr/bin/mpif77 -c  -O3 dset.f
+/usr/bin/mpif77 -c  -O3 dcshft.f
+/usr/bin/mpif77 -c  -O3 drshft.f
+/usr/bin/mpif77 -c  -O3 dvvdot.f
+/usr/bin/mpif77 -c  -O3 dmmadd.f
+/usr/bin/mpif77 -c  -O3 dmmcadd.f
+/usr/bin/mpif77 -c  -O3 dmmtadd.f
+/usr/bin/mpif77 -c  -O3 dmmtcadd.f
+/usr/bin/mpif77 -c  -O3 dmmdda.f
+/usr/bin/mpif77 -c  -O3 dmmddac.f
+/usr/bin/mpif77 -c  -O3 dmmddat.f
+/usr/bin/mpif77 -c  -O3 dmmddact.f
+/usr/bin/mpif77 -c  -O3 dtzpad.f
+/usr/bin/mpif77 -c  -O3 dtzpadcpy.f
+/usr/bin/mpif77 -c  -O3 dtzscal.f
+/usr/bin/mpif77 -c  -O3 dagemv.f
+/usr/bin/mpif77 -c  -O3 dasymv.f
+/usr/bin/mpif77 -c  -O3 datrmv.f
+/usr/bin/mpif77 -c  -O3 dasqrtb.f
+/usr/bin/mpif77 -c  -O3 dascal.f
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a pxerbla.o immadd.o       immdda.o       immtadd.o      immddat.o dvasum.o       dset.o         dcshft.o       drshft.o dvvdot.o       dmmadd.o       dmmcadd.o      dmmtadd.o dmmtcadd.o     dmmdda.o       dmmddac.o      dmmddat.o dmmddact.o     dtzpad.o       dtzpadcpy.o    dtzscal.o dagemv.o       dasymv.o       datrmv.o \
+	dasqrtb.o      dascal.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+make[2]: Leaving directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC/PTZBLAS'
+( cd PTOOLS;  make double )
+make[2]: Entering directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC/PTOOLS'
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cdtypeset.c
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a PB_CGatherV.o    PB_CInV.o        PB_CInV2.o       PB_CInOutV.o PB_CInOutV2.o    PB_COutV.o       PB_CScatterV.o   PB_CVMinit.o PB_CVMloc.o      PB_CVMnpq.o      PB_CVMpack.o     PB_CVMswp.o PB_CVMupdate.o   PB_CVMcontig.o   PB_Cabort.o      PB_Cainfog2l.o PB_Cbinfo.o      PB_Cchkmat.o     PB_Cchkvec.o     PB_Cconjg.o PB_Cgetbuf.o     PB_Cinfog2l.o    PB_Citypeset.o   PB_Cgcd.o PB_Clcm.o        PB_Cmalloc.o     PB_Cnumroc.o     PB_Cg2lrem.o PB_Cindxg2p.o    PB_Cnnxtroc.o    PB_Cnpreroc.o    PB_CpswapNN.o PB_CpswapND.o    PB_Cpdot11.o     PB_CpdotNN.o     PB_CpdotND.o PB_CpaxpbyNN.o   PB_CpaxpbyND.o   PB_CpaxpbyDN.o   PB_Cpaxpby.o PB_CpgemmBC.o    PB_CpgemmAC.o    PB_CpgemmAB.o    PB_Cplaprnt.o PB_Cplapad.o     PB_Cplapd2.o     PB_Cplascal.o    PB_Cplasca2.o PB_Cplacnjg.o    PB_Cpsym.o       PB_CpsymmAB.o    PB_CpsymmBC.o PB_Cpsyr.o       PB_CpsyrkA.o     PB_CpsyrkAC.o    PB_Cpsyr2.o PB_Cpsyr2kA.o    PB_Cpsyr2kAC.o   PB_Cptrm.o       PB_Cpgeadd.o PB_Cptradd.o     PB_Cptran.o      PB_CptrmmAB.o    PB_CptrmmB.o PB_Cptrsm.o      PB_CptrsmAB.o    PB_CptrsmAB0.o   PB_CptrsmAB1.o PB_CptrsmB.o     PB_Cptrsv.o      PB_Ctop.o        PB_Ctzahemv.o PB_Ctzasymv.o    PB_Ctzatrmv.o    PB_Ctzhemm.o     PB_Ctzhemv.o PB_Ctzher.o      PB_Ctzherk.o     PB_Ctzher2.o     PB_Ctzher2k.o PB_Ctzsymm.o     PB_Ctzsymv.o     PB_Ctzsyr.o      PB_Ctzsyrk.o PB_Ctzsyr2.o     PB_Ctzsyr2k.o    PB_Ctztrmm.o     PB_Ctztrmv.o PB_Cwarn.o       PB_freebuf_.o    PB_topget_.o     PB_topset_.o PB_Cdescset.o    PB_Cdescribe.o   PB_CargFtoC.o    PB_Cfirstnb.o PB_Clastnb.o     PB_Cspan.o PB_Cdtypeset.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+make[2]: Leaving directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC/PTOOLS'
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a pdswap_.o pdscal_.o  pdcopy_.o  pdaxpy_.o pddot_.o  pdnrm2_.o pdasum_.o pdamax_.o pdgemv_.o  pdger_.o   pdsymv_.o  pdsyr_.o   pdsyr2_.o  pdtrmv_.o pdtrsv_.o  pdagemv_.o pdasymv_.o pdatrmv_.o pdgeadd_.o pdgemm_.o pdsymm_.o  pdsyr2k_.o pdsyrk_.o  pdtradd_.o pdtran_.o  pdtrmm_.o pdtrsm_.o pilaenv.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pcswap_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pcscal_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pcsscal_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pccopy_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pcaxpy_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pcdotu_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pcdotc_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pscnrm2_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pscasum_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pcamax_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pcgemv_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pcgerc_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pcgeru_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pchemv_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pcher_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pcher2_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pctrmv_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pctrsv_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pcagemv_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pcahemv_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pcatrmv_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pcgeadd_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pcgemm_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pchemm_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pcher2k_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pcherk_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pcsymm_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pcsyr2k_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pcsyrk_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pctradd_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pctranc_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pctranu_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pctrmm_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pctrsm_.c
+( cd PBBLAS;  make complex )
+make[2]: Entering directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC/PBBLAS'
+/usr/bin/mpif77 -c  -O3 pbctran.f
+/usr/bin/mpif77 -c  -O3 pbcmatadd.f
+/usr/bin/mpif77 -c  -O3 pbctrsrt.f
+/usr/bin/mpif77 -c  -O3 pbctrget.f
+/usr/bin/mpif77 -c  -O3 pbctrnv.f
+/usr/bin/mpif77 -c  -O3 pbcvecadd.f
+/usr/bin/mpif77 -c  -O3 pbctrst1.f
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a pbctran.o pbcmatadd.o pbctrsrt.o pbctrget.o pbctrnv.o pbcvecadd.o pbctrst1.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+make[2]: Leaving directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC/PBBLAS'
+( cd PTZBLAS; make complex )
+make[2]: Entering directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC/PTZBLAS'
+/usr/bin/mpif77 -c  -O3 scvasum.f
+/usr/bin/mpif77 -c  -O3 cset.f
+/usr/bin/mpif77 -c  -O3 ccshft.f
+/usr/bin/mpif77 -c  -O3 crshft.f
+/usr/bin/mpif77 -c  -O3 cvvdotu.f
+/usr/bin/mpif77 -c  -O3 cvvdotc.f
+/usr/bin/mpif77 -c  -O3 cmmadd.f
+/usr/bin/mpif77 -c  -O3 cmmcadd.f
+/usr/bin/mpif77 -c  -O3 cmmtadd.f
+/usr/bin/mpif77 -c  -O3 cmmtcadd.f
+/usr/bin/mpif77 -c  -O3 cmmdda.f
+/usr/bin/mpif77 -c  -O3 cmmddac.f
+/usr/bin/mpif77 -c  -O3 cmmddat.f
+/usr/bin/mpif77 -c  -O3 cmmddact.f
+/usr/bin/mpif77 -c  -O3 ctzpad.f
+/usr/bin/mpif77 -c  -O3 ctzpadcpy.f
+/usr/bin/mpif77 -c  -O3 chescal.f
+/usr/bin/mpif77 -c  -O3 ctzscal.f
+/usr/bin/mpif77 -c  -O3 ctzcnjg.f
+/usr/bin/mpif77 -c  -O3 cagemv.f
+/usr/bin/mpif77 -c  -O3 cahemv.f
+/usr/bin/mpif77 -c  -O3 catrmv.f
+/usr/bin/mpif77 -c  -O3 casymv.f
+/usr/bin/mpif77 -c  -O3 csymv.f
+/usr/bin/mpif77 -c  -O3 csyr.f
+/usr/bin/mpif77 -c  -O3 csyr2.f
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a pxerbla.o immadd.o       immdda.o       immtadd.o      immddat.o scvasum.o      cset.o         ccshft.o       crshft.o cvvdotu.o      cvvdotc.o      cmmadd.o       cmmcadd.o cmmtadd.o      cmmtcadd.o     cmmdda.o       cmmddac.o cmmddat.o      cmmddact.o     ctzpad.o       ctzpadcpy.o chescal.o      ctzscal.o      ctzcnjg.o      cagemv.o cahemv.o       catrmv.o       casymv.o       csymv.o csyr.o         csyr2.o \
+	sasqrtb.o      sascal.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+make[2]: Leaving directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC/PTZBLAS'
+( cd PTOOLS;  make complex )
+make[2]: Entering directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC/PTOOLS'
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cctypeset.c
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a PB_CGatherV.o    PB_CInV.o        PB_CInV2.o       PB_CInOutV.o PB_CInOutV2.o    PB_COutV.o       PB_CScatterV.o   PB_CVMinit.o PB_CVMloc.o      PB_CVMnpq.o      PB_CVMpack.o     PB_CVMswp.o PB_CVMupdate.o   PB_CVMcontig.o   PB_Cabort.o      PB_Cainfog2l.o PB_Cbinfo.o      PB_Cchkmat.o     PB_Cchkvec.o     PB_Cconjg.o PB_Cgetbuf.o     PB_Cinfog2l.o    PB_Citypeset.o   PB_Cgcd.o PB_Clcm.o        PB_Cmalloc.o     PB_Cnumroc.o     PB_Cg2lrem.o PB_Cindxg2p.o    PB_Cnnxtroc.o    PB_Cnpreroc.o    PB_CpswapNN.o PB_CpswapND.o    PB_Cpdot11.o     PB_CpdotNN.o     PB_CpdotND.o PB_CpaxpbyNN.o   PB_CpaxpbyND.o   PB_CpaxpbyDN.o   PB_Cpaxpby.o PB_CpgemmBC.o    PB_CpgemmAC.o    PB_CpgemmAB.o    PB_Cplaprnt.o PB_Cplapad.o     PB_Cplapd2.o     PB_Cplascal.o    PB_Cplasca2.o PB_Cplacnjg.o    PB_Cpsym.o       PB_CpsymmAB.o    PB_CpsymmBC.o PB_Cpsyr.o       PB_CpsyrkA.o     PB_CpsyrkAC.o    PB_Cpsyr2.o PB_Cpsyr2kA.o    PB_Cpsyr2kAC.o   PB_Cptrm.o       PB_Cpgeadd.o PB_Cptradd.o     PB_Cptran.o      PB_CptrmmAB.o    PB_CptrmmB.o PB_Cptrsm.o      PB_CptrsmAB.o    PB_CptrsmAB0.o   PB_CptrsmAB1.o PB_CptrsmB.o     PB_Cptrsv.o      PB_Ctop.o        PB_Ctzahemv.o PB_Ctzasymv.o    PB_Ctzatrmv.o    PB_Ctzhemm.o     PB_Ctzhemv.o PB_Ctzher.o      PB_Ctzherk.o     PB_Ctzher2.o     PB_Ctzher2k.o PB_Ctzsymm.o     PB_Ctzsymv.o     PB_Ctzsyr.o      PB_Ctzsyrk.o PB_Ctzsyr2.o     PB_Ctzsyr2k.o    PB_Ctztrmm.o     PB_Ctztrmv.o PB_Cwarn.o       PB_freebuf_.o    PB_topget_.o     PB_topset_.o PB_Cdescset.o    PB_Cdescribe.o   PB_CargFtoC.o    PB_Cfirstnb.o PB_Clastnb.o     PB_Cspan.o PB_Cctypeset.o PB_Cstypeset.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+make[2]: Leaving directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC/PTOOLS'
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a pcswap_.o pcscal_.o  pcsscal_.o pccopy_.o pcaxpy_.o pcdotu_.o pcdotc_.o pscnrm2_.o pscasum_.o pcamax_.o pcgemv_.o  pcgerc_.o  pcgeru_.o  pchemv_.o  pcher_.o   pcher2_.o pctrmv_.o  pctrsv_.o  pcagemv_.o pcahemv_.o pcatrmv_.o pcgeadd_.o pcgemm_.o pchemm_.o  pcher2k_.o pcherk_.o  pcsymm_.o pcsyr2k_.o pcsyrk_.o pctradd_.o pctranc_.o pctranu_.o pctrmm_.o pctrsm_.o pilaenv.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzswap_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzscal_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzdscal_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzcopy_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzaxpy_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzdotu_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzdotc_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdznrm2_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdzasum_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzamax_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzgemv_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzgerc_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzgeru_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzhemv_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzher_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzher2_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pztrmv_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pztrsv_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzagemv_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzahemv_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzatrmv_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzgeadd_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzgemm_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzhemm_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzher2k_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzherk_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzsymm_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzsyr2k_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzsyrk_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pztradd_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pztranc_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pztranu_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pztrmm_.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pztrsm_.c
+( cd PBBLAS;  make complex16 )
+make[2]: Entering directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC/PBBLAS'
+/usr/bin/mpif77 -c  -O3 pbztran.f
+/usr/bin/mpif77 -c  -O3 pbzmatadd.f
+/usr/bin/mpif77 -c  -O3 pbztrsrt.f
+/usr/bin/mpif77 -c  -O3 pbztrget.f
+/usr/bin/mpif77 -c  -O3 pbztrnv.f
+/usr/bin/mpif77 -c  -O3 pbzvecadd.f
+/usr/bin/mpif77 -c  -O3 pbztrst1.f
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a pbztran.o pbzmatadd.o pbztrsrt.o pbztrget.o pbztrnv.o pbzvecadd.o pbztrst1.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+make[2]: Leaving directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC/PBBLAS'
+( cd PTZBLAS; make complex16 )
+make[2]: Entering directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC/PTZBLAS'
+/usr/bin/mpif77 -c  -O3 dzvasum.f
+/usr/bin/mpif77 -c  -O3 zset.f
+/usr/bin/mpif77 -c  -O3 zcshft.f
+/usr/bin/mpif77 -c  -O3 zrshft.f
+/usr/bin/mpif77 -c  -O3 zvvdotu.f
+/usr/bin/mpif77 -c  -O3 zvvdotc.f
+/usr/bin/mpif77 -c  -O3 zmmadd.f
+/usr/bin/mpif77 -c  -O3 zmmcadd.f
+/usr/bin/mpif77 -c  -O3 zmmtadd.f
+/usr/bin/mpif77 -c  -O3 zmmtcadd.f
+/usr/bin/mpif77 -c  -O3 zmmdda.f
+/usr/bin/mpif77 -c  -O3 zmmddac.f
+/usr/bin/mpif77 -c  -O3 zmmddat.f
+/usr/bin/mpif77 -c  -O3 zmmddact.f
+/usr/bin/mpif77 -c  -O3 ztzpad.f
+/usr/bin/mpif77 -c  -O3 ztzpadcpy.f
+/usr/bin/mpif77 -c  -O3 zhescal.f
+/usr/bin/mpif77 -c  -O3 ztzscal.f
+/usr/bin/mpif77 -c  -O3 ztzcnjg.f
+/usr/bin/mpif77 -c  -O3 zagemv.f
+/usr/bin/mpif77 -c  -O3 zahemv.f
+/usr/bin/mpif77 -c  -O3 zatrmv.f
+/usr/bin/mpif77 -c  -O3 zasymv.f
+/usr/bin/mpif77 -c  -O3 zsymv.f
+/usr/bin/mpif77 -c  -O3 zsyr.f
+/usr/bin/mpif77 -c  -O3 zsyr2.f
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a pxerbla.o immadd.o       immdda.o       immtadd.o      immddat.o dzvasum.o      zset.o         zcshft.o       zrshft.o zvvdotu.o      zvvdotc.o      zmmadd.o       zmmcadd.o zmmtadd.o      zmmtcadd.o     zmmdda.o       zmmddac.o zmmddat.o      zmmddact.o     ztzpad.o       ztzpadcpy.o zhescal.o      ztzscal.o      ztzcnjg.o      zagemv.o zahemv.o       zatrmv.o       zasymv.o       zsymv.o zsyr.o         zsyr2.o \
+	dasqrtb.o      dascal.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+make[2]: Leaving directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC/PTZBLAS'
+( cd PTOOLS;  make complex16 )
+make[2]: Entering directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC/PTOOLS'
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ PB_Cztypeset.c
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a PB_CGatherV.o    PB_CInV.o        PB_CInV2.o       PB_CInOutV.o PB_CInOutV2.o    PB_COutV.o       PB_CScatterV.o   PB_CVMinit.o PB_CVMloc.o      PB_CVMnpq.o      PB_CVMpack.o     PB_CVMswp.o PB_CVMupdate.o   PB_CVMcontig.o   PB_Cabort.o      PB_Cainfog2l.o PB_Cbinfo.o      PB_Cchkmat.o     PB_Cchkvec.o     PB_Cconjg.o PB_Cgetbuf.o     PB_Cinfog2l.o    PB_Citypeset.o   PB_Cgcd.o PB_Clcm.o        PB_Cmalloc.o     PB_Cnumroc.o     PB_Cg2lrem.o PB_Cindxg2p.o    PB_Cnnxtroc.o    PB_Cnpreroc.o    PB_CpswapNN.o PB_CpswapND.o    PB_Cpdot11.o     PB_CpdotNN.o     PB_CpdotND.o PB_CpaxpbyNN.o   PB_CpaxpbyND.o   PB_CpaxpbyDN.o   PB_Cpaxpby.o PB_CpgemmBC.o    PB_CpgemmAC.o    PB_CpgemmAB.o    PB_Cplaprnt.o PB_Cplapad.o     PB_Cplapd2.o     PB_Cplascal.o    PB_Cplasca2.o PB_Cplacnjg.o    PB_Cpsym.o       PB_CpsymmAB.o    PB_CpsymmBC.o PB_Cpsyr.o       PB_CpsyrkA.o     PB_CpsyrkAC.o    PB_Cpsyr2.o PB_Cpsyr2kA.o    PB_Cpsyr2kAC.o   PB_Cptrm.o       PB_Cpgeadd.o PB_Cptradd.o     PB_Cptran.o      PB_CptrmmAB.o    PB_CptrmmB.o PB_Cptrsm.o      PB_CptrsmAB.o    PB_CptrsmAB0.o   PB_CptrsmAB1.o PB_CptrsmB.o     PB_Cptrsv.o      PB_Ctop.o        PB_Ctzahemv.o PB_Ctzasymv.o    PB_Ctzatrmv.o    PB_Ctzhemm.o     PB_Ctzhemv.o PB_Ctzher.o      PB_Ctzherk.o     PB_Ctzher2.o     PB_Ctzher2k.o PB_Ctzsymm.o     PB_Ctzsymv.o     PB_Ctzsyr.o      PB_Ctzsyrk.o PB_Ctzsyr2.o     PB_Ctzsyr2k.o    PB_Ctztrmm.o     PB_Ctztrmv.o PB_Cwarn.o       PB_freebuf_.o    PB_topget_.o     PB_topset_.o PB_Cdescset.o    PB_Cdescribe.o   PB_CargFtoC.o    PB_Cfirstnb.o PB_Clastnb.o     PB_Cspan.o PB_Cztypeset.o PB_Cdtypeset.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+make[2]: Leaving directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC/PTOOLS'
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a pzswap_.o pzscal_.o  pzdscal_.o pzcopy_.o pzaxpy_.o pzdotu_.o pzdotc_.o pdznrm2_.o pdzasum_.o pzamax_.o pzgemv_.o  pzgerc_.o  pzgeru_.o  pzhemv_.o  pzher_.o   pzher2_.o pztrmv_.o  pztrsv_.o  pzagemv_.o pzahemv_.o pzatrmv_.o pzgeadd_.o pzgemm_.o pzhemm_.o  pzher2k_.o pzherk_.o  pzsymm_.o pzsyr2k_.o pzsyrk_.o pztradd_.o pztranc_.o pztranu_.o pztrmm_.o pztrsm_.o pilaenv.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+make[1]: Leaving directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/PBLAS/SRC'
+( cd /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/REDIST/SRC; make integer single double complex complex16 )
+make[1]: Entering directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/REDIST/SRC'
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pigemr.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pigemr2.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pitrmr.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pitrmr2.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pgemraux.c
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a pigemr.o pigemr2.o pitrmr.o pitrmr2.o  pgemraux.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ psgemr.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ psgemr2.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pstrmr.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pstrmr2.c
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a psgemr.o psgemr2.o pstrmr.o pstrmr2.o  pgemraux.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdgemr.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdgemr2.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdtrmr.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdtrmr2.c
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a pdgemr.o pdgemr2.o pdtrmr.o pdtrmr2.o  pgemraux.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pcgemr.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pcgemr2.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pctrmr.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pctrmr2.c
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a pcgemr.o pcgemr2.o pctrmr.o pctrmr2.o  pgemraux.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzgemr.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzgemr2.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pztrmr.c
+/usr/bin/mpicc -c -O3 -DNO_IEEE -DUsingMpiBlacs -DAdd_ pztrmr2.c
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a pzgemr.o pzgemr2.o pztrmr.o pztrmr2.o  pgemraux.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+make[1]: Leaving directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/REDIST/SRC'
+( cd /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/SRC; make single double complex complex16 )
+make[1]: Entering directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/SRC'
+/usr/bin/mpif77 -c  -O3 psdbsv.f
+/usr/bin/mpif77 -c  -O3 psdbtrf.f
+/usr/bin/mpif77 -c  -O3 psdbtrs.f
+/usr/bin/mpif77 -c  -O3 psdbtrsv.f
+/usr/bin/mpif77 -c  -O3 psdtsv.f
+/usr/bin/mpif77 -c  -O3 psdttrf.f
+/usr/bin/mpif77 -c  -O3 psdttrs.f
+/usr/bin/mpif77 -c  -O3 psdttrsv.f
+/usr/bin/mpif77 -c  -O3 psgbsv.f
+/usr/bin/mpif77 -c  -O3 psgbtrf.f
+/usr/bin/mpif77 -c  -O3 psgbtrs.f
+/usr/bin/mpif77 -c  -O3 psgebd2.f
+/usr/bin/mpif77 -c  -O3 psgebrd.f
+/usr/bin/mpif77 -c  -O3 psgecon.f
+/usr/bin/mpif77 -c  -O3 psgeequ.f
+/usr/bin/mpif77 -c  -O3 psgehd2.f
+/usr/bin/mpif77 -c  -O3 psgehrd.f
+/usr/bin/mpif77 -c  -O3 psgelq2.f
+/usr/bin/mpif77 -c  -O3 psgelqf.f
+/usr/bin/mpif77 -c  -O3 psgels.f
+/usr/bin/mpif77 -c  -O3 psgeql2.f
+/usr/bin/mpif77 -c  -O3 psgeqlf.f
+/usr/bin/mpif77 -c  -O3 psgeqpf.f
+/usr/bin/mpif77 -c  -O3 psgeqr2.f
+/usr/bin/mpif77 -c  -O3 psgeqrf.f
+/usr/bin/mpif77 -c  -O3 psgerfs.f
+/usr/bin/mpif77 -c  -O3 psgerq2.f
+/usr/bin/mpif77 -c  -O3 psgerqf.f
+/usr/bin/mpif77 -c  -O3 psgesv.f
+/usr/bin/mpif77 -c  -O3 psgesvd.f
+/usr/bin/mpif77 -c  -O3 psgesvx.f
+/usr/bin/mpif77 -c  -O3 psgetf2.f
+/usr/bin/mpif77 -c  -O3 psgetrf.f
+/usr/bin/mpif77 -c  -O3 psgetri.f
+/usr/bin/mpif77 -c  -O3 psgetrs.f
+/usr/bin/mpif77 -c  -O3 psggqrf.f
+/usr/bin/mpif77 -c  -O3 psggrqf.f
+/usr/bin/mpif77 -c  -O3 pslabrd.f
+/usr/bin/mpif77 -c  -O3 pslacon.f
+/usr/bin/mpif77 -c  -O3 pslacp2.f
+/usr/bin/mpif77 -c  -O3 pslacpy.f
+/usr/bin/mpif77 -c  -O3 pslahrd.f
+/usr/bin/mpif77 -c  -O3 pslange.f
+/usr/bin/mpif77 -c  -O3 pslanhs.f
+/usr/bin/mpif77 -c  -O3 pslansy.f
+/usr/bin/mpif77 -c  -O3 pslantr.f
+/usr/bin/mpif77 -c  -O3 pslapiv.f
+/usr/bin/mpif77 -c  -O3 pslapv2.f
+/usr/bin/mpif77 -c  -O3 pslaqge.f
+/usr/bin/mpif77 -c  -O3 pslaqsy.f
+/usr/bin/mpif77 -c  -O3 pslarf.f
+/usr/bin/mpif77 -c  -O3 pslarfb.f
+/usr/bin/mpif77 -c  -O3 pslarfg.f
+/usr/bin/mpif77 -c  -O3 pslarft.f
+/usr/bin/mpif77 -c  -O3 pslase2.f
+/usr/bin/mpif77 -c  -O3 pslaset.f
+/usr/bin/mpif77 -c  -O3 pslascl.f
+/usr/bin/mpif77 -c  -O3 pslassq.f
+/usr/bin/mpif77 -c  -O3 pslaswp.f
+/usr/bin/mpif77 -c  -O3 pslatra.f
+/usr/bin/mpif77 -c  -O3 pslatrd.f
+/usr/bin/mpif77 -c  -O3 pslatrs.f
+/usr/bin/mpif77 -c  -O3 pslauu2.f
+/usr/bin/mpif77 -c  -O3 pslauum.f
+/usr/bin/mpif77 -c  -O3 psorg2l.f
+/usr/bin/mpif77 -c  -O3 psorg2r.f
+/usr/bin/mpif77 -c  -O3 psorgl2.f
+/usr/bin/mpif77 -c  -O3 psorglq.f
+/usr/bin/mpif77 -c  -O3 psorgql.f
+/usr/bin/mpif77 -c  -O3 psorgqr.f
+/usr/bin/mpif77 -c  -O3 psorgr2.f
+/usr/bin/mpif77 -c  -O3 psorgrq.f
+/usr/bin/mpif77 -c  -O3 psorm2l.f
+/usr/bin/mpif77 -c  -O3 psorm2r.f
+/usr/bin/mpif77 -c  -O3 psormbr.f
+/usr/bin/mpif77 -c  -O3 psormhr.f
+/usr/bin/mpif77 -c  -O3 psorml2.f
+/usr/bin/mpif77 -c  -O3 psormlq.f
+/usr/bin/mpif77 -c  -O3 psormql.f
+/usr/bin/mpif77 -c  -O3 psormqr.f
+/usr/bin/mpif77 -c  -O3 psormr2.f
+/usr/bin/mpif77 -c  -O3 psormrq.f
+/usr/bin/mpif77 -c  -O3 psormtr.f
+/usr/bin/mpif77 -c  -O3 pspocon.f
+/usr/bin/mpif77 -c  -O3 pspbsv.f
+/usr/bin/mpif77 -c  -O3 pspbtrf.f
+/usr/bin/mpif77 -c  -O3 pspbtrs.f
+/usr/bin/mpif77 -c  -O3 pspbtrsv.f
+/usr/bin/mpif77 -c  -O3 psptsv.f
+/usr/bin/mpif77 -c  -O3 pspttrf.f
+/usr/bin/mpif77 -c  -O3 pspttrs.f
+/usr/bin/mpif77 -c  -O3 pspttrsv.f
+/usr/bin/mpif77 -c  -O3 pspoequ.f
+/usr/bin/mpif77 -c  -O3 psporfs.f
+/usr/bin/mpif77 -c  -O3 psposv.f
+/usr/bin/mpif77 -c  -O3 psposvx.f
+/usr/bin/mpif77 -c  -O3 pspotf2.f
+/usr/bin/mpif77 -c  -O3 pspotrf.f
+/usr/bin/mpif77 -c  -O3 pspotri.f
+/usr/bin/mpif77 -c  -O3 pspotrs.f
+/usr/bin/mpif77 -c  -O3 psrscl.f
+/usr/bin/mpif77 -c  -O3 psstein.f
+/usr/bin/mpif77 -c  -O3 pssyev.f
+/usr/bin/mpif77 -c  -O3 pssyevd.f
+/usr/bin/mpif77 -c  -O3 pssyevx.f
+/usr/bin/mpif77 -c  -O3 pssygs2.f
+/usr/bin/mpif77 -c  -O3 pssygst.f
+/usr/bin/mpif77 -c  -O3 pssygvx.f
+/usr/bin/mpif77 -c  -O3 pssyngst.f
+/usr/bin/mpif77 -c  -O3 pssyntrd.f
+/usr/bin/mpif77 -c  -O3 pssyttrd.f
+/usr/bin/mpif77 -c  -O3 pssytd2.f
+/usr/bin/mpif77 -c  -O3 pssytrd.f
+/usr/bin/mpif77 -c  -O3 pstrti2.f
+/usr/bin/mpif77 -c  -O3 pstrtri.f
+/usr/bin/mpif77 -c  -O3 pstrtrs.f
+/usr/bin/mpif77 -c  -O3 pslaevswp.f
+/usr/bin/mpif77 -c  -O3 pslarzb.f
+/usr/bin/mpif77 -c  -O3 pslarzt.f
+/usr/bin/mpif77 -c  -O3 pslarz.f
+/usr/bin/mpif77 -c  -O3 pslatrz.f
+/usr/bin/mpif77 -c  -O3 pstzrzf.f
+/usr/bin/mpif77 -c  -O3 psormr3.f
+/usr/bin/mpif77 -c  -O3 psormrz.f
+/usr/bin/mpif77 -c  -O3 pslahqr.f
+/usr/bin/mpif77 -c  -O3 pslaconsb.f
+/usr/bin/mpif77 -c  -O3 pslacp3.f
+/usr/bin/mpif77 -c  -O3 pslawil.f
+/usr/bin/mpif77 -c  -O3 pslasmsub.f
+/usr/bin/mpif77 -c  -O3 pslared2d.f
+/usr/bin/mpif77 -c  -O3 pslamr1d.f
+/usr/bin/mpif77 -c  -O3 slaref.f
+/usr/bin/mpif77 -c  -O3 slamsh.f
+/usr/bin/mpif77 -c  -O3 slasorte.f
+/usr/bin/mpif77 -c  -O3 ssteqr2.f
+/usr/bin/mpif77 -c  -O3 sdbtf2.f
+/usr/bin/mpif77 -c  -O3 sdbtrf.f
+/usr/bin/mpif77 -c  -O3 sdttrf.f
+/usr/bin/mpif77 -c  -O3 sdttrsv.f
+/usr/bin/mpif77 -c  -O3 spttrsv.f
+/usr/bin/mpif77 -c  -O3 strmvt.f
+/usr/bin/mpif77 -c  -O3 pslabad.f
+/usr/bin/mpif77 -c  -O3 pslaed0.f
+/usr/bin/mpif77 -c  -O3 pslaed1.f
+/usr/bin/mpif77 -c  -O3 pslaed2.f
+/usr/bin/mpif77 -c  -O3 pslaed3.f
+/usr/bin/mpif77 -c  -O3 pslaedz.f
+/usr/bin/mpicc -c -O3  -DNO_IEEE -DUsingMpiBlacs -DAdd_ pslaiect.c
+/usr/bin/mpif77 -c  -O3 pslamch.f
+/usr/bin/mpif77 -c  -O3 pslared1d.f
+/usr/bin/mpif77 -c  -O3 pslasrt.f
+/usr/bin/mpif77 -c  -O3 psstebz.f
+/usr/bin/mpif77 -c  -O3 psstedc.f
+/usr/bin/mpif77 -c  -O3 slapst.f
+/usr/bin/mpif77 -c  -O3 slasrt2.f
+/usr/bin/mpif77 -c  -O3 sstein2.f
+/usr/bin/mpicc -c -O3  -DNO_IEEE -DUsingMpiBlacs -DAdd_ pbchkvect.c
+/usr/bin/mpicc -c -O3  -DNO_IEEE -DUsingMpiBlacs -DAdd_ getpbbuf.c
+/usr/bin/mpif77 -c  -O3 pjlaenv.f
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a psdbsv.o  psdbtrf.o psdbtrs.o psdbtrsv.o psdtsv.o  psdttrf.o psdttrs.o psdttrsv.o psgbsv.o  psgbtrf.o psgbtrs.o psgebd2.o psgebrd.o psgecon.o           psgeequ.o psgehd2.o psgehrd.o psgelq2.o psgelqf.o psgels.o  psgeql2.o psgeqlf.o psgeqpf.o psgeqr2.o psgeqrf.o psgerfs.o psgerq2.o psgerqf.o psgesv.o  psgesvd.o psgesvx.o psgetf2.o psgetrf.o psgetri.o psgetrs.o psggqrf.o psggrqf.o pslabrd.o pslacon.o pslacp2.o pslacpy.o pslahrd.o pslange.o pslanhs.o pslansy.o pslantr.o pslapiv.o pslapv2.o pslaqge.o pslaqsy.o pslarf.o  pslarfb.o pslarfg.o pslarft.o pslase2.o pslaset.o pslascl.o pslassq.o pslaswp.o pslatra.o pslatrd.o pslatrs.o pslauu2.o pslauum.o psorg2l.o psorg2r.o psorgl2.o psorglq.o psorgql.o psorgqr.o psorgr2.o psorgrq.o           psorm2l.o psorm2r.o psormbr.o psormhr.o psorml2.o psormlq.o psormql.o psormqr.o psormr2.o psormrq.o psormtr.o pspocon.o pspbsv.o  pspbtrf.o pspbtrs.o pspbtrsv.o psptsv.o  pspttrf.o pspttrs.o pspttrsv.o pspoequ.o psporfs.o psposv.o  psposvx.o pspotf2.o pspotrf.o pspotri.o pspotrs.o psrscl.o  psstein.o pssyev.o  pssyevd.o pssyevx.o pssygs2.o pssygst.o pssygvx.o pssyngst.o pssyntrd.o  pssyttrd.o pssytd2.o pssytrd.o pstrti2.o pstrtri.o pstrtrs.o pslaevswp.o pslarzb.o pslarzt.o pslarz.o pslatrz.o pstzrzf.o psormr3.o psormrz.o pslahqr.o pslaconsb.o pslacp3.o pslawil.o pslasmsub.o pslared2d.o pslamr1d.o slaref.o slamsh.o slasorte.o ssteqr2.o sdbtf2.o  sdbtrf.o  sdttrf.o sdttrsv.o spttrsv.o strmvt.o pslabad.o pslaed0.o pslaed1.o pslaed2.o pslaed3.o pslaedz.o pslaiect.o pslamch.o pslared1d.o pslasrt.o psstebz.o psstedc.o slapst.o slasrt2.o sstein2.o pbchkvect.o getpbbuf.o \
+	pjlaenv.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+/usr/bin/mpif77 -c  -O3 pddbsv.f
+/usr/bin/mpif77 -c  -O3 pddbtrf.f
+/usr/bin/mpif77 -c  -O3 pddbtrs.f
+/usr/bin/mpif77 -c  -O3 pddbtrsv.f
+/usr/bin/mpif77 -c  -O3 pddtsv.f
+/usr/bin/mpif77 -c  -O3 pddttrf.f
+/usr/bin/mpif77 -c  -O3 pddttrs.f
+/usr/bin/mpif77 -c  -O3 pddttrsv.f
+/usr/bin/mpif77 -c  -O3 pdgbsv.f
+/usr/bin/mpif77 -c  -O3 pdgbtrf.f
+/usr/bin/mpif77 -c  -O3 pdgbtrs.f
+/usr/bin/mpif77 -c  -O3 pdgebd2.f
+/usr/bin/mpif77 -c  -O3 pdgebrd.f
+/usr/bin/mpif77 -c  -O3 pdgecon.f
+/usr/bin/mpif77 -c  -O3 pdgeequ.f
+/usr/bin/mpif77 -c  -O3 pdgehd2.f
+/usr/bin/mpif77 -c  -O3 pdgehrd.f
+/usr/bin/mpif77 -c  -O3 pdgelq2.f
+/usr/bin/mpif77 -c  -O3 pdgelqf.f
+/usr/bin/mpif77 -c  -O3 pdgels.f
+/usr/bin/mpif77 -c  -O3 pdgeql2.f
+/usr/bin/mpif77 -c  -O3 pdgeqlf.f
+/usr/bin/mpif77 -c  -O3 pdgeqpf.f
+/usr/bin/mpif77 -c  -O3 pdgeqr2.f
+/usr/bin/mpif77 -c  -O3 pdgeqrf.f
+/usr/bin/mpif77 -c  -O3 pdgerfs.f
+/usr/bin/mpif77 -c  -O3 pdgerq2.f
+/usr/bin/mpif77 -c  -O3 pdgerqf.f
+/usr/bin/mpif77 -c  -O3 pdgesv.f
+/usr/bin/mpif77 -c  -O3 pdgesvd.f
+/usr/bin/mpif77 -c  -O3 pdgesvx.f
+/usr/bin/mpif77 -c  -O3 pdgetf2.f
+/usr/bin/mpif77 -c  -O3 pdgetrf.f
+/usr/bin/mpif77 -c  -O3 pdgetri.f
+/usr/bin/mpif77 -c  -O3 pdgetrs.f
+/usr/bin/mpif77 -c  -O3 pdggqrf.f
+/usr/bin/mpif77 -c  -O3 pdggrqf.f
+/usr/bin/mpif77 -c  -O3 pdlabrd.f
+/usr/bin/mpif77 -c  -O3 pdlacon.f
+/usr/bin/mpif77 -c  -O3 pdlacp2.f
+/usr/bin/mpif77 -c  -O3 pdlacpy.f
+/usr/bin/mpif77 -c  -O3 pdlahrd.f
+/usr/bin/mpif77 -c  -O3 pdlange.f
+/usr/bin/mpif77 -c  -O3 pdlanhs.f
+/usr/bin/mpif77 -c  -O3 pdlansy.f
+/usr/bin/mpif77 -c  -O3 pdlantr.f
+/usr/bin/mpif77 -c  -O3 pdlapiv.f
+/usr/bin/mpif77 -c  -O3 pdlapv2.f
+/usr/bin/mpif77 -c  -O3 pdlaqge.f
+/usr/bin/mpif77 -c  -O3 pdlaqsy.f
+/usr/bin/mpif77 -c  -O3 pdlarf.f
+/usr/bin/mpif77 -c  -O3 pdlarfb.f
+/usr/bin/mpif77 -c  -O3 pdlarfg.f
+/usr/bin/mpif77 -c  -O3 pdlarft.f
+/usr/bin/mpif77 -c  -O3 pdlase2.f
+/usr/bin/mpif77 -c  -O3 pdlaset.f
+/usr/bin/mpif77 -c  -O3 pdlascl.f
+/usr/bin/mpif77 -c  -O3 pdlassq.f
+/usr/bin/mpif77 -c  -O3 pdlaswp.f
+/usr/bin/mpif77 -c  -O3 pdlatra.f
+/usr/bin/mpif77 -c  -O3 pdlatrd.f
+/usr/bin/mpif77 -c  -O3 pdlatrs.f
+/usr/bin/mpif77 -c  -O3 pdlauu2.f
+/usr/bin/mpif77 -c  -O3 pdlauum.f
+/usr/bin/mpif77 -c  -O3 pdorg2l.f
+/usr/bin/mpif77 -c  -O3 pdorg2r.f
+/usr/bin/mpif77 -c  -O3 pdorgl2.f
+/usr/bin/mpif77 -c  -O3 pdorglq.f
+/usr/bin/mpif77 -c  -O3 pdorgql.f
+/usr/bin/mpif77 -c  -O3 pdorgqr.f
+/usr/bin/mpif77 -c  -O3 pdorgr2.f
+/usr/bin/mpif77 -c  -O3 pdorgrq.f
+/usr/bin/mpif77 -c  -O3 pdorm2l.f
+/usr/bin/mpif77 -c  -O3 pdorm2r.f
+/usr/bin/mpif77 -c  -O3 pdormbr.f
+/usr/bin/mpif77 -c  -O3 pdormhr.f
+/usr/bin/mpif77 -c  -O3 pdorml2.f
+/usr/bin/mpif77 -c  -O3 pdormlq.f
+/usr/bin/mpif77 -c  -O3 pdormql.f
+/usr/bin/mpif77 -c  -O3 pdormqr.f
+/usr/bin/mpif77 -c  -O3 pdormr2.f
+/usr/bin/mpif77 -c  -O3 pdormrq.f
+/usr/bin/mpif77 -c  -O3 pdormtr.f
+/usr/bin/mpif77 -c  -O3 pdpocon.f
+/usr/bin/mpif77 -c  -O3 pdpbsv.f
+/usr/bin/mpif77 -c  -O3 pdpbtrf.f
+/usr/bin/mpif77 -c  -O3 pdpbtrs.f
+/usr/bin/mpif77 -c  -O3 pdpbtrsv.f
+/usr/bin/mpif77 -c  -O3 pdptsv.f
+/usr/bin/mpif77 -c  -O3 pdpttrf.f
+/usr/bin/mpif77 -c  -O3 pdpttrs.f
+/usr/bin/mpif77 -c  -O3 pdpttrsv.f
+/usr/bin/mpif77 -c  -O3 pdpoequ.f
+/usr/bin/mpif77 -c  -O3 pdporfs.f
+/usr/bin/mpif77 -c  -O3 pdposv.f
+/usr/bin/mpif77 -c  -O3 pdposvx.f
+/usr/bin/mpif77 -c  -O3 pdpotf2.f
+/usr/bin/mpif77 -c  -O3 pdpotrf.f
+/usr/bin/mpif77 -c  -O3 pdpotri.f
+/usr/bin/mpif77 -c  -O3 pdpotrs.f
+/usr/bin/mpif77 -c  -O3 pdrscl.f
+/usr/bin/mpif77 -c  -O3 pdstein.f
+/usr/bin/mpif77 -c  -O3 pdsyev.f
+/usr/bin/mpif77 -c  -O3 pdsyevd.f
+/usr/bin/mpif77 -c  -O3 pdsyevx.f
+/usr/bin/mpif77 -c  -O3 pdsygs2.f
+/usr/bin/mpif77 -c  -O3 pdsygst.f
+/usr/bin/mpif77 -c  -O3 pdsygvx.f
+/usr/bin/mpif77 -c  -O3 pdsyngst.f
+/usr/bin/mpif77 -c  -O3 pdsyntrd.f
+/usr/bin/mpif77 -c  -O3 pdsyttrd.f
+/usr/bin/mpif77 -c  -O3 pdsytd2.f
+/usr/bin/mpif77 -c  -O3 pdsytrd.f
+/usr/bin/mpif77 -c  -O3 pdtrti2.f
+/usr/bin/mpif77 -c  -O3 pdtrtri.f
+/usr/bin/mpif77 -c  -O3 pdtrtrs.f
+/usr/bin/mpif77 -c  -O3 pdlaevswp.f
+/usr/bin/mpif77 -c  -O3 pdlarzb.f
+/usr/bin/mpif77 -c  -O3 pdlarzt.f
+/usr/bin/mpif77 -c  -O3 pdlarz.f
+/usr/bin/mpif77 -c  -O3 pdlatrz.f
+/usr/bin/mpif77 -c  -O3 pdtzrzf.f
+/usr/bin/mpif77 -c  -O3 pdormr3.f
+/usr/bin/mpif77 -c  -O3 pdormrz.f
+/usr/bin/mpif77 -c  -O3 pdlahqr.f
+/usr/bin/mpif77 -c  -O3 pdlaconsb.f
+/usr/bin/mpif77 -c  -O3 pdlacp3.f
+/usr/bin/mpif77 -c  -O3 pdlawil.f
+/usr/bin/mpif77 -c  -O3 pdlasmsub.f
+/usr/bin/mpif77 -c  -O3 pdlared2d.f
+/usr/bin/mpif77 -c  -O3 pdlamr1d.f
+/usr/bin/mpif77 -c  -O3 dlaref.f
+/usr/bin/mpif77 -c  -O3 dlamsh.f
+/usr/bin/mpif77 -c  -O3 dlasorte.f
+/usr/bin/mpif77 -c  -O3 dsteqr2.f
+/usr/bin/mpif77 -c  -O3 ddbtf2.f
+/usr/bin/mpif77 -c  -O3 ddbtrf.f
+/usr/bin/mpif77 -c  -O3 ddttrf.f
+/usr/bin/mpif77 -c  -O3 ddttrsv.f
+/usr/bin/mpif77 -c  -O3 dpttrsv.f
+/usr/bin/mpif77 -c  -O3 dtrmvt.f
+/usr/bin/mpif77 -c  -O3 pdlabad.f
+/usr/bin/mpif77 -c  -O3 pdlaed0.f
+/usr/bin/mpif77 -c  -O3 pdlaed1.f
+/usr/bin/mpif77 -c  -O3 pdlaed2.f
+/usr/bin/mpif77 -c  -O3 pdlaed3.f
+/usr/bin/mpif77 -c  -O3 pdlaedz.f
+/usr/bin/mpicc -c -O3  -DNO_IEEE -DUsingMpiBlacs -DAdd_ pdlaiect.c
+/usr/bin/mpif77 -c  -O3 pdlamch.f
+/usr/bin/mpif77 -c  -O3 pdlared1d.f
+/usr/bin/mpif77 -c  -O3 pdlasrt.f
+/usr/bin/mpif77 -c  -O3 pdstebz.f
+/usr/bin/mpif77 -c  -O3 pdstedc.f
+/usr/bin/mpif77 -c  -O3 dlapst.f
+/usr/bin/mpif77 -c  -O3 dlasrt2.f
+/usr/bin/mpif77 -c  -O3 dstein2.f
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a pddbsv.o  pddbtrf.o pddbtrs.o pddbtrsv.o pddtsv.o  pddttrf.o pddttrs.o pddttrsv.o pdgbsv.o  pdgbtrf.o pdgbtrs.o pdgebd2.o pdgebrd.o pdgecon.o           pdgeequ.o pdgehd2.o pdgehrd.o pdgelq2.o pdgelqf.o pdgels.o  pdgeql2.o pdgeqlf.o pdgeqpf.o pdgeqr2.o pdgeqrf.o pdgerfs.o pdgerq2.o pdgerqf.o pdgesv.o  pdgesvd.o pdgesvx.o pdgetf2.o pdgetrf.o pdgetri.o pdgetrs.o pdggqrf.o pdggrqf.o pdlabrd.o pdlacon.o pdlacp2.o pdlacpy.o pdlahrd.o pdlange.o pdlanhs.o pdlansy.o pdlantr.o pdlapiv.o pdlapv2.o pdlaqge.o pdlaqsy.o pdlarf.o  pdlarfb.o pdlarfg.o pdlarft.o pdlase2.o pdlaset.o pdlascl.o pdlassq.o pdlaswp.o pdlatra.o pdlatrd.o pdlatrs.o pdlauu2.o pdlauum.o pdorg2l.o pdorg2r.o pdorgl2.o pdorglq.o pdorgql.o pdorgqr.o pdorgr2.o pdorgrq.o           pdorm2l.o pdorm2r.o pdormbr.o pdormhr.o pdorml2.o pdormlq.o pdormql.o pdormqr.o pdormr2.o pdormrq.o pdormtr.o pdpocon.o pdpbsv.o  pdpbtrf.o pdpbtrs.o pdpbtrsv.o pdptsv.o  pdpttrf.o pdpttrs.o pdpttrsv.o pdpoequ.o pdporfs.o pdposv.o  pdposvx.o pdpotf2.o pdpotrf.o pdpotri.o pdpotrs.o pdrscl.o  pdstein.o pdsyev.o  pdsyevd.o pdsyevx.o pdsygs2.o pdsygst.o pdsygvx.o pdsyngst.o pdsyntrd.o pdsyttrd.o pdsytd2.o pdsytrd.o pdtrti2.o pdtrtri.o pdtrtrs.o pdlaevswp.o pdlarzb.o pdlarzt.o pdlarz.o pdlatrz.o pdtzrzf.o pdormr3.o pdormrz.o pdlahqr.o pdlaconsb.o pdlacp3.o pdlawil.o pdlasmsub.o pdlared2d.o pdlamr1d.o dlaref.o dlamsh.o dlasorte.o dsteqr2.o ddbtf2.o  ddbtrf.o  ddttrf.o ddttrsv.o dpttrsv.o dtrmvt.o pdlabad.o pdlaed0.o pdlaed1.o pdlaed2.o pdlaed3.o pdlaedz.o pdlaiect.o pdlamch.o pdlared1d.o pdlasrt.o pdstebz.o pdstedc.o dlapst.o dlasrt2.o dstein2.o pbchkvect.o getpbbuf.o \
+	pjlaenv.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+/usr/bin/mpif77 -c  -O3 pcdbsv.f
+/usr/bin/mpif77 -c  -O3 pcdbtrf.f
+/usr/bin/mpif77 -c  -O3 pcdbtrs.f
+/usr/bin/mpif77 -c  -O3 pcdbtrsv.f
+/usr/bin/mpif77 -c  -O3 pcdtsv.f
+/usr/bin/mpif77 -c  -O3 pcdttrf.f
+/usr/bin/mpif77 -c  -O3 pcdttrs.f
+/usr/bin/mpif77 -c  -O3 pcdttrsv.f
+/usr/bin/mpif77 -c  -O3 pcgbsv.f
+/usr/bin/mpif77 -c  -O3 pcgbtrf.f
+/usr/bin/mpif77 -c  -O3 pcgbtrs.f
+/usr/bin/mpif77 -c  -O3 pcgebd2.f
+/usr/bin/mpif77 -c  -O3 pcgebrd.f
+/usr/bin/mpif77 -c  -O3 pcgecon.f
+/usr/bin/mpif77 -c  -O3 pcgeequ.f
+/usr/bin/mpif77 -c  -O3 pcgehd2.f
+/usr/bin/mpif77 -c  -O3 pcgehrd.f
+/usr/bin/mpif77 -c  -O3 pcgelq2.f
+/usr/bin/mpif77 -c  -O3 pcgelqf.f
+/usr/bin/mpif77 -c  -O3 pcgels.f
+/usr/bin/mpif77 -c  -O3 pcgeql2.f
+/usr/bin/mpif77 -c  -O3 pcgeqlf.f
+/usr/bin/mpif77 -c  -O3 pcgeqpf.f
+/usr/bin/mpif77 -c  -O3 pcgeqr2.f
+/usr/bin/mpif77 -c  -O3 pcgeqrf.f
+/usr/bin/mpif77 -c  -O3 pcgerfs.f
+/usr/bin/mpif77 -c  -O3 pcgerq2.f
+/usr/bin/mpif77 -c  -O3 pcgerqf.f
+/usr/bin/mpif77 -c  -O3 pcgesv.f
+/usr/bin/mpif77 -c  -O3 pcgesvd.f
+/usr/bin/mpif77 -c  -O3 pcgesvx.f
+/usr/bin/mpif77 -c  -O3 pcgetf2.f
+/usr/bin/mpif77 -c  -O3 pcgetrf.f
+/usr/bin/mpif77 -c  -O3 pcgetri.f
+/usr/bin/mpif77 -c  -O3 pcgetrs.f
+/usr/bin/mpif77 -c  -O3 pcggqrf.f
+/usr/bin/mpif77 -c  -O3 pcggrqf.f
+/usr/bin/mpif77 -c  -O3 pcheev.f
+/usr/bin/mpif77 -c  -O3 pcheevd.f
+/usr/bin/mpif77 -c  -O3 pcheevx.f
+/usr/bin/mpif77 -c  -O3 pchegs2.f
+/usr/bin/mpif77 -c  -O3 pchegst.f
+/usr/bin/mpif77 -c  -O3 pchegvx.f
+/usr/bin/mpif77 -c  -O3 pchengst.f
+/usr/bin/mpif77 -c  -O3 pchentrd.f
+/usr/bin/mpif77 -c  -O3 pchettrd.f
+/usr/bin/mpif77 -c  -O3 pchetd2.f
+/usr/bin/mpif77 -c  -O3 pchetrd.f
+/usr/bin/mpif77 -c  -O3 pclabrd.f
+/usr/bin/mpif77 -c  -O3 pclacon.f
+/usr/bin/mpif77 -c  -O3 pclacgv.f
+/usr/bin/mpif77 -c  -O3 pclacp2.f
+/usr/bin/mpif77 -c  -O3 pclacpy.f
+/usr/bin/mpif77 -c  -O3 pclahrd.f
+/usr/bin/mpif77 -c  -O3 pclahqr.f
+/usr/bin/mpif77 -c  -O3 pclaconsb.f
+/usr/bin/mpif77 -c  -O3 pclasmsub.f
+/usr/bin/mpif77 -c  -O3 pclacp3.f
+/usr/bin/mpif77 -c  -O3 pclawil.f
+/usr/bin/mpicc -c -O3  -DNO_IEEE -DUsingMpiBlacs -DAdd_ pcrot.c
+/usr/bin/mpif77 -c  -O3 pclange.f
+/usr/bin/mpif77 -c  -O3 pclanhe.f
+/usr/bin/mpif77 -c  -O3 pclanhs.f
+/usr/bin/mpif77 -c  -O3 pclansy.f
+/usr/bin/mpif77 -c  -O3 pclantr.f
+/usr/bin/mpif77 -c  -O3 pclapiv.f
+/usr/bin/mpif77 -c  -O3 pclapv2.f
+/usr/bin/mpif77 -c  -O3 pclaqge.f
+/usr/bin/mpif77 -c  -O3 pclaqsy.f
+/usr/bin/mpif77 -c  -O3 pclarf.f
+/usr/bin/mpif77 -c  -O3 pclarfb.f
+/usr/bin/mpif77 -c  -O3 pclarfc.f
+/usr/bin/mpif77 -c  -O3 pclarfg.f
+/usr/bin/mpif77 -c  -O3 pclarft.f
+/usr/bin/mpif77 -c  -O3 pclascl.f
+/usr/bin/mpif77 -c  -O3 pclase2.f
+/usr/bin/mpif77 -c  -O3 pclaset.f
+/usr/bin/mpif77 -c  -O3 pclassq.f
+/usr/bin/mpif77 -c  -O3 pclaswp.f
+/usr/bin/mpif77 -c  -O3 pclatra.f
+/usr/bin/mpif77 -c  -O3 pclatrd.f
+/usr/bin/mpif77 -c  -O3 pclatrs.f
+/usr/bin/mpif77 -c  -O3 pclauu2.f
+/usr/bin/mpif77 -c  -O3 pclauum.f
+/usr/bin/mpif77 -c  -O3 pcpocon.f
+/usr/bin/mpif77 -c  -O3 pcpoequ.f
+/usr/bin/mpif77 -c  -O3 pcporfs.f
+/usr/bin/mpif77 -c  -O3 pcposv.f
+/usr/bin/mpif77 -c  -O3 pcpbsv.f
+/usr/bin/mpif77 -c  -O3 pcpbtrf.f
+/usr/bin/mpif77 -c  -O3 pcpbtrs.f
+/usr/bin/mpif77 -c  -O3 pcpbtrsv.f
+/usr/bin/mpif77 -c  -O3 pcptsv.f
+/usr/bin/mpif77 -c  -O3 pcpttrf.f
+/usr/bin/mpif77 -c  -O3 pcpttrs.f
+/usr/bin/mpif77 -c  -O3 pcpttrsv.f
+/usr/bin/mpif77 -c  -O3 pcposvx.f
+/usr/bin/mpif77 -c  -O3 pcpotf2.f
+/usr/bin/mpif77 -c  -O3 pcpotrf.f
+/usr/bin/mpif77 -c  -O3 pcpotri.f
+/usr/bin/mpif77 -c  -O3 pcpotrs.f
+/usr/bin/mpif77 -c  -O3 pcsrscl.f
+/usr/bin/mpif77 -c  -O3 pcstein.f
+/usr/bin/mpif77 -c  -O3 pctrevc.f
+/usr/bin/mpif77 -c  -O3 pctrti2.f
+/usr/bin/mpif77 -c  -O3 pctrtri.f
+/usr/bin/mpif77 -c  -O3 pctrtrs.f
+/usr/bin/mpif77 -c  -O3 pcung2l.f
+/usr/bin/mpif77 -c  -O3 pcung2r.f
+/usr/bin/mpif77 -c  -O3 pcungl2.f
+/usr/bin/mpif77 -c  -O3 pcunglq.f
+/usr/bin/mpif77 -c  -O3 pcungql.f
+/usr/bin/mpif77 -c  -O3 pcungqr.f
+/usr/bin/mpif77 -c  -O3 pcungr2.f
+/usr/bin/mpif77 -c  -O3 pcungrq.f
+/usr/bin/mpif77 -c  -O3 pcunm2l.f
+/usr/bin/mpif77 -c  -O3 pcunm2r.f
+/usr/bin/mpif77 -c  -O3 pcunmbr.f
+/usr/bin/mpif77 -c  -O3 pcunmhr.f
+/usr/bin/mpif77 -c  -O3 pcunml2.f
+/usr/bin/mpif77 -c  -O3 pcunmlq.f
+/usr/bin/mpif77 -c  -O3 pcunmql.f
+/usr/bin/mpif77 -c  -O3 pcunmqr.f
+/usr/bin/mpif77 -c  -O3 pcunmr2.f
+/usr/bin/mpif77 -c  -O3 pcunmrq.f
+/usr/bin/mpif77 -c  -O3 pcunmtr.f
+/usr/bin/mpif77 -c  -O3 pclaevswp.f
+/usr/bin/mpif77 -c  -O3 pclarzb.f
+/usr/bin/mpif77 -c  -O3 pclarzt.f
+/usr/bin/mpif77 -c  -O3 pclarz.f
+/usr/bin/mpif77 -c  -O3 pclarzc.f
+/usr/bin/mpif77 -c  -O3 pclatrz.f
+/usr/bin/mpif77 -c  -O3 pctzrzf.f
+/usr/bin/mpif77 -c  -O3 pclattrs.f
+/usr/bin/mpif77 -c  -O3 pcunmr3.f
+/usr/bin/mpif77 -c  -O3 pcunmrz.f
+/usr/bin/mpif77 -c  -O3 pcmax1.f
+/usr/bin/mpif77 -c  -O3 pscsum1.f
+/usr/bin/mpif77 -c  -O3 pclamr1d.f
+/usr/bin/mpif77 -c  -O3 cdbtf2.f
+/usr/bin/mpif77 -c  -O3 cdbtrf.f
+/usr/bin/mpif77 -c  -O3 cdttrf.f
+/usr/bin/mpif77 -c  -O3 cdttrsv.f
+/usr/bin/mpif77 -c  -O3 cpttrsv.f
+/usr/bin/mpif77 -c  -O3 csteqr2.f
+/usr/bin/mpif77 -c  -O3 ctrmvt.f
+/usr/bin/mpif77 -c  -O3 clamsh.f
+/usr/bin/mpif77 -c  -O3 claref.f
+/usr/bin/mpif77 -c  -O3 clanv2.f
+/usr/bin/mpif77 -c  -O3 clahqr2.f
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a pcdbsv.o  pcdbtrf.o pcdbtrs.o pcdbtrsv.o pcdtsv.o  pcdttrf.o pcdttrs.o pcdttrsv.o pcgbsv.o  pcgbtrf.o pcgbtrs.o pcgebd2.o pcgebrd.o pcgecon.o          pcgeequ.o pcgehd2.o pcgehrd.o pcgelq2.o pcgelqf.o  pcgels.o pcgeql2.o pcgeqlf.o pcgeqpf.o pcgeqr2.o pcgeqrf.o pcgerfs.o pcgerq2.o pcgerqf.o pcgesv.o  pcgesvd.o pcgesvx.o pcgetf2.o pcgetrf.o pcgetri.o pcgetrs.o pcggqrf.o pcggrqf.o pcheev.o  pcheevd.o pcheevx.o pchegs2.o pchegst.o pchegvx.o pchengst.o pchentrd.o pchettrd.o pchetd2.o pchetrd.o pclabrd.o pclacon.o pclacgv.o pclacp2.o pclacpy.o pclahrd.o pclahqr.o pclaconsb.o pclasmsub.o pclacp3.o pclawil.o pcrot.o pclange.o pclanhe.o pclanhs.o pclansy.o pclantr.o pclapiv.o pclapv2.o pclaqge.o pclaqsy.o pclarf.o  pclarfb.o pclarfc.o pclarfg.o pclarft.o pclascl.o pclase2.o pclaset.o pclassq.o pclaswp.o pclatra.o pclatrd.o pclatrs.o pclauu2.o pclauum.o pcpocon.o pcpoequ.o pcporfs.o pcposv.o pcpbsv.o  pcpbtrf.o pcpbtrs.o pcpbtrsv.o pcptsv.o  pcpttrf.o pcpttrs.o pcpttrsv.o pcposvx.o pcpotf2.o pcpotrf.o pcpotri.o pcpotrs.o pcsrscl.o pcstein.o pctrevc.o pctrti2.o pctrtri.o pctrtrs.o pcung2l.o pcung2r.o pcungl2.o pcunglq.o pcungql.o pcungqr.o pcungr2.o pcungrq.o pcunm2l.o pcunm2r.o pcunmbr.o pcunmhr.o pcunml2.o pcunmlq.o pcunmql.o pcunmqr.o pcunmr2.o pcunmrq.o pcunmtr.o pclaevswp.o pclarzb.o pclarzt.o pclarz.o  pclarzc.o pclatrz.o pctzrzf.o pclattrs.o pcunmr3.o pcunmrz.o pcmax1.o pscsum1.o pclamr1d.o cdbtf2.o  cdbtrf.o  cdttrf.o cdttrsv.o  cpttrsv.o csteqr2.o ctrmvt.o clamsh.o  claref.o  clanv2.o clahqr2.o pslabad.o pslaed0.o pslaed1.o pslaed2.o pslaed3.o pslaedz.o pslaiect.o pslamch.o pslared1d.o pslasrt.o psstebz.o psstedc.o slapst.o slasrt2.o sstein2.o pbchkvect.o getpbbuf.o \
+	pjlaenv.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+/usr/bin/mpif77 -c  -O3 pzdbsv.f
+/usr/bin/mpif77 -c  -O3 pzdbtrf.f
+/usr/bin/mpif77 -c  -O3 pzdbtrs.f
+/usr/bin/mpif77 -c  -O3 pzdbtrsv.f
+/usr/bin/mpif77 -c  -O3 pzdtsv.f
+/usr/bin/mpif77 -c  -O3 pzdttrf.f
+/usr/bin/mpif77 -c  -O3 pzdttrs.f
+/usr/bin/mpif77 -c  -O3 pzdttrsv.f
+/usr/bin/mpif77 -c  -O3 pzgbsv.f
+/usr/bin/mpif77 -c  -O3 pzgbtrf.f
+/usr/bin/mpif77 -c  -O3 pzgbtrs.f
+/usr/bin/mpif77 -c  -O3 pzgebd2.f
+/usr/bin/mpif77 -c  -O3 pzgebrd.f
+/usr/bin/mpif77 -c  -O3 pzgecon.f
+/usr/bin/mpif77 -c  -O3 pzgeequ.f
+/usr/bin/mpif77 -c  -O3 pzgehd2.f
+/usr/bin/mpif77 -c  -O3 pzgehrd.f
+/usr/bin/mpif77 -c  -O3 pzgelq2.f
+/usr/bin/mpif77 -c  -O3 pzgelqf.f
+/usr/bin/mpif77 -c  -O3 pzgels.f
+/usr/bin/mpif77 -c  -O3 pzgeql2.f
+/usr/bin/mpif77 -c  -O3 pzgeqlf.f
+/usr/bin/mpif77 -c  -O3 pzgeqpf.f
+/usr/bin/mpif77 -c  -O3 pzgeqr2.f
+/usr/bin/mpif77 -c  -O3 pzgeqrf.f
+/usr/bin/mpif77 -c  -O3 pzgerfs.f
+/usr/bin/mpif77 -c  -O3 pzgerq2.f
+/usr/bin/mpif77 -c  -O3 pzgerqf.f
+/usr/bin/mpif77 -c  -O3 pzgesv.f
+/usr/bin/mpif77 -c  -O3 pzgesvd.f
+/usr/bin/mpif77 -c  -O3 pzgesvx.f
+/usr/bin/mpif77 -c  -O3 pzgetf2.f
+/usr/bin/mpif77 -c  -O3 pzgetrf.f
+/usr/bin/mpif77 -c  -O3 pzgetri.f
+/usr/bin/mpif77 -c  -O3 pzgetrs.f
+/usr/bin/mpif77 -c  -O3 pzggqrf.f
+/usr/bin/mpif77 -c  -O3 pzggrqf.f
+/usr/bin/mpif77 -c  -O3 pzheev.f
+/usr/bin/mpif77 -c  -O3 pzheevd.f
+/usr/bin/mpif77 -c  -O3 pzheevx.f
+/usr/bin/mpif77 -c  -O3 pzhegs2.f
+/usr/bin/mpif77 -c  -O3 pzhegst.f
+/usr/bin/mpif77 -c  -O3 pzhegvx.f
+/usr/bin/mpif77 -c  -O3 pzhengst.f
+/usr/bin/mpif77 -c  -O3 pzhentrd.f
+/usr/bin/mpif77 -c  -O3 pzhettrd.f
+/usr/bin/mpif77 -c  -O3 pzhetd2.f
+/usr/bin/mpif77 -c  -O3 pzhetrd.f
+/usr/bin/mpif77 -c  -O3 pzlabrd.f
+/usr/bin/mpif77 -c  -O3 pzlacon.f
+/usr/bin/mpif77 -c  -O3 pzlacgv.f
+/usr/bin/mpif77 -c  -O3 pzlacp2.f
+/usr/bin/mpif77 -c  -O3 pzlacpy.f
+/usr/bin/mpif77 -c  -O3 pzlahrd.f
+/usr/bin/mpif77 -c  -O3 pzlahqr.f
+/usr/bin/mpif77 -c  -O3 pzlaconsb.f
+/usr/bin/mpif77 -c  -O3 pzlasmsub.f
+/usr/bin/mpif77 -c  -O3 pzlacp3.f
+/usr/bin/mpif77 -c  -O3 pzlawil.f
+/usr/bin/mpicc -c -O3  -DNO_IEEE -DUsingMpiBlacs -DAdd_ pzrot.c
+/usr/bin/mpif77 -c  -O3 pzlange.f
+/usr/bin/mpif77 -c  -O3 pzlanhe.f
+/usr/bin/mpif77 -c  -O3 pzlanhs.f
+/usr/bin/mpif77 -c  -O3 pzlansy.f
+/usr/bin/mpif77 -c  -O3 pzlantr.f
+/usr/bin/mpif77 -c  -O3 pzlapiv.f
+/usr/bin/mpif77 -c  -O3 pzlapv2.f
+/usr/bin/mpif77 -c  -O3 pzlaqge.f
+/usr/bin/mpif77 -c  -O3 pzlaqsy.f
+/usr/bin/mpif77 -c  -O3 pzlarf.f
+/usr/bin/mpif77 -c  -O3 pzlarfb.f
+/usr/bin/mpif77 -c  -O3 pzlarfc.f
+/usr/bin/mpif77 -c  -O3 pzlarfg.f
+/usr/bin/mpif77 -c  -O3 pzlarft.f
+/usr/bin/mpif77 -c  -O3 pzlascl.f
+/usr/bin/mpif77 -c  -O3 pzlase2.f
+/usr/bin/mpif77 -c  -O3 pzlaset.f
+/usr/bin/mpif77 -c  -O3 pzlassq.f
+/usr/bin/mpif77 -c  -O3 pzlaswp.f
+/usr/bin/mpif77 -c  -O3 pzlatra.f
+/usr/bin/mpif77 -c  -O3 pzlatrd.f
+/usr/bin/mpif77 -c  -O3 pzlattrs.f
+/usr/bin/mpif77 -c  -O3 pzlatrs.f
+/usr/bin/mpif77 -c  -O3 pzlauu2.f
+/usr/bin/mpif77 -c  -O3 pzlauum.f
+/usr/bin/mpif77 -c  -O3 pzpocon.f
+/usr/bin/mpif77 -c  -O3 pzpoequ.f
+/usr/bin/mpif77 -c  -O3 pzporfs.f
+/usr/bin/mpif77 -c  -O3 pzposv.f
+/usr/bin/mpif77 -c  -O3 pzpbsv.f
+/usr/bin/mpif77 -c  -O3 pzpbtrf.f
+/usr/bin/mpif77 -c  -O3 pzpbtrs.f
+/usr/bin/mpif77 -c  -O3 pzpbtrsv.f
+/usr/bin/mpif77 -c  -O3 pzptsv.f
+/usr/bin/mpif77 -c  -O3 pzpttrf.f
+/usr/bin/mpif77 -c  -O3 pzpttrs.f
+/usr/bin/mpif77 -c  -O3 pzpttrsv.f
+/usr/bin/mpif77 -c  -O3 pzposvx.f
+/usr/bin/mpif77 -c  -O3 pzpotf2.f
+/usr/bin/mpif77 -c  -O3 pzpotrf.f
+/usr/bin/mpif77 -c  -O3 pzpotri.f
+/usr/bin/mpif77 -c  -O3 pzpotrs.f
+/usr/bin/mpif77 -c  -O3 pzdrscl.f
+/usr/bin/mpif77 -c  -O3 pzstein.f
+/usr/bin/mpif77 -c  -O3 pztrevc.f
+/usr/bin/mpif77 -c  -O3 pztrti2.f
+/usr/bin/mpif77 -c  -O3 pztrtri.f
+/usr/bin/mpif77 -c  -O3 pztrtrs.f
+/usr/bin/mpif77 -c  -O3 pzung2l.f
+/usr/bin/mpif77 -c  -O3 pzung2r.f
+/usr/bin/mpif77 -c  -O3 pzungl2.f
+/usr/bin/mpif77 -c  -O3 pzunglq.f
+/usr/bin/mpif77 -c  -O3 pzungql.f
+/usr/bin/mpif77 -c  -O3 pzungqr.f
+/usr/bin/mpif77 -c  -O3 pzungr2.f
+/usr/bin/mpif77 -c  -O3 pzungrq.f
+/usr/bin/mpif77 -c  -O3 pzunm2l.f
+/usr/bin/mpif77 -c  -O3 pzunm2r.f
+/usr/bin/mpif77 -c  -O3 pzunmbr.f
+/usr/bin/mpif77 -c  -O3 pzunmhr.f
+/usr/bin/mpif77 -c  -O3 pzunml2.f
+/usr/bin/mpif77 -c  -O3 pzunmlq.f
+/usr/bin/mpif77 -c  -O3 pzunmql.f
+/usr/bin/mpif77 -c  -O3 pzunmqr.f
+/usr/bin/mpif77 -c  -O3 pzunmr2.f
+/usr/bin/mpif77 -c  -O3 pzunmrq.f
+/usr/bin/mpif77 -c  -O3 pzunmtr.f
+/usr/bin/mpif77 -c  -O3 pzlaevswp.f
+/usr/bin/mpif77 -c  -O3 pzlarzb.f
+/usr/bin/mpif77 -c  -O3 pzlarzt.f
+/usr/bin/mpif77 -c  -O3 pzlarz.f
+/usr/bin/mpif77 -c  -O3 pzlarzc.f
+/usr/bin/mpif77 -c  -O3 pzlatrz.f
+/usr/bin/mpif77 -c  -O3 pztzrzf.f
+/usr/bin/mpif77 -c  -O3 pzunmr3.f
+/usr/bin/mpif77 -c  -O3 pzunmrz.f
+/usr/bin/mpif77 -c  -O3 pzmax1.f
+/usr/bin/mpif77 -c  -O3 pdzsum1.f
+/usr/bin/mpif77 -c  -O3 pzlamr1d.f
+/usr/bin/mpif77 -c  -O3 zdbtf2.f
+/usr/bin/mpif77 -c  -O3 zdbtrf.f
+/usr/bin/mpif77 -c  -O3 zdttrf.f
+/usr/bin/mpif77 -c  -O3 zdttrsv.f
+/usr/bin/mpif77 -c  -O3 zpttrsv.f
+/usr/bin/mpif77 -c  -O3 zsteqr2.f
+/usr/bin/mpif77 -c  -O3 ztrmvt.f
+/usr/bin/mpif77 -c  -O3 zlamsh.f
+/usr/bin/mpif77 -c  -O3 zlaref.f
+/usr/bin/mpif77 -c  -O3 zlanv2.f
+/usr/bin/mpif77 -c  -O3 zlahqr2.f
+ar cr /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a pzdbsv.o  pzdbtrf.o pzdbtrs.o pzdbtrsv.o pzdtsv.o  pzdttrf.o pzdttrs.o pzdttrsv.o pzgbsv.o  pzgbtrf.o pzgbtrs.o pzgebd2.o pzgebrd.o pzgecon.o           pzgeequ.o pzgehd2.o pzgehrd.o pzgelq2.o pzgelqf.o pzgels.o  pzgeql2.o pzgeqlf.o pzgeqpf.o pzgeqr2.o pzgeqrf.o pzgerfs.o pzgerq2.o pzgerqf.o pzgesv.o  pzgesvd.o pzgesvx.o pzgetf2.o pzgetrf.o pzgetri.o pzgetrs.o pzggqrf.o pzggrqf.o pzheev.o  pzheevd.o pzheevx.o pzhegs2.o pzhegst.o pzhegvx.o pzhengst.o pzhentrd.o pzhettrd.o pzhetd2.o pzhetrd.o pzlabrd.o pzlacon.o pzlacgv.o pzlacp2.o pzlacpy.o pzlahrd.o pzlahqr.o pzlaconsb.o pzlasmsub.o pzlacp3.o pzlawil.o pzrot.o pzlange.o pzlanhe.o pzlanhs.o pzlansy.o pzlantr.o pzlapiv.o pzlapv2.o pzlaqge.o pzlaqsy.o pzlarf.o  pzlarfb.o pzlarfc.o pzlarfg.o pzlarft.o pzlascl.o pzlase2.o pzlaset.o pzlassq.o pzlaswp.o pzlatra.o pzlatrd.o pzlattrs.o pzlatrs.o pzlauu2.o pzlauum.o pzpocon.o pzpoequ.o pzporfs.o pzposv.o pzpbsv.o  pzpbtrf.o pzpbtrs.o pzpbtrsv.o pzptsv.o  pzpttrf.o pzpttrs.o pzpttrsv.o pzposvx.o pzpotf2.o pzpotrf.o pzpotri.o pzpotrs.o pzdrscl.o pzstein.o pztrevc.o pztrti2.o pztrtri.o pztrtrs.o pzung2l.o pzung2r.o pzungl2.o pzunglq.o pzungql.o pzungqr.o pzungr2.o pzungrq.o pzunm2l.o pzunm2r.o pzunmbr.o pzunmhr.o pzunml2.o pzunmlq.o pzunmql.o pzunmqr.o pzunmr2.o pzunmrq.o pzunmtr.o pzlaevswp.o pzlarzb.o pzlarzt.o pzlarz.o  pzlarzc.o pzlatrz.o pztzrzf.o pzunmr3.o pzunmrz.o pzmax1.o pdzsum1.o pzlamr1d.o zdbtf2.o  zdbtrf.o  zdttrf.o zdttrsv.o  zpttrsv.o zsteqr2.o ztrmvt.o zlamsh.o  zlaref.o  zlanv2.o zlahqr2.o pdlabad.o pdlaed0.o pdlaed1.o pdlaed2.o pdlaed3.o pdlaedz.o pdlaiect.o pdlamch.o pdlared1d.o pdlasrt.o pdstebz.o pdstedc.o dlapst.o dlasrt2.o dstein2.o pbchkvect.o getpbbuf.o \
+	pjlaenv.o
+/usr/bin/ranlib /home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/libscalapack.a
+make[1]: Leaving directory `/home/kevin/UBA/SistemasComplejos/tp2/scalapack_installer_0.96/build/scalapack-1.8.0/SRC'

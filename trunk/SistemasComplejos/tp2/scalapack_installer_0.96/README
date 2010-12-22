@@ -1,0 +1,146 @@
+=======================================================================
+                      README ScaLAPACK Installer
+=======================================================================
+
+Version: 0.96
+Release date: September 9th 2009
+University Of Tennessee
+
+==========================================================================
+INTRODUCTION
+
+
+The ScaLAPACK installer is a set of python scripts developed to ease
+the installation of the ScaLAPACK library. It can automatically
+download, configure and compile the ScaLAPACK including all its
+dependencies that are BLAS, LAPACK and BLACS libraries. All it needs
+is the mpi C and FORTRAN compilers mpicc and mpif77 (note that the
+names of these compilers may be different than mpicc and mpif77 on
+some systems). Please note that this is an alpha version and, even if
+it has been tested on a wide set of systems, may not work. In case you
+encounter a problem, your feedback would be greatly appreaciated and
+would be very useful to improve the quality of this installer.
+Please submit your complaints and suggestions to scalapack@cs.utk.edu
+or on the lapack/scalapack forum: http://icl.cs.utk.edu/lapack-forum/
+
+
+==========================================================================
+INSTALL
+
+Here's a list of the flags that can be used to provide the installer
+information about the system like, for example, the mpi compilers, the
+libraries that are already present on the system and need not be downloaded.
+
+          
+          -h or --help         : prints this message
+
+          --prefix             : path where to create the libraries, build and log of the installer
+
+          --mpibindir=[DIR]    : the path to where the mpi
+                                 binaries (mpicc and mpif77)
+                                 are contained
+
+          --mpicc=[CMD]        : the mpicc command.
+                                 (default: will take the first available mpicc in the path)
+
+          --mpif77=[CMD]       : the mpif77 command.
+                                 (default: will take the first available mpif77 in the path)
+
+          --f90=[CMD]          : the Fortran 90/95 compiler.
+                                 A Fortran 90/95 is required only in the case where LAPACK has to be
+                                 installed, i.e., the --downlapack flag was provided.
+
+          --mpiincdir=[DIR]    : the path to the directory containing mpi.h
+                                 (default: will take the corresponding mpi.h to the mpicc/mpif77 found)
+
+          --ccflags=[FLAGS]    : the flags for the C compiler
+                                 (default -O3)
+
+          --fcflags=[FLAGS]    : the flags for the F77 compiler
+                                 (default -O3)
+
+          --f90flags=[FLAGS]   : the flags for the F90/95 compiler
+                                 (default -O3)
+
+          --noopt=[FLAGS]      : compilation flags to be used
+                                 on machine dependent subroutines
+                                 in LAPACK and ScaLAPACK.
+                                 See LAPACK and ScaLAPACK documentation.
+
+          --ldflags_c=[flags]  : loader flags when main program is in C. Some compilers (e.g. PGI) require 
+                                 different options when linking C main programs to Fortran subroutines
+                                 and vice-versa
+
+          --ldflags_f77=[flags]: loader flags when main program is in Fortran 77. Some compilers (e.g. PGI) require 
+                                 different options when linking Fortran main programs to C subroutines
+                                 and vice-versa
+
+          --ldflags_f90=[flags]: loader flags when main program is in Fortran 90/95. Some compilers (e.g. PGI) require 
+                                 different options when linking Fortran main programs to C subroutines
+                                 and vice-versa
+
+          --makecmd=[CMD]      : the make command
+                                 (make by default)
+
+          --blacslib=[LIB]     : the BLACS library
+                                 (path should be absolute if --prefix is used)
+
+          --blacsclib=[LIB]    : the BLACS C interface library
+                                 (path should be absolute if --prefix is used)
+
+          --blacsf77lib=[LIB]  : the BLACS F77 interface library
+                                 (path should be absolute if --prefix is used)
+
+          --blaslib=[LIB]      : a BLAS library
+                                 (path should be absolute if --prefix is used)
+
+          --lapacklib=[LIB]    : a LAPACK library
+                                 (path should be absolute if --prefix is used)
+
+          --downblas           : if you do not want to provide a BLAS
+                                 we can download and install it for you
+
+          --downblacs          : if you do not want to provide a BLACS
+                                 we can download and install it for you
+
+          --downlapack         : if you do not want to provide a LAPACK
+                                 we can download and install it for you
+
+          --notesting          : disables the ScaLAPACK testing. The
+                                 BLAS, BLACS and LAPACK libraries are not
+                                 required in this case.
+
+          --clean              : cleans up the installer directory.
+
+Note: If you want use a proxy for downloading, the http_proxy environment variable has to be set.
+
+If the required packages cannot be automatically downloaded (for
+example, because no network connection is available on the system),
+you can take them any way you like from the following URLs and place
+them in the build directory (if the directory does not exist, create
+it):
+
+BLAS      : http://netlib.org/blas/blas.tgz
+LAPACK    : http://netlib.org/lapack/lapack.tgz
+BLACS     : http://netlib.org/blacs/mpiblacs.tgz
+ScaLAPACK : http://netlib.org/scalapack/scalapack-1.8.0.tgz
+
+Please note that, in the case where the installer is asked to
+automatically download and install the BLAS library, the reference
+BLAS is installed and, thus, very low performance is to be expected.
+It is strongly recommended that you use an highly optimized BLAS
+library (like ATLAS, MKL, GotoBLAS, ESSL etc.) and provide a path to
+its location through the --blaslib flag.
+
+
+
+
+==========================================================================
+AUTHORS
+
+The authors of the ScaLAPACK installer are:
+
+Alfredo Buttari   (Electrical Engineering and Computer Science Department, University of Tennessee Knoxville)
+Julien Langou     (Department of Mathematical Sciences, University of Colorado Denver)
+Julie Langou      (Electrical Engineering and Computer Science Department, University of Tennessee Knoxville)
+
