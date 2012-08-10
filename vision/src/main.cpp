@@ -3,7 +3,8 @@
 #include "stdio.h"
 #include "cv.h"
 #include "highgui.h"
-// #include "libexabot-remote/libexabot-remote.h"
+#include "libexabot-remote/libexabot-remote.h"
+#include "libcam/libcam.h"
 
 #define VIDEO1 "../video/cam1.avi"
 #define VIDEO2 "../video/cam2.avi"
@@ -11,10 +12,10 @@
 #define VIDEOOUT "../video/out.avi"
 #define SIZE 200
 #define CROP 8 // %
-#define BUFFER 10
+#define BUFFER 7
 #define THRESH1 4.0
 #define THRESH2 8.0
-#define RANGO_MOTOR 100
+#define RANGO_MOTOR 0.36
 
 using namespace std;
 using namespace cv;
@@ -47,7 +48,8 @@ struct cv_8uc3{
 /* Declaracion de Funciones Auxiliares */
 /* =================================== */
 
-bool cargar_frames(VideoCapture &vid1, Mat &m1, VideoCapture &vid2, Mat &m2);
+bool cargar_frames(Camera &vid1, Mat &m1, Camera &vid2, Mat &m2, CvSize size);
+bool cargar_frames_VideoCapture(VideoCapture &vid1, Mat &m1, VideoCapture &vid2, Mat &m2);
 double promedio(Mat disp, int xmin, int ymin, int xmax, int ymax);
 void estrategia(double pizq, double pmed, double pder, double &motor_izq, double &motor_der);
 int obtener_parametros_imagenes(image_data &parametros);
@@ -87,6 +89,7 @@ int main(int argc, char* argv[]) {
 
 	int dims[3];
 	Elas::parameters data;
+	data.ipol_gap_width = 30;
 	Elas elas(data);
 
 	namedWindow("Video 3D");			// Ventana donde se muestra el video 3D
@@ -96,18 +99,27 @@ int main(int argc, char* argv[]) {
 	// Abro los videos
 	string video1, video2;
 	if (argc > 2) {
-    	video1 = argv[1];
-    	video2 = argv[2];
-    } else {
-        video1 = VIDEO1;
-        video2 = VIDEO2;
-    }
-	VideoCapture video_right(video1);
+		video1 = argv[1];
+		video2 = argv[2];
+	} else {
+		video1 = VIDEO1;
+		video2 = VIDEO2;
+	}
+	/*VideoCapture video_right(video1);
 	VideoCapture video_left(video2);
-	if(!video_right.isOpened() || !video_left.isOpened()){ cerr << "Error al abrir el video" << endl; return -1; }
+	if(!video_right.isOpened()){ cerr << "Error al abrir el video 1" << endl; return -1; }
+	if(!video_left.isOpened()){ cerr << "Error al abrir el video 2" << endl; return -1; }*/
+	CvSize input_size = cvSize(640, 480);
+	int fps = 15;
+	Camera video_right(video1.c_str(), input_size.width, input_size.height, fps);
+	Camera video_left(video2.c_str(), input_size.width, input_size.height, fps);
+	video_right.setExposure(400);
+	video_left.setExposure(400);
+	video_right.Update();
+	video_left.Update();
 
 	// Cargo un par de frames
-	cargar_frames(video_right, fr, video_left, fl);
+	cargar_frames(video_right, fr, video_left, fl, input_size);
 	
 	obtener_parametros_imagenes(matlab_params);
 
@@ -142,7 +154,7 @@ int main(int argc, char* argv[]) {
 	// out.open(VIDEOOUT,CV_FOURCC('D','I','V','X'), 30, colorDisp.size(), 1);
 	
 	// Comunicacion Exabot
-	// exa_remote_initialize("192.168.1.2");
+	exa_remote_initialize("192.168.1.2");
 
 	// Proceso los restantes frames del video
 	unsigned int frameno = 0;
@@ -151,7 +163,7 @@ int main(int argc, char* argv[]) {
 	double pder = 0;
 	double motor_izq = 0.;
 	double motor_der = 0.;
-	while(cargar_frames(video_right, fr, video_left, fl)) {
+	while(cargar_frames(video_right, fr, video_left, fl, input_size)) {
 		// Obtengo el frame en 3D
 		rectificar(rect_right, fr, fr_rect);
 		rectificar(rect_left, fl, fl_rect);
@@ -169,16 +181,16 @@ int main(int argc, char* argv[]) {
 		colorear(mapDis1, colorDisp);
 		
 		// Calculo direccion
-	    pizq += promedio(mapDis1, 1, 1, size.width/3, size.height);
-	    pmed += promedio(mapDis1, size.width/3, 1, 2*size.width/3, size.height);
-	    pder += promedio(mapDis1, 2*size.width/3, 1, size.width, size.height);
+		pizq += promedio(mapDis1, 1, 1, size.width/3, size.height);
+		pmed += promedio(mapDis1, size.width/3, 1, 2*size.width/3, size.height);
+		pder += promedio(mapDis1, 2*size.width/3, 1, size.width, size.height);
 		if (frameno % BUFFER == BUFFER-1) {
 		    pizq /= BUFFER; pmed /= BUFFER; pder /= BUFFER;
 		    estrategia(pizq, pmed, pder, motor_izq, motor_der);
-		    int motorI = (int)(motor_izq*RANGO_MOTOR);
-		    int motorD = (int)(motor_der*RANGO_MOTOR);
-	        cout << "[" << motorI << ", " << motorD << "]" << endl;
-	        // exa_remote_set_motors(motorI, motorD);
+		    float motorI = motor_izq * RANGO_MOTOR;
+		    float motorD = motor_der * RANGO_MOTOR;
+		    cout << "[" << motorI << ", " << motorD << "]" << endl;
+		    exa_remote_set_motors(motorI, motorD);
 		    pizq = 0; pmed = 0; pder = 0;
 		}
 
@@ -195,7 +207,8 @@ int main(int argc, char* argv[]) {
 
 		frameno++;
 	}
-	// exa_remote_deinitialize();
+	exa_remote_set_motors(0., 0.);
+	exa_remote_deinitialize();
 	return 0;
 }
 
@@ -203,7 +216,21 @@ int main(int argc, char* argv[]) {
 /* Implementacion de Funciones Auxiliares */
 /* ====================================== */
 
-bool cargar_frames(VideoCapture &vid1, Mat &m1, VideoCapture &vid2, Mat &m2) {
+bool cargar_frames(Camera &vid1, Mat &m1, Camera &vid2, Mat &m2, CvSize size) {
+	IplImage* frame1 = cvCreateImage(size, IPL_DEPTH_8U, 3);
+	IplImage* frame2 = cvCreateImage(size, IPL_DEPTH_8U, 3);
+	if (vid1.Update((unsigned int)1) && vid2.Update((unsigned int)1)) {
+		vid1.toIplImage(frame1);
+		vid2.toIplImage(frame2);
+		cvtColor(frame1, m1, CV_BGR2GRAY);
+		cvtColor(frame2, m2, CV_BGR2GRAY);
+		return true;
+	} else {
+		return false;
+	}
+}
+
+bool cargar_frames_VideoCapture(VideoCapture &vid1, Mat &m1, VideoCapture &vid2, Mat &m2) {
 	Mat tmp1, tmp2;
 	if (vid1.grab() && vid2.grab()) {
     	vid1.retrieve(tmp1);
@@ -233,8 +260,8 @@ void estrategia(double pizq, double pmed, double pder, double &motor_izq, double
         return;
     }
     if (pmed < THRESH2) {
-        motor_izq = 0.1 + 0.4*(pder<THRESH1);
-        motor_der = 0.1 + 0.4*(pizq<THRESH1);
+        motor_izq = 0.2 + 0.4*(pder<THRESH1);
+        motor_der = 0.2 + 0.4*(pizq<THRESH1);
         return;
     }
     if (pizq > THRESH2 && pder > THRESH2) {
