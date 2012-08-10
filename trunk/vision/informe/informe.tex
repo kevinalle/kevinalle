@@ -2,6 +2,7 @@
 \usepackage{graphicx}
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage{hyperref}
 
 % par ahacer figuras
 %\begin{figure}
@@ -10,6 +11,7 @@
 %    \caption{Simulation Results}
 %    \label{simulationfigure}
 %\end{figure}
+\newcommand{\tit}[1]{\textsc{\textbf{#1}}}
 \begin{document}
 
 \title{Navegación autónoma para robots móviles usando visión estéreo}
@@ -24,10 +26,34 @@ La implementación se realizó para el \textsc{Exabot} usando las librerías \te
 \end{abstract}
 
 \section{Introducción}
-Here is the text of your introduction.
+En este trabajo presentamos un método para la navegación autónoma de un robot basado en algoritmos de computer vision usando cámaras en estereo.
 
+La visión en estéreo consiste de 2 cámaras alineadas en la misma dirección que toman las mismas imágenes desde puntos apartados ligeramente.
+Se asemeja a la forma en que los humanos y animales detectan la ``profundidad'' en ambientes.
+La idea es alinear las imagenes (previamente rectificadas) y calcular la disparidad en cada punto.
+Cada punto del ambiente es captado por las 2 cámaras, y por reglas trigonométricas vemos que la distancia del punto a las cámaras es proporcional a la diferencia de posicion horizontal observado entre las cámaras.
+Así, un punto lejano va a proyectarse en las 2 imágenes en casi la misma posición, y un punto cercano a las cámaras va a proyectarse en posiciones distintas en cada cámara. 
+Gracias a esta propiedad y calculando el mapa de disparidad entre las 2 imágenes, podemos obtener una estimación muy buena de la geometría del espacio frente a las cámaras.
+Un detalle no menor es que para calcular el mapa de disparidad de forma precisa las imágenes de las cámaras tienen que estar cuidadosamente rectificadas y alineadas. La rectificación corrige errores de deformación de las lentes para que las imágenes representen mas fielmente la proyección del espacio al plano de la cámara, y la alineación corrige la dirección en la que apuntan las cámaras para tener un sistema de referencia certero.
 
-\section{Conclusion}
-Write your conclusion here.
+El objetivo del método es permitir a un robot la navegación autónoma, por lo que es importante la performance para poder correr en tiempo real y proveer acciones correspondientes basado en la visión. Vamos a usar las librerías de \texttt{OpenCV} para procesar los streams de video y \texttt{LibElas} para calcular el mapa de disparidad.
 
+Para llevar a cabo una navegación autónoma se debe implementar una estrategia basada en la observación del mundo (cámaras, mapa de disparidad) que decida acciones a ser llevadas a cabo por los actuadores (ruedas del exabot).
+Buscamos una estrategia que evite la colisión con objetos y avance hacia espacios libres del ambiente.
+
+\section{Método}
+
+\section{Propuesto}
+
+\section{Experimentos}
+
+\section{Conclusiones}
+
+\section{Bibliografía}
+
+\tit{LibElas}: Librería para computar mapas de disparidad a partir de pares de imagenes en escala de grises rectificadas. \url{http://www.cvlibs.net/software/libelas.html}
+
+\bigskip
+
+\tit{OpenCV}: Librería de funciones para computer vision en tiempo real. \url{http://opencv.willowgarage.com/}
 \end{document}

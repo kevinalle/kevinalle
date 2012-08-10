@@ -3,7 +3,7 @@
 #include "stdio.h"
 #include "cv.h"
 #include "highgui.h"
-#include "libexabot-remote/libexabot-remote.h"
+// #include "libexabot-remote/libexabot-remote.h"
 
 #define VIDEO1 "../video/cam1.avi"
 #define VIDEO2 "../video/cam2.avi"
@@ -12,7 +12,7 @@
 #define SIZE 200
 #define CROP 8 // %
 #define BUFFER 10
-#define THRESH1 5.0
+#define THRESH1 4.0
 #define THRESH2 8.0
 #define RANGO_MOTOR 100
 
@@ -139,10 +139,10 @@ int main(int argc, char* argv[]) {
 	dims[2] = size.width;
 
 	// Abro el archivo de salida 'out.avi'
-	out.open(VIDEOOUT,CV_FOURCC('D','I','V','X'), 30, colorDisp.size(), 1);
+	// out.open(VIDEOOUT,CV_FOURCC('D','I','V','X'), 30, colorDisp.size(), 1);
 	
 	// Comunicacion Exabot
-	exa_remote_initialize("192.168.1.2");
+	// exa_remote_initialize("192.168.1.2");
 
 	// Proceso los restantes frames del video
 	unsigned int frameno = 0;
@@ -160,7 +160,7 @@ int main(int argc, char* argv[]) {
 		// Crop
 		resize(fr_rect, right_small, size);
 		right = right_small(crop);
-		resize(fl_rect, left_small, size);
+		resize(fl_rect2, left_small, size);
 		left = left_small(crop);
 		mezclar_imagenes(left, right, merge);
 
@@ -178,7 +178,7 @@ int main(int argc, char* argv[]) {
 		    int motorI = (int)(motor_izq*RANGO_MOTOR);
 		    int motorD = (int)(motor_der*RANGO_MOTOR);
 	        cout << "[" << motorI << ", " << motorD << "]" << endl;
-	        exa_remote_set_motors(motorI, motorD);
+	        // exa_remote_set_motors(motorI, motorD);
 		    pizq = 0; pmed = 0; pder = 0;
 		}
 
@@ -187,7 +187,7 @@ int main(int argc, char* argv[]) {
 		imshow("Video Disparidad", colorDisp);
 
 		// Guardo el frame con la imagen de disparidad en el archivo 'out.avi'
-		out << colorDisp;
+		// out << colorDisp;
 
 		// FPS = 30
 		if (waitKey(30) >= 0)
@@ -195,7 +195,7 @@ int main(int argc, char* argv[]) {
 
 		frameno++;
 	}
-	exa_remote_deinitialize();
+	// exa_remote_deinitialize();
 	return 0;
 }
 
