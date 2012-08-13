@@ -213,15 +213,64 @@ La estrategia está pensada para que explore lo máximo posible sincolisionar co
     \label{tbl_estrategia}
 \end{figure}
 
-Observar que la acción a tomar en cada caso es determinística y sólo depende del estado actual del sensado (o de los últimos ~3 segundos de sensado).
+Observar que la acción a tomar en cada caso es determinística y sólo depende del estado actual del sensado (o de los últimos $\sim$ 3 segundos de sensado).
 
 Por ejemplo, en el caso de la figura \ref{fig_disparidad} (donde los valores de los promedios son \emph{alto}, \emph{medio}, \emph{bajo}, la estrategia dice que hay que avanzar lento hacia la derecha.
 
 Cada una de estas acciones se traduce a un par de velocidades para los motores que producen que el robot haga esa acción. En el ejemplo, ``avanzar lento hacia la derecha'' se traduce a (0.216, 0.072), osea una velocidad de 0.216 para el motor izquierdo y 0.072 para el derecho. El efecto producido es que el exabot avanza levemente mientras rota hacia la derecha.
 
+
+\newpage
 \section{Experimentos}
+Para llegar a este método de navegación autónoma experimentamos con diferentes opciones y elegimos la mejor.
+Además hay una serie de parámetros a optimizar para mejorar el resultado.
+
+\subsection{Toma de imágenes}
+Los parámetros variables en esta instancia son el tamaño y tipo de la imagen y el brillo.
+Como no nos interesa mucho la granularidad del mapa de disparidad (porque de todas formas vamos a promediar grandes áreas) decidimos trabajar con un tamaño de imagen chico (200 o 300 pixeles de ancho) para que el procesado sea más rápido y las convertimos en escala de grises.
+El brillo lo ajustamos luego de hacer un par de pruebas para que funcione bien en interiores iluminados, y se puede cambiar si cambian las condiciones.
+
+\subsection{Alineación, rectificación}
+Los parámetros de rectificación los obtenemos de un archivo de configuración previamente creado con los datos obtenidos de la calibración para esa cámara.
+La alineación horizontal se ajusta en tiempo de ejecución porque puede variar entre los experimentos.
+En este paso tambien recortamos un 8$\sim$10\% de los bordes para descartar las imperfecciones resultantes de rectificar, girar y alinear las imágenes.
+
+\subsection{Mapa de Disparidad y parametrización del escenario}
+El mapa de disparidad contiene información de la disparidad entre las imágenes, que se corresponde con alfún factor a la cercanía de obstáculos en el ambiente.
+
+Mencionamos en el Método que definimos 2 umbrales para el valor de las disparidades.
+Ajustamos estas constantes de forma aproximada y luego de algunas pruebas, como para que valores \emph{bajos} se correspondan con más de un metro de distancia a un obstáculo, valores \emph{medios} con obstáculos que se encuentran entre los 40cm y 1m, y valores \emph{altos} con abstáculos a menos de 40cm.
+De esta forma durante la navegación se acerca suficientemente a las paredes como para explorar, pero evita las colisiones con una distancia segura.
+
+También experimentamos con distintos valores del promedio temporal y finalmente decidimos 8 frames. A la velocidad que procesamos los datos, este valor es suficiente como para tomar una decisión cada aproximadamente 3 o 4 segundos.
+
+\subsection{Estrategia}
+Una vez categorizados los 27 escenarios posibles, decidimos la estrategia para cada caso o conjunto de casos basádonos en el sentido común.
+En general el método es el de avanzar hacia espacios vacíos y alejándose de obstáculos. Definimos velocidades distintas para cuando hay espacio y para valores medios de forma de explorar rápido pero con cuidado cuando hay peligro de colisión.
+
+Hay muchas estrategias diferentes que se pueden implementar, y cada una provocará una navegación diferente. La que elegimos creemos que es adecuada para navegar interiores con paredes con el exabot.
 
 \section{Conclusiones}
+
+El uso de cámaras estereoscopicas para reconstruir la geometría de un ambiente se asemeja mucho a la forma en que lo hacen humanos y otros animales.
+La disparidad entre las imágenes brinda información muy valiosa acerca de la distancia a objetos y es muy útil para la navegación.
+
+En principio pareciera que el uso de 2 cámaras no diferiría mucho de una sóla cámara, pero con estos resultados se puede observar la utilidad del método.
+Un mecanismo que provee un mapa de distancias del espacio frente al robot es sin duda uno de los mecanismos más valiosos de sensado que se pueden implementar, especialmente para navegación autónoma.
+
+Pudimos implementar este método en un robot relativamente simple y con hardware accesible, y una estrategia de navegación autónoma que permite una buena exploración.
+Se puede mejorar la presición y performance de la obtención del mapa de disparidad y mejorar la estrategia y hacer un robot más reactivo al ambiente.
+
+Existen también muchos otros métodos de extracción de información a partir de la disparidad, pero la separación en 3 zonas es una forma simple que funciona sorprendentemente bien para este caso de uso.
+
+Para trabajo futuro se puede combinar este método con mecanismos de localization and mapping para hacer una navegación más inteligente y exhaustiva, o también aumentar la cantidad de dimensiones o motion planning o combinar con otras formas de sensado, entre otras.
+
+\bigskip
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{minoru.jpg}
+\end{figure}
 
 \section{Bibliografía}
 
@@ -231,3 +280,5 @@ Cada una de estas acciones se traduce a un par de velocidades para los motores q
 
 \tit{OpenCV}: Librería de funciones para computer vision en tiempo real. \url{http://opencv.willowgarage.com/}
 \end{document}
+
+
