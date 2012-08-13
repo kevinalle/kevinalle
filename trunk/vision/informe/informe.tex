@@ -3,6 +3,8 @@
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
+\usepackage{xcolor,colortbl}
+\usepackage{multirow}
 
 % para hacer figuras
 %\begin{figure}
@@ -12,6 +14,11 @@
 %    \label{simulationfigure}
 %\end{figure}
 \newcommand{\tit}[1]{\textsc{\textbf{#1}}}
+\newcommand{\alto}{{\cellcolor{red!65} alto}}
+\newcommand{\medio}{{\cellcolor{red!50!blue!65} medio}}
+\newcommand{\bajo}{{\cellcolor{blue!65} bajo}}
+\newcommand{\multi}[2]{\multirow{#1}{*}{\parbox{3.7cm}{#2}}}
+
 \begin{document}
 
 \title{Navegación autónoma para robots móviles usando visión estéreo}
@@ -96,7 +103,7 @@ Este mapa de disparidad fue coloreado para entenderlo mejor visualmente, pero es
 Observamos que hay zonas en negro, donde no tenemos información de la profundidad. Esto puede deberse a que no hay suficiente contraste en esas partes de la imagen, o que el algoritmo no encontró matches entre las 2. Hay que tener esto en cuenta a la hora de usar el mapa, pero igualmente es usable para nuestro propósito de navegación autónoma.
 
 \subsection{Parametrización de atributos}
-Para que el mapa de disparidad recién calculado sea útil, es necesario extraer información de éste que pueda usarse en la desición de las acciones a tomar.
+Para que el mapa de disparidad recién calculado sea útil, es necesario extraer información de éste que pueda usarse en la decisión de las acciones a tomar.
 
 Dado que las acciones razonables que puede realizar un robot como el exabot para navegar ambientes son: avanzar, avanzar hacia la izquierda, avanzar hacia la derecha o girar en el lugar, vamos a analizar la presencia de obstáculos en alguna de estas direcciones.
 
@@ -115,10 +122,103 @@ Además, para tener estimaciones más precisas de los valores reales, promediamo
     \centering
     \includegraphics[width=0.9\linewidth]{disparidad.png}
     \caption{Análisis del mapa de disparidad}
-    \label{fig_exa}
+    \label{fig_disparidad}
 \end{figure}
 
-En resumen, cada cierta cantidad de frames obtenemos estimaciones de la cercanía de obstáculos para cada una de las 3 áreas. Esto nos identifica 27 posibles escenarios para tomar decisiones en cada instante. Elegimos la cantidad de frames a promediar en función de los FPS para tomar una desición cada aproximadamente 3 segundos.
+En resumen, cada cierta cantidad de frames obtenemos estimaciones de la cercanía de obstáculos para cada una de las 3 áreas. Esto nos identifica 27 posibles escenarios para tomar decisiones en cada instante. Elegimos la cantidad de frames a promediar en función de los FPS para tomar una decisión cada aproximadamente 3 segundos.
+
+\subsection{Estrategia}
+Para llevar a cabo la navegación necesitamos una estrategia que determine qué acciones tomar ante cada escenario posible.
+Usamos la categorización de posibilidades que mencionamos recién, y vamos a enumerar las acciones a tomar en cada caso.
+
+En la siguiente tabla [\ref{tbl_estrategia}] se presenta la accion a tomar según los valores de los promedios de las áreas.
+La estrategia está pensada para que explore lo máximo posible sincolisionar con abstáculos.
+
+\begin{figure}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|p{3.7cm}|}
+    \hline
+    \texttt{p\_izq} & \texttt{p\_med} & \texttt{p\_der} & \textbf{Acción} \\
+    \hline
+    \hline
+    \bajo & \bajo & \bajo & \multi{4}{avanzar rápido}\\
+    \cline{1-3}
+    \bajo & \bajo & \medio & \\
+    \cline{1-3}
+    \medio & \bajo & \bajo & \\
+    \cline{1-3}
+    \medio & \bajo & \medio & \\
+
+    \hline
+    \bajo & \bajo & \alto & \multi{2}{avanzar hacia la izquierda}\\
+    \cline{1-3}
+    \medio & \bajo & \alto & \\
+
+    \hline
+    \alto & \bajo & \bajo & \multi{2}{avanzar hacia la derecha}\\
+    \cline{1-3}
+    \alto & \bajo & \medio & \\
+
+    \hline
+    \alto & \bajo & \alto & avanzar lento\\
+
+    \hline
+    \hline
+    \bajo & \medio & \bajo & avanzar lento\\
+
+    \hline
+    \bajo & \medio & \medio & \multi{2}{avanzar lento hacia la izquierda}\\
+    \cline{1-3}
+    \bajo & \medio & \alto & \\
+
+    \hline
+    \medio & \medio & \bajo & \multi{2}{avanzar lento hacia la derecha}\\
+    \cline{1-3}
+    \alto & \medio & \bajo & \\
+
+    \hline
+    \alto & \medio & \alto & \multi{4}{avanzar muy lento}\\
+    \cline{1-3}
+    \medio & \medio & \medio & \\
+    \cline{1-3}
+    \alto & \medio & \medio & \\
+    \cline{1-3}
+    \medio & \medio & \alto & \\
+
+    \hline
+    \hline
+    \bajo & \alto & \bajo & \multi{3}{girar}\\
+    \cline{1-3}
+    \medio & \alto & \medio & \\
+    \cline{1-3}
+    \alto & \alto & \alto & \\
+
+    \hline
+    \bajo & \alto & \medio & \multi{3}{girar a la izquierda}\\
+    \cline{1-3}
+    \bajo & \alto & \alto & \\
+    \cline{1-3}
+    \medio & \alto & \alto & \\
+
+    \hline
+    \medio & \alto & \bajo & \multi{3}{girar a la derecha}\\
+    \cline{1-3}
+    \alto & \alto & \bajo & \\
+    \cline{1-3}
+    \alto & \alto & \medio & \\
+    \hline
+    \end{tabular}
+    
+    \caption{Estrategia de navegación}
+    \label{tbl_estrategia}
+\end{figure}
+
+Observar que la acción a tomar en cada caso es determinística y sólo depende del estado actual del sensado (o de los últimos ~3 segundos de sensado).
+
+Por ejemplo, en el caso de la figura \ref{fig_disparidad} (donde los valores de los promedios son \emph{alto}, \emph{medio}, \emph{bajo}, la estrategia dice que hay que avanzar lento hacia la derecha.
+
+Cada una de estas acciones se traduce a un par de velocidades para los motores que producen que el robot haga esa acción. En el ejemplo, ``avanzar lento hacia la derecha'' se traduce a (0.216, 0.072), osea una velocidad de 0.216 para el motor izquierdo y 0.072 para el derecho. El efecto producido es que el exabot avanza levemente mientras rota hacia la derecha.
+
 \section{Experimentos}
 
 \section{Conclusiones}
